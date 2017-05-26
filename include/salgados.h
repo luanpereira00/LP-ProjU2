@@ -1,9 +1,11 @@
 #ifndef SALGADOS_H
 #define SALGADOS_H
 
+#include "data.h"
+#include "pereciveis.h"
 #include "produtos.h"
 
-class Salgados : public Produtos {
+class Salgados : public Produtos, Pereciveis {
 private:
 	float qtdSodio;
 	bool gluten;
@@ -12,7 +14,7 @@ private:
 public:
 	Salgados();
 	~Salgados();
-	Salgados(float s, bool gt, bool lt);
+	Salgados(int c, string n, float p, int e, float s, bool gt, bool lt, Data dv);
 
 	float getQtdSodio();
 	bool getGluten();

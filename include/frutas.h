@@ -4,23 +4,24 @@
 #include <string>
 using std::string;
 
-#include "produtos.h"
 #include "data.h"
+#include "pereciveis.h"
+#include "produtos.h"
 
-class Frutas : public Produtos{
+class Frutas : public Produtos, Pereciveis {
 private:
 	string lote;
 	Data dataDeLote;
 
-public: 
+public:
 	Frutas();
 	~Frutas();
-	Frutas(int c, string n, float p, int e, string l, Data dl);
+	Frutas(int c, string n, float p, int e, string lt, Data dl, Data dv);
 
 	string getLote();
 	Data getDataLote();
 
-	void setLote(string l);
+	void setLote(string lt);
 	void setDataLote(Data dl);
 };
 

@@ -4,10 +4,12 @@ using std::endl;
 
 
 #include "bebidas.h"
+#include "data.h"
 #include "cds.h"
 
 int main (){
-	Bebidas a(1, "Testando", 1, 10, 10, 100, 1000);
+	Data d;
+	Bebidas a(1, "Testando", 1, 10, 10, 100, 1000, d);
 
 	cout << a.getNomeProd() << endl;
 	cout << a.getPrecoUnit() << endl;

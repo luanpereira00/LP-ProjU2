@@ -1,4 +1,5 @@
 #include "salgados.h"
+#include "data.h"
 
 Salgados::Salgados(){
 	setQtdSodio(0);
@@ -8,10 +9,17 @@ Salgados::Salgados(){
 Salgados::~Salgados(){
 	//FAZ NADA
 }
-Salgados::Salgados(float s, bool gt, bool lt){
+Salgados::Salgados(int c, string n, float p, int e, float s, bool gt, bool lt, Data dv){
+	setChave(c);
+	setNomeProd(n);
+	setPrecoUnit(p);
+	setQtdEstoque(e);
+
 	setQtdSodio(s);
 	setGluten(gt);
 	setLactose(lt);
+
+	setValidade(dv);
 }
 
 float Salgados::getQtdSodio(){ return qtdSodio; }

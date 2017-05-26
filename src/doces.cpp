@@ -1,4 +1,5 @@
 #include "doces.h"
+#include "data.h"
 
 Doces::Doces(){
 	setQtdAcucar(0);
@@ -8,10 +9,17 @@ Doces::Doces(){
 Doces::~Doces(){
 	//FAZ NADA
 }
-Doces::Doces(float a, bool gt, bool lt){
+Doces::Doces(int c, string n, float p, int e, float a, bool gt, bool lt, Data dv){
+	setChave(c);
+	setNomeProd(n);
+	setPrecoUnit(p);
+	setQtdEstoque(e);
+
 	setQtdAcucar(a);
 	setGluten(gt);
 	setLactose(lt);
+	
+	setValidade(dv);
 }
 
 float Doces::getQtdAcucar(){ return qtdAcucar; }

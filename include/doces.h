@@ -1,9 +1,11 @@
 #ifndef DOCES_H
 #define DOCES_H
 
+#include "data.h"
+#include "pereciveis.h"
 #include "produtos.h"
 
-class Doces : public Produtos {
+class Doces : public Produtos, Pereciveis {
 private:
 	float qtdAcucar;
 	bool gluten;
@@ -12,7 +14,7 @@ private:
 public:
 	Doces();
 	~Doces();
-	Doces(float a, bool gt, bool lt);
+	Doces(int c, string n, float p, int e, float a, bool gt, bool lt, Data dv);
 
 	float getQtdAcucar();
 	bool getGluten();
