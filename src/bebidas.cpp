@@ -1,3 +1,6 @@
+#include <iostream>
+using std::getline;
+
 #include <ostream> 
 using std::ostream; 
 
@@ -52,7 +55,8 @@ ostream& operator<<(ostream& os, Bebidas &a){
 	os << a.getQtdEstoque() << ";";
 	os << a.getTeorAlcoolico() << ";"; 	
 	os << a.getQtdAcucar() << ";";
-	os << a.getVolumeTotal();
+	os << a.getVolumeTotal() << ";";
+	os << *(a.getValidade());
 	return os; 
 }
 
@@ -63,6 +67,7 @@ ostream& operator<<(ostream& os, Bebidas &a){
 */ 	
 istream& operator>>(istream& is, Bebidas &a){
 	string aux; 
+	Data d;
 
 	getline(is, aux, ';'); 	
 	a.setChave(atoi(aux.c_str())); 	
@@ -78,8 +83,10 @@ istream& operator>>(istream& is, Bebidas &a){
 	a.setQtdAcucar(atof(aux.c_str()));
 	getline(is, aux, ';'); 	
 	a.setVolumeTotal(atoi(aux.c_str()));
-	//getline(is, aux); 	
-	//Data d << aux;
+	getline(is, aux); 
+	d.string2Data(aux);
+	a.setValidade(d);	
+	// << aux;
 	//a.setValidade();
 
 	return is; 

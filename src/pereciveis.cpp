@@ -12,7 +12,7 @@ Pereciveis::Pereciveis(Data d){
 	setValidade(d);
 }
 
-Data Pereciveis::getValidade(){ return dataDeValidade; }
+Data* Pereciveis::getValidade(){ return &dataDeValidade; }
 void Pereciveis::setValidade(Data d){ dataDeValidade = d; }
 
 //bool Pereciveis::isGood2Eat(){}

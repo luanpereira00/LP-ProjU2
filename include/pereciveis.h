@@ -12,7 +12,7 @@ public:
 	~Pereciveis();
 	Pereciveis(Data d);
 
-	Data getValidade();
+	Data* getValidade();
 	void setValidade(Data d);
 
 	//bool isGood2Eat();

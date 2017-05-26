@@ -1,23 +1,37 @@
 #include <iostream>
 using std::cout;
+using std::cin;
 using std::endl;
 
+#include <string>
+using std::string;
 
 #include "bebidas.h"
 #include "data.h"
+#include "pereciveis.h"
 #include "cds.h"
 
 int main (){
 	Data d;
+	string aux;
 	Bebidas a(1, "Testando", 1, 10, 10, 100, 1000, d);
 
-	cout << a.getNomeProd() << endl;
-	cout << a.getPrecoUnit() << endl;
+	cout << a << endl;
 
 	CDs b(1, "ProdB", 1, 10, "luiz", "forro", "gonzaga");
 
 	cout << "Nome: " << b.getNomeProd() << endl;
 	cout << b.getEstilo() << endl;
+
+	Pereciveis p;
+	cin >> aux;
+
+	d.string2Data(aux);
+
+	p.setValidade(d);
+
+	cout << *(p.getValidade()) << endl;
+
 	return 0;
 }
 
