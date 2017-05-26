@@ -23,6 +23,9 @@ public:
 	void setQtdAcucar(float a);
 	void setGluten(bool gt);
 	void setLactose(bool lt);
+
+	friend ostream& operator<<(ostream& os, Doces &a);
+	friend istream& operator>>(istream& is, Doces &a);
 };
 
 #endif

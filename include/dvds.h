@@ -24,6 +24,9 @@ public:
 	void setTitulo(string tt);
 	void setGenero(string gr);
 	void setMinutos(int min);
+
+	friend ostream& operator<<(ostream& os, DVDs &a);
+	friend istream& operator>>(istream& is, DVDs &a);
 };
 
 #endif

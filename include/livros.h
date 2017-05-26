@@ -27,6 +27,9 @@ public:
 	void setAutor(string at);
 	void setEditora(string ed);
 	void setAno(int aa);
+
+	friend ostream& operator<<(ostream& os, Livros &a);
+	friend istream& operator>>(istream& is, Livros &a);
 };
 
 #endif

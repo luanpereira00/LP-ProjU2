@@ -1,3 +1,15 @@
+#include <iostream>
+using std::getline;
+
+#include <ostream> 
+using std::ostream; 
+
+#include <istream> 
+using std::istream;
+
+#include <string>
+using std::string;
+
 #include "doces.h"
 #include "data.h"
 
@@ -29,3 +41,53 @@ bool Doces::getLactose(){ return lactose; }
 void Doces::setQtdAcucar(float a){ qtdAcucar = a; }
 void Doces::setGluten(bool gt){ gluten = gt; }
 void Doces::setLactose(bool lt){ lactose = lt; }
+
+/** @brief Sobrecarga do operador de insercao em stream 
+* @details O operador eh sobrecarregado para representar uma bebida na formatacao "codigo;nome;preco;qtdEstoque;teorAlcoolico;qtdAcucar;volumeTotal"  
+* @param	os Referencia para stream de saida  
+* @param	a Referencia para o objeto bebida a ser impresso  
+* @return	Referencia para stream de saida  
+*/
+ostream& operator<<(ostream& os, Doces &a){
+	os << a.getChave() << ";"; 	
+	os << a.getNomeProd() << ";"; 	
+	os << a.getPrecoUnit() << ";";
+	os << a.getQtdEstoque() << ";";
+	os << a.getQtdAcucar() << ";";
+	os << a.getGluten() << ";";
+	os << a.getLactose() << ";";
+	os << *(a.getValidade());
+	return os; 
+}
+
+/** @brief Sobrecarga do operador de extracao de stream 
+* @param	is Referencia para stream de entrada  
+* @param	a Referencia para o objeto bebida a ser criado com base nos  
+*			valores fornecidos  * @return	Referencia para stream de entrada  
+*/ 	
+istream& operator>>(istream& is, Doces &a){
+	string aux; 
+	Data d;
+
+	getline(is, aux, ';'); 	
+	a.setChave(atoi(aux.c_str())); 	
+	getline(is, aux, ';'); 	
+	a.setNomeProd(aux); 	
+	getline(is, aux, ';'); 	
+	a.setPrecoUnit(atof(aux.c_str()));
+	getline(is, aux);
+	a.setQtdEstoque(atoi(aux.c_str())); 
+	getline(is, aux, ';'); 	
+	a.setQtdAcucar(atof(aux.c_str())); 
+	getline(is, aux, ';'); 	
+	a.setGluten(atoi(aux.c_str()));
+	getline(is, aux, ';'); 	
+	a.setLactose(atoi(aux.c_str()));
+	getline(is, aux); 
+	d.string2Data(aux);
+	a.setValidade(d);	
+	// << aux;
+	//a.setValidade();
+
+	return is; 
+}

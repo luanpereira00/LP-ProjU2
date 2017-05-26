@@ -23,6 +23,9 @@ public:
 	void setQtdSodio(float s);
 	void setGluten(bool gt);
 	void setLactose(bool lt);
+
+	friend ostream& operator<<(ostream& os, Salgados &a);
+	friend istream& operator>>(istream& is, Salgados &a);
 };
 
 #endif

@@ -19,10 +19,13 @@ public:
 	Frutas(int c, string n, float p, int e, string lt, Data dl, Data dv);
 
 	string getLote();
-	Data getDataLote();
+	Data* getDataLote();
 
 	void setLote(string lt);
 	void setDataLote(Data dl);
+
+	friend ostream& operator<<(ostream& os, Frutas &a);
+	friend istream& operator>>(istream& is, Frutas &a);
 };
 
 #endif

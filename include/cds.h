@@ -24,6 +24,9 @@ public:
 	void setAlbum(string a);
 	void setEstilo(string es);
 	void setArtista(string t);
+
+	friend ostream& operator<<(ostream& os, CDs &a);
+	friend istream& operator>>(istream& is, CDs &a);
 };
 
 #endif

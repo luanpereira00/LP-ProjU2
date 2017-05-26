@@ -24,7 +24,7 @@ int main (){
 	cout << b.getEstilo() << endl;
 
 	Pereciveis p;
-	cin >> aux;
+	aux = "01/08/2006";
 
 	d.string2Data(aux);
 
