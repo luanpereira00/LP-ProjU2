@@ -42,6 +42,22 @@ void Bebidas::setTeorAlcoolico(float t){ teorAlcoolico = t; }
 void Bebidas::setQtdAcucar(float a){ qtdAcucar = a; }
 void Bebidas::setVolumeTotal(int v){ volumeTotal = v; }
 
+/** @brief Sobrecarga do operador de atribuicao (para Data)
+* @param	d Data que sera passado por atribuicao  
+* @return	Retorna a Data atribuida
+*/
+Bebidas& Bebidas::operator=(int a) {
+	chave = 0;
+	nomeProduto = "";
+	precoUnitario = 0;
+	qtdEstoque = 0;
+	teorAlcoolico =0;
+	qtdAcucar = 0;
+	volumeTotal =0;
+	
+    return *this;
+}
+
 /** @brief Sobrecarga do operador de insercao em stream 
 * @details O operador eh sobrecarregado para representar uma bebida na formatacao "codigo;nome;preco;qtdEstoque;teorAlcoolico;qtdAcucar;volumeTotal"  
 * @param	os Referencia para stream de saida  

@@ -7,6 +7,8 @@ using std::endl;
 #include <string>
 using std::string;
 
+#include "estoque.h"
+
 int menuPrincipal(){
 	int result;
 	do{
@@ -104,5 +106,26 @@ int menuCarrinho(){
 
 	return result;
 } 
+
+int menuCadastrarProdutos(){
+	int result;
+	do{
+		cout << "=======================================" << endl;
+		cout << "--- Cadastrar Produto ---" << endl;
+		cout << "Qual tipo de produto deseja cadastrar? " << endl;
+		cout << "1 - Bebida" << endl;
+		cout << "2 - CD" << endl;
+		cout << "3 - Doce" << endl;
+		cout << "4 - DVD" << endl;
+		cout << "5 - Fruta" << endl;
+		cout << "6 - Livro" << endl;
+		cout << "7 - Salgado" << endl;
+		cout << "0 - Voltar" << endl;
+		cout << "Opcao: ";
+		cin >> result;
+		if (result<0 or result>7) cerr << "OPCAO INVALIDA! TENTE NOVAMENTE..." << endl;
+	}while(result<0 or result>7);
+	return result;
+}
 
 //menu

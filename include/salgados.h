@@ -5,7 +5,7 @@
 #include "pereciveis.h"
 #include "produtos.h"
 
-class Salgados : public Produtos, Pereciveis {
+class Salgados : public Produtos, public Pereciveis {
 private:
 	float qtdSodio;
 	bool gluten;

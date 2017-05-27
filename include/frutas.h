@@ -8,7 +8,7 @@ using std::string;
 #include "pereciveis.h"
 #include "produtos.h"
 
-class Frutas : public Produtos, Pereciveis {
+class Frutas : public Produtos, public Pereciveis {
 private:
 	string lote;
 	Data dataDeLote;

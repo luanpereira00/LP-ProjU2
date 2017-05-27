@@ -25,6 +25,8 @@ public:
 	void setNomeProd(string n);
 	void setPrecoUnit(float p);
 	void setQtdEstoque(int e);
+
+	bool operator<(Produtos p);
 };
 
 #endif

@@ -31,3 +31,13 @@ void Produtos::setChave(int c) { chave = c; }
 void Produtos::setNomeProd(string n){ nomeProduto = n; }
 void Produtos::setPrecoUnit(float p){ precoUnitario = p; }
 void Produtos::setQtdEstoque(int e){ qtdEstoque = e; }
+
+
+/** @brief Sobrecarga do operador de menor que (para Produtos)
+* @param	p Data que sera passado para comparacao  
+* @return	Retorna bool para a atribuicao
+*/
+bool Produtos::operator<(Produtos p) {
+	if(chave<p.chave) return true;
+	else return false;
+}

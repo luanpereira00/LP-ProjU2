@@ -10,4 +10,6 @@ int menuNotaFiscal();
 int menuAcessoNotaFiscal();//Exibir, excluir
 
 int menuCarrinho();
+
+int menuCadastrarProdutos();
 #endif

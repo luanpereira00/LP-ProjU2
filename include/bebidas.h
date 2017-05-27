@@ -14,7 +14,7 @@ using std::string;
 #include "pereciveis.h"
 #include "produtos.h"
 
-class Bebidas : public Produtos, Pereciveis {
+class Bebidas : public Produtos, public Pereciveis {
 private:
 	float teorAlcoolico;
 	float qtdAcucar;
@@ -33,6 +33,7 @@ public:
 	void setQtdAcucar(float a);
 	void setVolumeTotal(int v);
 
+	Bebidas& operator=(int a);
 	friend ostream& operator<<(ostream& os, Bebidas &a);
 	friend istream& operator>>(istream& is, Bebidas &a);
 };

@@ -6,55 +6,85 @@ using std::endl;
 #include <string>
 using std::string;
 
+#include "estoque.h"
+#include "cadastrar.h"
 #include "menu.h"
-#include "bebidas.h"
-#include "doces.h"
-#include "data.h"
-#include "pereciveis.h"
-#include "cds.h"
 
 int main (){
-	Data d;
-	string aux;
-	Bebidas a(1, "Vinho Branco", 1, 10, 10, 100, 1000, d);
-	Doces doc;
-	cout << doc << endl;
-	cout << a << endl;
-	CDs b(1, "ProdB", 1, 10, "luiz", "forro", "gonzaga");
-	cout << "Nome: " << b.getNomeProd() << endl;
-	cout << b.getEstilo() << endl;
-	Pereciveis p;
-	aux = "01/08/2006";
-	d.string2Data(aux);
-	p.setValidade(d);
-	cout << *(p.getValidade()) << endl;
 
+	Estoque *e = new Estoque;
+	
+	e->listarEstoque(); //segmentation fault
 	//INPUT DADOS
 
-	int result;
+	int resultPrinc=0;
 	do{
-		result = menuPrincipal();
-		switch(result){
+		resultPrinc = menuPrincipal();
+		switch(resultPrinc){
 			case 1:
-			//Menu Produtos
+				switch(menuProdutos()){
+					case 1:
+						cadastrarProdutos(e, menuCadastrarProdutos());
+					break;
+					case 2:
+					break;
+					case 3:
+					break;
+					default:
+					break;
+				}
 			break;
 			case 2:
+			e->listarEstoque();
 			//Menu nota fiscal
+				/*resultAux = menuProdutos();
+				switch(resultAux){
+					case 1:
+					break;
+					case 2:
+					break;
+					case 3:
+					break;
+					default:
+					break;
+				}*/
 			break;
 			case 3:
 			//menu fornecedores;
+				/*resultAux = menuProdutos();
+				switch(resultAux){
+					case 1:
+					break;
+					case 2:
+					break;
+					case 3:
+					break;
+					default:
+					break;
+				}*/
 			break;
 			case 4:
 			//iniciar venda
+				/*resultAux = menuProdutos();
+				switch(resultAux){
+					case 1:
+					break;
+					case 2:
+					break;
+					case 3:
+					break;
+					default:
+					break;
+				}*/
 			break;
 			default:
 			break;
 		}
-	}while(result!=0);
+	}while(resultPrinc!=0);
 	cout << "=======================================" << endl;
 
 	cout << "Finalizando sistema..." << endl;
-
+	//delete e;
 	//OUTPUT DADOS
 	return 0;
 }
