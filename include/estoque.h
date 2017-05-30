@@ -24,6 +24,7 @@ private:
 	
 public:
 	Estoque();
+	~Estoque();
 
 	lista<Bebidas>* getListaBebidas();
 	lista<CDs>* getListaCDs();
@@ -45,6 +46,9 @@ public:
 	void setListaSalgados(lista<Salgados>* ll);
 
 	void listarEstoque();
+	void lerDados();
+	int getMaxKey();
+	void gravarDados();
 };
 void estoque();
 

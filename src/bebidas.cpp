@@ -84,14 +84,13 @@ ostream& operator<<(ostream& os, Bebidas &a){
 istream& operator>>(istream& is, Bebidas &a){
 	string aux; 
 	Data d;
-
 	getline(is, aux, ';'); 	
 	a.setChave(atoi(aux.c_str())); 	
 	getline(is, aux, ';'); 	
 	a.setNomeProd(aux); 	
 	getline(is, aux, ';'); 	
 	a.setPrecoUnit(atof(aux.c_str()));
-	getline(is, aux);
+	getline(is, aux, ';');
 	a.setQtdEstoque(atoi(aux.c_str())); 
 	getline(is, aux, ';'); 	
 	a.setTeorAlcoolico(atof(aux.c_str())); 

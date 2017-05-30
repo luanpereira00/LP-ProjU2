@@ -14,6 +14,10 @@ using std::cout;
 using std::cerr;
 using std::endl;
 
+#include <fstream>
+using std::ofstream;
+using std::ifstream;
+
 /** @brief Declaracao de template para o tipo T (int, float, double...)*/
 template <typename T>
 
@@ -120,11 +124,40 @@ public:
 
 	/** @brief Imprime toda a lista ligada*/
 	void imprimir(){
-		node<T>* it = inicio; //segmentation fault
+		node<T>* it = inicio;
 		while(it->prox->prox){
 			cout << it->prox->dado << endl;
 			it=it->prox;
 		}
+	}
+
+	void lerArquivo(ifstream *a){
+		T el;
+		int j, i = 0;
+		*a >> j;
+		while(i<j){
+			*a >> el;
+			inserir(el);
+			i++;
+		}
+	}
+
+	void imprimirArquivo(ofstream *a){
+		node<T>* it = inicio;
+		*a << contarElementos() << endl;
+		while(it->prox->prox){
+			*a << it->prox->dado << endl;
+			it=it->prox;
+		}
+	}
+	int contarElementos(){
+		node<T>* it = inicio;
+		int i=0;
+		while(it->prox->prox){
+			i++;
+			it=it->prox;
+		}
+		return i;
 	}
 
 	/** 
@@ -137,6 +170,16 @@ public:
 			it=it->prox;
 		}
 		return it;
+	}
+
+	int maxKey(){
+		node<T>* it = inicio;
+		int key=0;
+		while(it->prox->prox){		
+			if(it->prox->dado.getChave()>key) key=it->prox->dado.getChave();
+			it=it->prox;
+		}
+		return key;
 	}
 };
 

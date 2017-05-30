@@ -6,15 +6,20 @@ using std::endl;
 #include <string>
 using std::string;
 
+#include <algorithm>
+
 #include "estoque.h"
 #include "cadastrar.h"
 #include "menu.h"
 
 int main (){
-
+	string s = "teste";
+	cout << s << endl;
+	std::locale loc;
+	transform(s.begin(), s.end(), s.begin(), (int (*)(int))toupper);
+	cout << s << endl;
 	Estoque *e = new Estoque;
-	
-	e->listarEstoque(); //segmentation fault
+	e->lerDados();
 	//INPUT DADOS
 
 	int resultPrinc=0;
@@ -29,13 +34,14 @@ int main (){
 					case 2:
 					break;
 					case 3:
+						e->listarEstoque();
 					break;
 					default:
 					break;
 				}
 			break;
 			case 2:
-			e->listarEstoque();
+			
 			//Menu nota fiscal
 				/*resultAux = menuProdutos();
 				switch(resultAux){
@@ -84,7 +90,10 @@ int main (){
 	cout << "=======================================" << endl;
 
 	cout << "Finalizando sistema..." << endl;
-	//delete e;
+	
+	e->gravarDados();
+
+	delete e;
 	//OUTPUT DADOS
 	return 0;
 }

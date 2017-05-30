@@ -10,6 +10,9 @@ using std::istream;
 #include <string>
 using std::string;
 
+#include <sstream>
+using std::istringstream;
+
 #include "data.h"
 
 Data::Data(){
@@ -35,9 +38,15 @@ void Data::setMes(int mm){ mes = mm; }
 void Data::setAno(int aa){ ano = aa; }
 
 void Data::string2Data(string a){	
-	setDia(atoi(a.substr(0, 2).c_str())); 	
-	setMes(atoi(a.substr(3, 2).c_str())); 
-	setAno(atoi(a.substr(6, 4).c_str())); 
+	string aux;
+	istringstream iss(a);
+
+	getline(iss, aux, '/');
+	setDia(atoi(aux.c_str())); 	
+	getline(iss, aux, '/');
+	setMes(atoi(aux.c_str())); 
+	getline(iss, aux);
+	setAno(atoi(aux.c_str())); 
 
 }
 
