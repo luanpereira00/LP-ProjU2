@@ -9,7 +9,7 @@ using std::string;
 #include <algorithm>
 
 #include "estoque.h"
-#include "cadastrar.h"
+#include "cadProd.h"
 #include "menu.h"
 
 int main (){
@@ -29,10 +29,10 @@ int main (){
 			case 1:
 				switch(menuProdutos()){
 					case 1:
-						cadastrarProdutos(e, menuCadastrarProdutos());
+						cadastrarProdutos(e, menuOpcoesProdutos());
 					break;
 					case 2:
-						//acessarProduto(e, menuAcessoProduto());
+						acessarProduto(e, menuOpcoesProdutos());
 					break;
 					case 3:
 						e->listarEstoque();

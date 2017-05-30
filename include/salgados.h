@@ -1,6 +1,15 @@
 #ifndef SALGADOS_H
 #define SALGADOS_H
 
+#include <ostream> 
+using std::ostream; 
+
+#include <istream> 
+using std::istream;
+
+#include <string>
+using std::string;
+
 #include "data.h"
 #include "pereciveis.h"
 #include "produtos.h"

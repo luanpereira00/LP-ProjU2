@@ -11,5 +11,5 @@ int menuAcessoNotaFiscal();//Exibir, excluir
 
 int menuCarrinho();
 
-int menuCadastrarProdutos();
+int menuOpcoesProdutos();
 #endif

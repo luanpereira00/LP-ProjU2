@@ -107,12 +107,12 @@ int menuCarrinho(){
 	return result;
 } 
 
-int menuCadastrarProdutos(){
+int menuOpcoesProdutos(){
 	int result;
 	do{
 		cout << "=======================================" << endl;
-		cout << "--- Cadastrar Produto ---" << endl;
-		cout << "Qual tipo de produto deseja cadastrar? " << endl;
+		cout << "--- Produtos ---" << endl;
+		cout << "Qual tipo de produto deseja? " << endl;
 		cout << "1 - Bebida" << endl;
 		cout << "2 - CD" << endl;
 		cout << "3 - Doce" << endl;

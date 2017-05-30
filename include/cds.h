@@ -1,6 +1,12 @@
 #ifndef CDS_H
 #define CDS_H
 
+#include <ostream> 
+using std::ostream; 
+
+#include <istream> 
+using std::istream;
+
 #include <string>
 using std::string;
 

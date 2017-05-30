@@ -45,7 +45,7 @@ init:
 
 # Alvo (target) para a construcao do executavel
 # Define os arquivos main.o, pereciveis.o, produtos.o, bebidas.o, cds.o, data.o, doces.o dvds.o, frutas.o, livros.o, e salgados.o como dependencia
-exec: $(OBJ_DIR)/main.o $(OBJ_DIR)/cadastrar.o $(OBJ_DIR)/estoque.o $(OBJ_DIR)/menu.o $(OBJ_DIR)/pereciveis.o $(OBJ_DIR)/produtos.o $(OBJ_DIR)/data.o $(OBJ_DIR)/bebidas.o $(OBJ_DIR)/cds.o $(OBJ_DIR)/doces.o $(OBJ_DIR)/dvds.o $(OBJ_DIR)/frutas.o $(OBJ_DIR)/livros.o $(OBJ_DIR)/salgados.o
+exec: $(OBJ_DIR)/main.o $(OBJ_DIR)/cadProd.o $(OBJ_DIR)/estoque.o $(OBJ_DIR)/menu.o $(OBJ_DIR)/pereciveis.o $(OBJ_DIR)/produtos.o $(OBJ_DIR)/data.o $(OBJ_DIR)/bebidas.o $(OBJ_DIR)/cds.o $(OBJ_DIR)/doces.o $(OBJ_DIR)/dvds.o $(OBJ_DIR)/frutas.o $(OBJ_DIR)/livros.o $(OBJ_DIR)/salgados.o
 	@echo "============="
 	@echo "Ligando o alvo $@"
 	@echo "============="
@@ -56,7 +56,7 @@ exec: $(OBJ_DIR)/main.o $(OBJ_DIR)/cadastrar.o $(OBJ_DIR)/estoque.o $(OBJ_DIR)/m
 #$(SRC_DIR)/pereciveis.cpp $(SRC_DIR)/produtos.cpp  $(INC_DIR)/pereciveis.h $(INC_DIR)/produtos.h
 # Alvo (target) para a construcao do objeto main.o
 # Define os arquivos main.cpp, pereciveis.cpp, produtos.cpp, bebidas.cpp, cds.cpp, data.cpp, doces.cpp, dvds.cpp, frutas.cpp, libros.cpp, salgados.cpp, pereciveis.h, produtos.h, bebidas.h, cds.h, data.h, doces.h, dvds.h, frutas.h, livros.h e salgados.h como dependencias.
-$(OBJ_DIR)/main.o: $(SRC_DIR)/main.cpp $(SRC_DIR)/estoque.cpp $(SRC_DIR)/menu.cpp $(SRC_DIR)/cadastrar.cpp $(INC_DIR)/cadastrar.h $(INC_DIR)/menu.h $(INC_DIR)/estoque.h 
+$(OBJ_DIR)/main.o: $(SRC_DIR)/main.cpp $(INC_DIR)/cadProd.h $(INC_DIR)/menu.h $(INC_DIR)/estoque.h 
 	$(CC) -c $(CFLAGS) -o $@ $<	
 
 # Alvo (target) para a construcao do objeto pereciveis.o
@@ -66,17 +66,17 @@ $(OBJ_DIR)/menu.o: $(SRC_DIR)/menu.cpp $(INC_DIR)/menu.h
 
 # Alvo (target) para a construcao do objeto pereciveis.o
 # Define os arquivos menu.cpp, menu.h, data.cpp e data.h como dependencias.
-$(OBJ_DIR)/cadastrar.o: $(SRC_DIR)/cadastrar.cpp $(INC_DIR)/cadastrar.h $(SRC_DIR)/estoque.cpp $(INC_DIR)/estoque.h $(SRC_DIR)/bebidas.cpp $(SRC_DIR)/cds.cpp $(SRC_DIR)/data.cpp $(SRC_DIR)/doces.cpp $(SRC_DIR)/dvds.cpp $(SRC_DIR)/frutas.cpp $(SRC_DIR)/livros.cpp $(SRC_DIR)/salgados.cpp  $(INC_DIR)/bebidas.h $(INC_DIR)/cds.h $(INC_DIR)/data.h $(INC_DIR)/doces.h $(INC_DIR)/dvds.h $(INC_DIR)/frutas.h $(INC_DIR)/livros.h $(INC_DIR)/salgados.h
+$(OBJ_DIR)/cadProd.o: $(SRC_DIR)/cadProd.cpp $(INC_DIR)/cadProd.h $(INC_DIR)/estoque.h $(INC_DIR)/bebidas.h $(INC_DIR)/cds.h $(INC_DIR)/data.h $(INC_DIR)/doces.h $(INC_DIR)/dvds.h $(INC_DIR)/frutas.h $(INC_DIR)/livros.h $(INC_DIR)/salgados.h
 	$(CC) -c $(CFLAGS) -o $@ $<	
 
 # Alvo (target) para a construcao do objeto pereciveis.o
 # Define os arquivos menu.cpp, menu.h, data.cpp e data.h como dependencias.
-$(OBJ_DIR)/estoque.o: $(SRC_DIR)/estoque.cpp $(INC_DIR)/estoque.h $(INC_DIR)/lista.h $(SRC_DIR)/bebidas.cpp $(SRC_DIR)/cds.cpp $(SRC_DIR)/data.cpp $(SRC_DIR)/doces.cpp $(SRC_DIR)/dvds.cpp $(SRC_DIR)/frutas.cpp $(SRC_DIR)/livros.cpp $(SRC_DIR)/salgados.cpp  $(INC_DIR)/bebidas.h $(INC_DIR)/cds.h $(INC_DIR)/data.h $(INC_DIR)/doces.h $(INC_DIR)/dvds.h $(INC_DIR)/frutas.h $(INC_DIR)/livros.h $(INC_DIR)/salgados.h
+$(OBJ_DIR)/estoque.o: $(SRC_DIR)/estoque.cpp $(INC_DIR)/estoque.h $(INC_DIR)/lista.h $(INC_DIR)/bebidas.h $(INC_DIR)/cds.h $(INC_DIR)/data.h $(INC_DIR)/doces.h $(INC_DIR)/dvds.h $(INC_DIR)/frutas.h $(INC_DIR)/livros.h $(INC_DIR)/salgados.h
 	$(CC) -c $(CFLAGS) -o $@ $<	
 
 # Alvo (target) para a construcao do objeto pereciveis.o
 # Define os arquivos pereciveis.cpp, pereciveis.h, data.cpp e data.h como dependencias.
-$(OBJ_DIR)/pereciveis.o: $(SRC_DIR)/pereciveis.cpp $(INC_DIR)/pereciveis.h $(SRC_DIR)/data.cpp $(INC_DIR)/data.h
+$(OBJ_DIR)/pereciveis.o: $(SRC_DIR)/pereciveis.cpp $(INC_DIR)/pereciveis.h $(INC_DIR)/data.h
 	$(CC) -c $(CFLAGS) -o $@ $<	
 
 # Alvo (target) para a construcao do objeto produtos.o
@@ -91,7 +91,7 @@ $(OBJ_DIR)/data.o: $(SRC_DIR)/data.cpp $(INC_DIR)/data.h
 
 # Alvo (target) para a construcao do objeto bebidas.o
 # Define os arquivos bebidas.cpp, bebidas.h, produtos.cpp e produtos.h como dependencias.
-$(OBJ_DIR)/bebidas.o: $(SRC_DIR)/bebidas.cpp $(INC_DIR)/bebidas.h $(SRC_DIR)/data.cpp $(INC_DIR)/data.h $(SRC_DIR)/produtos.cpp $(INC_DIR)/produtos.h $(SRC_DIR)/pereciveis.cpp $(INC_DIR)/pereciveis.h
+$(OBJ_DIR)/bebidas.o: $(SRC_DIR)/bebidas.cpp $(INC_DIR)/bebidas.h $(INC_DIR)/data.h $(INC_DIR)/produtos.h $(INC_DIR)/pereciveis.h
 	$(CC) -c $(CFLAGS) -o $@ $<		
 
 # Alvo (target) para a construcao do objeto cds.o
@@ -101,27 +101,27 @@ $(OBJ_DIR)/cds.o: $(SRC_DIR)/cds.cpp $(INC_DIR)/cds.h $(SRC_DIR)/produtos.cpp $(
 
 # Alvo (target) para a construcao do objeto docs.o
 # Define os arquivos doces.cpp, doces.h, produtos.cpp e produtos.h como dependencias.
-$(OBJ_DIR)/doces.o: $(SRC_DIR)/doces.cpp $(INC_DIR)/doces.h $(SRC_DIR)/data.cpp $(INC_DIR)/data.h $(SRC_DIR)/produtos.cpp $(INC_DIR)/produtos.h $(SRC_DIR)/pereciveis.cpp $(INC_DIR)/pereciveis.h
+$(OBJ_DIR)/doces.o: $(SRC_DIR)/doces.cpp $(INC_DIR)/doces.h $(INC_DIR)/data.h $(INC_DIR)/produtos.h $(INC_DIR)/pereciveis.h
 	$(CC) -c $(CFLAGS) -o $@ $<			
 
 # Alvo (target) para a construcao do objeto dvds.o
 # Define os arquivos dvds.cpp, dvds.h, produtos.cpp e produtos.h como dependencias.
-$(OBJ_DIR)/dvds.o: $(SRC_DIR)/dvds.cpp $(INC_DIR)/dvds.h $(SRC_DIR)/produtos.cpp $(INC_DIR)/produtos.h
+$(OBJ_DIR)/dvds.o: $(SRC_DIR)/dvds.cpp $(INC_DIR)/dvds.h $(INC_DIR)/produtos.h
 	$(CC) -c $(CFLAGS) -o $@ $<		
 
 # Alvo (target) para a construcao do objeto frutas.o
 # Define os arquivos frutas.cpp, frutas.h, produtos.cpp, produtos.h, data.cpp e data.h como dependencias.
-$(OBJ_DIR)/frutas.o: $(SRC_DIR)/frutas.cpp $(INC_DIR)/frutas.h $(SRC_DIR)/data.cpp $(INC_DIR)/data.h $(SRC_DIR)/produtos.cpp $(INC_DIR)/produtos.h $(SRC_DIR)/pereciveis.cpp $(INC_DIR)/pereciveis.h
+$(OBJ_DIR)/frutas.o: $(SRC_DIR)/frutas.cpp $(INC_DIR)/frutas.h $(INC_DIR)/data.h $(INC_DIR)/produtos.h $(INC_DIR)/pereciveis.h
 	$(CC) -c $(CFLAGS) -o $@ $<	
 
 # Alvo (target) para a construcao do objeto livros.o
 # Define os arquivos livros.cpp, livros.h, produtos.cpp e produtos.h como dependencias.
-$(OBJ_DIR)/livros.o: $(SRC_DIR)/livros.cpp $(INC_DIR)/livros.h $(SRC_DIR)/produtos.cpp $(INC_DIR)/produtos.h
+$(OBJ_DIR)/livros.o: $(SRC_DIR)/livros.cpp $(INC_DIR)/livros.h $(INC_DIR)/produtos.h
 	$(CC) -c $(CFLAGS) -o $@ $<			
 
 # Alvo (target) para a construcao do objeto salgados.o
 # Define os arquivos salgados.cpp, salgados.h, produtos.cpp e produtos.h como dependencias.
-$(OBJ_DIR)/salgados.o: $(SRC_DIR)/salgados.cpp $(INC_DIR)/salgados.h $(SRC_DIR)/data.cpp $(INC_DIR)/data.h $(SRC_DIR)/produtos.cpp $(INC_DIR)/produtos.h $(SRC_DIR)/pereciveis.cpp $(INC_DIR)/pereciveis.h
+$(OBJ_DIR)/salgados.o: $(SRC_DIR)/salgados.cpp $(INC_DIR)/salgados.h $(INC_DIR)/data.h $(INC_DIR)/produtos.h $(INC_DIR)/pereciveis.h
 	$(CC) -c $(CFLAGS) -o $@ $<						
 			
 # Alvo (target) para a geração automatica de documentacao usando o Doxygen.

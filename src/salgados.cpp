@@ -1,15 +1,6 @@
 #include <iostream>
 using std::getline;
 
-#include <ostream> 
-using std::ostream; 
-
-#include <istream> 
-using std::istream;
-
-#include <string>
-using std::string;
-
 #include "salgados.h"
 #include "data.h"
 
