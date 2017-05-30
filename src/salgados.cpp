@@ -75,7 +75,7 @@ istream& operator>>(istream& is, Salgados &a){
 	a.setNomeProd(aux); 	
 	getline(is, aux, ';'); 	
 	a.setPrecoUnit(atof(aux.c_str()));
-	getline(is, aux);
+	getline(is, aux, ';');
 	a.setQtdEstoque(atoi(aux.c_str())); 
 	getline(is, aux, ';'); 	
 	a.setQtdSodio(atof(aux.c_str())); 

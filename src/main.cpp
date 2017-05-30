@@ -32,6 +32,7 @@ int main (){
 						cadastrarProdutos(e, menuCadastrarProdutos());
 					break;
 					case 2:
+						//acessarProduto(e, menuAcessoProduto());
 					break;
 					case 3:
 						e->listarEstoque();
@@ -43,8 +44,7 @@ int main (){
 			case 2:
 			
 			//Menu nota fiscal
-				/*resultAux = menuProdutos();
-				switch(resultAux){
+				switch(menuNotaFiscal()){
 					case 1:
 					break;
 					case 2:
@@ -53,7 +53,7 @@ int main (){
 					break;
 					default:
 					break;
-				}*/
+				}
 			break;
 			case 3:
 			//menu fornecedores;
@@ -71,8 +71,7 @@ int main (){
 			break;
 			case 4:
 			//iniciar venda
-				/*resultAux = menuProdutos();
-				switch(resultAux){
+				switch(menuCarrinho()){
 					case 1:
 					break;
 					case 2:
@@ -81,7 +80,7 @@ int main (){
 					break;
 					default:
 					break;
-				}*/
+				}
 			break;
 			default:
 			break;

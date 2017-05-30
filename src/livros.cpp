@@ -71,7 +71,7 @@ istream& operator>>(istream& is, Livros &a){
 	a.setNomeProd(aux); 	
 	getline(is, aux, ';'); 	
 	a.setPrecoUnit(atof(aux.c_str()));
-	getline(is, aux);
+	getline(is, aux, ';');
 	a.setQtdEstoque(atoi(aux.c_str())); 
 	getline(is, aux, ';'); 	
 	a.setTitulo(aux); 
