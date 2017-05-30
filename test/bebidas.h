@@ -1,12 +1,18 @@
 #ifndef BEBIDAS_H
 #define BEBIDAS_H
 
+#include <ostream> 
+using std::ostream; 
+
+#include <istream> 
+using std::istream;
+
 #include <string>
 using std::string;
 
 #include "produtos.h"
 
-class Bebidas : public Produtos {
+class Bebidas : public Produtos{
 private:
 	float teorAlcoolico;
 	float qtdAcucar;
@@ -24,6 +30,10 @@ public:
 	void setTeorAlcoolico(float t);
 	void setQtdAcucar(float a);
 	void setVolumeTotal(int v);
+
+	Bebidas& operator=(int a);
+	friend ostream& operator<<(ostream& os, Bebidas &a);
+	friend istream& operator>>(istream& is, Bebidas &a);
 };
 
 #endif

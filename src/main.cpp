@@ -6,18 +6,12 @@ using std::endl;
 #include <string>
 using std::string;
 
-#include <algorithm>
-
 #include "estoque.h"
 #include "cadProd.h"
 #include "menu.h"
 
 int main (){
-	string s = "teste";
-	cout << s << endl;
-	std::locale loc;
-	transform(s.begin(), s.end(), s.begin(), (int (*)(int))toupper);
-	cout << s << endl;
+	
 	Estoque *e = new Estoque;
 	e->lerDados();
 	//INPUT DADOS
@@ -32,7 +26,7 @@ int main (){
 						cadastrarProdutos(e, menuOpcoesProdutos());
 					break;
 					case 2:
-						acessarProduto(e, menuOpcoesProdutos());
+						removerProduto(e, menuOpcoesProdutos());
 					break;
 					case 3:
 						e->listarEstoque();

@@ -172,19 +172,6 @@ public:
 		return it;
 	}
 
-	/** 
-	* @brief Busca na lista ligada (usado para inserir e remover apenas!)
-	* @param el O elemento que sera removido da lista 
-	*/
-	node<T>* buscar(int el){
-		node<T>* it = inicio;
-		while(it->prox->prox){
-			if(it->prox->dado.getChave()==el) return it;
-			it=it->prox;
-		}
-		return it;
-	}
-
 	int maxKey(){
 		node<T>* it = inicio;
 		int key=0;
