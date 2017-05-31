@@ -19,27 +19,33 @@ int main (){
 	transform(s.begin(), s.end(), s.begin(), (int (*)(int))toupper);
 	cout << s << endl;
 	Estoque *e = new Estoque;
+	Estoque *carrinho = new Estoque;
 	e->lerDados();
 	//INPUT DADOS
 
 	int resultPrinc=0;
 	do{
+		bool flag =true;
 		resultPrinc = menuPrincipal();
 		switch(resultPrinc){
 			case 1:
-				switch(menuProdutos()){
-					case 1:
-						cadastrarProdutos(e, menuOpcoesProdutos());
-					break;
-					case 2:
-						acessarProduto(e, menuOpcoesProdutos());
-					break;
-					case 3:
-						e->listarEstoque();
-					break;
-					default:
-					break;
-				}
+				do{
+					flag=true;
+					switch(menuProdutos()){
+						case 1:
+							cadastrarProdutos(e, menuOpcoesProdutos());
+						break;
+						case 2:
+							removerProduto(e, menuOpcoesProdutos());
+						break;
+						case 3:
+							e->listarEstoque();
+						break;
+						case 0:
+							flag=false;
+						break;
+					}
+				}while(flag);
 			break;
 			case 2:
 			
@@ -71,16 +77,26 @@ int main (){
 			break;
 			case 4:
 			//iniciar venda
-				switch(menuCarrinho()){
-					case 1:
-					break;
-					case 2:
-					break;
-					case 3:
-					break;
-					default:
-					break;
-				}
+				do{
+					flag = true;
+					switch(menuCarrinho()){
+						case 1:
+							carrinho->listarComoCarrinho();
+						break;
+						case 2:
+							adicionarAoCarrinho(e, carrinho, menuOpcoesProdutos());
+						break;
+						case 3:
+						//remover do carrinho
+						break;
+						case 4:
+							carrinho->gravarComoCarrinho();
+						break;
+						case 0:
+							flag=false;
+						break;
+					}
+				}while(flag);
 			break;
 			default:
 			break;
@@ -93,6 +109,7 @@ int main (){
 	e->gravarDados();
 
 	delete e;
+	delete carrinho;
 	//OUTPUT DADOS
 	return 0;
 }

@@ -100,6 +100,24 @@ public:
 	}
 
 	/** 
+	* @brief Insere um elemento ordenadamente na lista
+	* @param el O elemento que sera inserido na lista 
+	*/
+	void inserir(int el){
+		//cout << "Inserindo o elemento " << el << endl;
+		node<T>* it = buscar(el);
+		node<T>* tmp = new node<T>;
+		tmp->dado=el;
+		tmp->prox=it->prox;
+		tmp->anter=it;
+
+		it->prox->anter=tmp;
+		it->prox=tmp;
+	}
+
+
+
+	/** 
 	* @brief Remove um elemento da lista ligada. (Informa também caso o elemento nao exista)
 	* @param el O elemento que sera removido da lista 
 	*/
@@ -120,6 +138,52 @@ public:
 			delete tmp; 
 		}
 		else cerr << "ERRO: Impossivel remover o elemento " << el << " (nao existe na lista)! ...Continuando operacoes" << endl;
+	}
+
+	/** 
+	* @brief Remove um elemento da lista ligada. (Informa também caso o elemento nao exista)
+	* @param el O elemento que sera removido da lista 
+	*/
+	void destruir(){
+		//cout << endl;
+		//cout << "Removendo o elemento " << el << endl;
+		node<T>* it = inicio;
+		while(it->prox->prox){
+			node<T>* tmp = new node<T>;
+			tmp->prox=it->prox->prox;
+			tmp->anter=it;
+
+			delete it->prox; 
+
+			it->prox=tmp->prox;
+			it->prox->anter=tmp->anter;
+
+			delete tmp; 
+		}
+	}
+
+	/** 
+	* @brief Remove um elemento da lista ligada. (Informa também caso o elemento nao exista)
+	* @param el O elemento que sera removido da lista 
+	*/
+	void remover(int el){
+		//cout << endl;
+		//cout << "Removendo o elemento " << el << endl;
+		node<T>* it = buscar(el);
+		if(it->prox->dado.getChave()==el){
+			node<T>* tmp = new node<T>;
+			tmp->prox=it->prox->prox;
+			tmp->anter=it;
+
+			delete it->prox; 
+
+			it->prox=tmp->prox;
+			it->prox->anter=tmp->anter;
+
+			delete tmp; 
+			cout << "Removido com sucesso!" << endl;
+		}
+		else cerr << "ERRO: Impossivel remover o elemento com a chave " << el << " (nao existe na lista)! ...Continuando operacoes" << endl;
 	}
 
 	/** @brief Imprime toda a lista ligada*/

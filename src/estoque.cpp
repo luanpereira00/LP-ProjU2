@@ -6,6 +6,10 @@ using std::endl;
 using std::ofstream;
 using std::ifstream;
 
+#include <string>
+using std::to_string;
+using std::string;
+
 #include "estoque.h"
 #include "lista.h"
 
@@ -65,27 +69,27 @@ void Estoque::listarEstoque(){
 		ll_Bebidas->imprimir();
 	}
 	if(ll_CDs->contarElementos()>0) {
-		cout << endl << endl << "Lista de CDs: " << endl;
+		cout << endl << "Lista de CDs: " << endl;
 		ll_CDs->imprimir();
 	}
 	if(ll_Doces->contarElementos()>0) {
-		cout << endl << endl << "Lista de Doces: " << endl;
+		cout << endl << "Lista de Doces: " << endl;
 		ll_Doces->imprimir();
 	}
 	if(ll_DVDs->contarElementos()>0) {
-		cout << endl << endl << "Lista de DVDs: " << endl;
+		cout << endl << "Lista de DVDs: " << endl;
 		ll_DVDs->imprimir();
 	}
 	if(ll_Frutas->contarElementos()>0) {
-		cout << endl << endl << "Lista de Frutas: " << endl;
+		cout << endl << "Lista de Frutas: " << endl;
 		ll_Frutas->imprimir();
 	}
 	if(ll_Livros->contarElementos()>0) {
-		cout << endl << endl << "Lista de Livros: " << endl;
+		cout << endl << "Lista de Livros: " << endl;
 		ll_Livros->imprimir();
 	}
 	if(ll_Salgados->contarElementos()>0) {
-		cout << endl << endl << "Lista de Salgados: " << endl;
+		cout << endl << "Lista de Salgados: " << endl;
 		ll_Salgados->imprimir();
 	}
 	cout << "-----------------------" << endl;
@@ -198,6 +202,57 @@ void Estoque::gravarDados(){
 	salgado.close();
 }
 
+void Estoque::gravarComoCarrinho(){
+	string closing;
+	if(!carrinhoIsEmpty()){
+		int a = verUltimaNotaFiscal();
+		closing = "./data/notasFiscais/"+ to_string(a) +"_nota.csv";
+		ofstream nota(closing);
+		ll_Bebidas->imprimirArquivo(&nota);
+		ll_CDs->imprimirArquivo(&nota);
+		ll_Doces->imprimirArquivo(&nota);
+		ll_DVDs->imprimirArquivo(&nota);
+		ll_Frutas->imprimirArquivo(&nota);
+		ll_Livros->imprimirArquivo(&nota);
+		ll_Salgados->imprimirArquivo(&nota);
+		nota.close();	
+		ll_Bebidas->destruir();
+		ll_CDs->destruir();
+		ll_DVDs->destruir();
+		ll_Doces->destruir();
+		ll_Frutas->destruir();
+		ll_Livros->destruir();
+		ll_Salgados->destruir();
+		cout << "Venda finalizada com sucesso! Nota fiscal gerada..." << endl;
+	}
+	else cerr << "Carrinho vazio! Nada a fazer..." << endl;
+}
+
+bool Estoque::carrinhoIsEmpty(){
+	if(ll_Bebidas->contarElementos()>0) return false;
+	if(ll_CDs->contarElementos()>0) return false;
+	if(ll_Doces->contarElementos()>0) return false;
+	if(ll_DVDs->contarElementos()>0) return false;
+	if(ll_Frutas->contarElementos()>0) return false;
+	if(ll_Livros->contarElementos()>0) return false;
+	if(ll_Salgados->contarElementos()>0) return false;
+
+	return true;
+}
+
+int Estoque::verUltimaNotaFiscal(){
+	bool flag =false;
+	int i=1;
+	string opening;
+	while (flag){
+		opening = "./data/notasFiscais/"+ to_string(i) +"_nota.csv";
+		ifstream nota(opening);
+		if(!nota) flag =false;
+		else nota.close();
+	}
+	return i;
+}
+
 int Estoque::getMaxKey(){
 	int keyAux, key = 0;
 	keyAux = ll_Bebidas->maxKey();
@@ -222,4 +277,33 @@ int Estoque::getMaxKey(){
 	if(keyAux>key) key = keyAux;
 
 	return key;
+}
+
+void Estoque::listarComoCarrinho(){
+	cout << "-----------------------" << endl;
+	cout << "Carrinho: " << endl << endl;
+	if(ll_Bebidas->contarElementos()>0) {
+		ll_Bebidas->imprimir();
+	}
+	if(ll_CDs->contarElementos()>0) {
+		ll_CDs->imprimir();
+	}
+	if(ll_Doces->contarElementos()>0) {
+		ll_Doces->imprimir();
+	}
+	if(ll_DVDs->contarElementos()>0) {
+		ll_DVDs->imprimir();
+	}
+	if(ll_Frutas->contarElementos()>0) {
+		ll_Frutas->imprimir();
+	}
+	if(ll_Livros->contarElementos()>0) {
+		ll_Livros->imprimir();
+	}
+	if(ll_Salgados->contarElementos()>0) {
+		ll_Salgados->imprimir();
+	}
+	cout << "-----------------------" << endl;
+
+
 }

@@ -32,7 +32,7 @@ int menuProdutos(){
 		cout << "=======================================" << endl;
 		cout << "--- Menu de Produtos ---" << endl;
 		cout << "1 - Cadastrar Produto" << endl;
-		cout << "2 - Acessar Produto Cadastrado" << endl;
+		cout << "2 - Remover Produto Cadastrado" << endl;
 		cout << "3 - Listar Todos os Produtos Cadastrados" << endl;
 		cout << "0 - Voltar" << endl;
 		cout << "Opcao: ";
@@ -43,21 +43,6 @@ int menuProdutos(){
 	return result;
 } //Cadastro, acesso, listagem
 
-int menuAcessoProduto(){
-	int result;
-	do{
-		cout << "=======================================" << endl;
-		cout << "--- Menu de Acesso a Produtos ---" << endl;
-		cout << "1 - Alterar Informações do Produto" << endl;
-		cout << "2 - Remover Produto da Lista" << endl;
-		cout << "0 - Voltar" << endl;
-		cout << "Opcao: ";
-		cin >> result;
-		if(result<0 or result>2) cerr << "OPCAO INVALIDA! TENTE NOVAMENTE..." << endl;
-	}while(result<0 or result>2);
-
-	return result;
-} //Cadastro, acesso, listagem
 int menuNotaFiscal(){
 	int result;
 	do{
@@ -98,11 +83,12 @@ int menuCarrinho(){
 		cout << "1 - Listar Carrinho" << endl;
 		cout << "2 - Adicionar ao Carrinho" << endl;
 		cout << "3 - Remover do Carrinho" << endl;
+		cout << "4 - Finalizar compra" << endl;
 		cout << "0 - Voltar" << endl;
 		cout << "Opcao: ";
 		cin >> result;
-		if(result<0 or result>3) cerr << "OPCAO INVALIDA! TENTE NOVAMENTE..." << endl;
-	}while(result<0 or result>3);
+		if(result<0 or result>4) cerr << "OPCAO INVALIDA! TENTE NOVAMENTE..." << endl;
+	}while(result<0 or result>4);
 
 	return result;
 } 

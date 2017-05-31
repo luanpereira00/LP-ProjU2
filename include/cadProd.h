@@ -5,8 +5,8 @@
 
 void cadastrarProdutos(Estoque *e, int a);
 void consultarProdutos();
-void alterarProdutos();
-void acessarProduto(Estoque *e, int a);
+void removerProduto(Estoque *e, int a);
+void adicionarAoCarrinho(Estoque *e, Estoque *carrinho, int a);
 
 
 #endif

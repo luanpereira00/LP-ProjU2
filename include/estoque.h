@@ -11,6 +11,7 @@
 #include "livros.h"
 #include "salgados.h"
 
+//TAMBEM UTILIZADA PARA CARRINHO
 class Estoque {
 private:
 	lista<Bebidas>* ll_Bebidas;
@@ -49,7 +50,11 @@ public:
 	void lerDados();
 	int getMaxKey();
 	void gravarDados();
+
+	bool carrinhoIsEmpty();
+	int verUltimaNotaFiscal();
+	void gravarComoCarrinho();
+	void listarComoCarrinho();
 };
-void estoque();
 
 #endif
