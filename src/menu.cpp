@@ -32,7 +32,7 @@ int menuProdutos(){
 		cout << "=======================================" << endl;
 		cout << "--- Menu de Produtos ---" << endl;
 		cout << "1 - Cadastrar Produto" << endl;
-		cout << "2 - Remover Produto" << endl;
+		cout << "2 - Acessar Produto Cadastrado" << endl;
 		cout << "3 - Listar Todos os Produtos Cadastrados" << endl;
 		cout << "0 - Voltar" << endl;
 		cout << "Opcao: ";
