@@ -246,6 +246,7 @@ public:
 			if(it->prox->dado.getChave()==el) return it;
 			it=it->prox;
 		}
+		cerr << "Chave nao encontrada na lista!" << endl;
 		return it;
 	}
 

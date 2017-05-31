@@ -314,7 +314,7 @@ void adicionarAoCarrinho(Estoque *e, Estoque *carrinho, int a){
 				cout << "Digite a chave de busca: ";
 				cin >> key;
 				B = e->getListaBebidas()->buscar(key);
-				if(B){
+				if(B->prox->prox){
 					b = B->prox->dado;
 					carrinho->getListaBebidas()->inserir(b);
 				}
@@ -324,7 +324,7 @@ void adicionarAoCarrinho(Estoque *e, Estoque *carrinho, int a){
 				cout << "Digite a chave de busca: ";
 				cin >> key;
 				C = e->getListaCDs()->buscar(key);
-				if(C){
+				if(C->prox->prox){
 					c = C->prox->dado;
 					carrinho->getListaCDs()->inserir(c);
 				}
@@ -334,7 +334,7 @@ void adicionarAoCarrinho(Estoque *e, Estoque *carrinho, int a){
 				cout << "Digite a chave de busca: ";
 				cin >> key;
 				D = e->getListaDoces()->buscar(key);
-				if(D){
+				if(D->prox->prox){
 					d = D->prox->dado;
 					carrinho->getListaDoces()->inserir(d);
 				}
@@ -344,7 +344,7 @@ void adicionarAoCarrinho(Estoque *e, Estoque *carrinho, int a){
 				cout << "Digite a chave de busca: ";
 				cin >> key;
 				V = e->getListaDVDs()->buscar(key);
-				if(V){
+				if(V->prox->prox){
 					v = V->prox->dado;
 					carrinho->getListaDVDs()->inserir(v);
 				}
@@ -354,7 +354,7 @@ void adicionarAoCarrinho(Estoque *e, Estoque *carrinho, int a){
 				cout << "Digite a chave de busca: ";
 				cin >> key;
 				F = e->getListaFrutas()->buscar(key);
-				if(F) {
+				if(F->prox->prox) {
 					f = F->prox->dado;
 					carrinho->getListaFrutas()->inserir(f);
 				}
@@ -364,7 +364,7 @@ void adicionarAoCarrinho(Estoque *e, Estoque *carrinho, int a){
 				cout << "Digite a chave de busca: ";
 				cin >> key;
 				L = e->getListaLivros()->buscar(key);
-				if(L){
+				if(L->prox->prox){
 					l = L->prox->dado;
 					carrinho->getListaLivros()->inserir(l);
 				}
@@ -374,7 +374,7 @@ void adicionarAoCarrinho(Estoque *e, Estoque *carrinho, int a){
 				cout << "Digite a chave de busca: ";
 				cin >> key;
 				S = e->getListaSalgados()->buscar(key);
-				if(S){
+				if(S->prox->prox){
 					s = S->prox->dado;
 					carrinho->getListaSalgados()->inserir(s);
 				}

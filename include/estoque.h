@@ -55,6 +55,8 @@ public:
 	int verUltimaNotaFiscal();
 	void gravarComoCarrinho();
 	void listarComoCarrinho();
+
+	void lerComoNotaFiscal();
 };
 
 #endif

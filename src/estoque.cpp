@@ -159,9 +159,6 @@ void Estoque::lerDados(){
 	key = getMaxKey();
 	setLastKey(key);
 	cout << getLastKey() << endl;
-
-	
-
 }
 void Estoque::gravarDados(){
 	string closing;
@@ -241,14 +238,15 @@ bool Estoque::carrinhoIsEmpty(){
 }
 
 int Estoque::verUltimaNotaFiscal(){
-	bool flag =false;
-	int i=1;
+	bool flag =true;
+	int i=0;
 	string opening;
 	while (flag){
+		i++;
 		opening = "./data/notasFiscais/"+ to_string(i) +"_nota.csv";
 		ifstream nota(opening);
-		if(!nota) flag =false;
-		else nota.close();
+		if(!nota) flag=false;
+		else nota.close();	
 	}
 	return i;
 }
@@ -304,6 +302,10 @@ void Estoque::listarComoCarrinho(){
 		ll_Salgados->imprimir();
 	}
 	cout << "-----------------------" << endl;
+}
 
+void Estoque::lerComoNotaFiscal(){
+	cout << "Lendo "<< endl;
+	//int qtdNotas = verUltimaNotaFiscal();
 
 }

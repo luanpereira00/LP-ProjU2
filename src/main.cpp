@@ -6,20 +6,14 @@ using std::endl;
 #include <string>
 using std::string;
 
-#include <algorithm>
-
 #include "estoque.h"
 #include "cadProd.h"
 #include "menu.h"
 
 int main (){
-	string s = "teste";
-	cout << s << endl;
-	std::locale loc;
-	transform(s.begin(), s.end(), s.begin(), (int (*)(int))toupper);
-	cout << s << endl;
 	Estoque *e = new Estoque;
 	Estoque *carrinho = new Estoque;
+	Estoque *notasFiscais = new Estoque;
 	e->lerDados();
 	//INPUT DADOS
 
@@ -48,18 +42,18 @@ int main (){
 				}while(flag);
 			break;
 			case 2:
-			
 			//Menu nota fiscal
-				switch(menuNotaFiscal()){
-					case 1:
-					break;
-					case 2:
-					break;
-					case 3:
-					break;
-					default:
-					break;
-				}
+				do{
+					flag=true;
+					switch(menuNotaFiscal()){
+						case 1:
+							notasFiscais->lerComoNotaFiscal();
+						break;
+						case 0:
+							flag=false;
+						break;
+					}
+				}while(flag);
 			break;
 			case 3:
 			//menu fornecedores;

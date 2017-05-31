@@ -49,31 +49,14 @@ int menuNotaFiscal(){
 		cout << "=======================================" << endl;
 		cout << "--- Menu de Notas Fiscais ---" << endl;
 		cout << "1 - Listar Notas Fiscais" << endl;
-		cout << "2 - Acessar Nota Fiscal" << endl;
 		cout << "0 - Voltar" << endl;
 		cout << "Opcao: ";
 		cin >> result;
-		if(result<0 or result>2) cerr << "OPCAO INVALIDA! TENTE NOVAMENTE..." << endl;
-	}while(result<0 or result>2);
+		if(result<0 or result>1) cerr << "OPCAO INVALIDA! TENTE NOVAMENTE..." << endl;
+	}while(result<0 or result>1);
 
 	return result;
 } 
-
-int menuAcessoNotaFiscal(){
-	int result;
-	do{
-		cout << "=======================================" << endl;
-		cout << "--- Menu de Acesso a Notas Fiscais ---" << endl;
-		cout << "1 - Alterar Nota Fiscal" << endl;
-		cout << "2 - Remover Nota Fiscal dos Registros" << endl;
-		cout << "0 - Voltar" << endl;
-		cout << "Opcao: ";
-		cin >> result;
-		if(result<0 or result>2) cerr << "OPCAO INVALIDA! TENTE NOVAMENTE..." << endl;
-	}while(result<0 or result>2);
-
-	return result;
-} //Exibir, excluir
 
 int menuCarrinho(){
 	int result;
