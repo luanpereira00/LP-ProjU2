@@ -1,3 +1,11 @@
+/**
+ * @file	main.cpp
+ * @brief	Implementacao da funcao principal
+ * @author	Luan Pereira (luanpereira00@outlook.com)
+ * @since	01/06/2017
+ * @date	01/06/2017
+ */
+
 #include <iostream>
 using std::cout;
 using std::cin;
@@ -10,6 +18,7 @@ using std::string;
 #include "cadProd.h"
 #include "menu.h"
 
+/**@brief Funcao principal */
 int main (){
 	Estoque *e = new Estoque;
 	Estoque *carrinho = new Estoque;
@@ -104,34 +113,23 @@ int main (){
 
 	delete e;
 	delete carrinho;
+	delete notasFiscais;
 	//OUTPUT DADOS
 	return 0;
 }
 
 
 /*
-	---------- Feitos: 
+	----------- FALTAS: 
+	Retirar produtos do carrinho;
+	Menu fornecedores inteiro;
+	Evitar repetitividade dos produtos na nota e/ou cadastro;
+	Solicitar a quantidade do produto comprado;
+	Decrementar o produto do estoque;
+	Acrescentar o produto a lista de venda;
 
-	CRIAR CLASSES DE BEBIDAS, FRUTAS, CDS, DVDS, SALGADOS, DOCES, LIVROS
-	CRIAR CLASSE DE PERECIVEIS
-	BEBIDAS -> TEOR_ALCOOLICO, QTD DE ACUCAR, LITRAGEM
-	FRUTA -> NUM_LOTE, DATA-LOTE
-	DATA -> ?
-	SALGADO -> SÓDIO EM MILIGRAMAS, GLUTEN, LACTOSE
-	DOCE -> AÇUCAR, GLUTEN, LACTOSE
-	CD -> ESTILO, ARTISTA, NOME DO ALBUM
-	DVD -> TITULO, GENERO, DURACAO TOTAL
-	LIVRO -> AUTOR, TITULO, EDITORA, ANO DE PUBLICACAO
-	PERECIVEIS -> DATA DE VALIDADE, BOM PARA CONSUMO
-
-	---------- Não Feitos: 
-	CRIAR ESTOQUE DE PRODUTOS + '>>' E '<<' DE STREAM
-	CRIAR LISTA PARA VENDA
+	Correr pro abraço;
 	
 
 	
-	logs -> ?
-	VENDA -> LISTA DE PRODUTOS, SEM REPETITIVIDADE
-
-	LISTA -> PRODUTOS CADASTRADOS, FORNECEDORES, NOTA FISCAL
 	*/

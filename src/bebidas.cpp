@@ -1,17 +1,30 @@
+/**
+ * @file	bebidas.cpp
+ * @brief	Implementacao dos metodos da classe Bebidas
+ * @author	Luan Pereira (luanpereira00@outlook.com)
+ * @since	01/06/2017
+ * @date	01/06/2017
+ */
+
 #include <iostream>
 using std::getline;
 
 #include "bebidas.h"
 #include "data.h"
 
+/**@brief Construtor padrao*/
 Bebidas::Bebidas(){
 	setTeorAlcoolico(0.0);
 	setQtdAcucar(0.0);
 	setVolumeTotal(0);
 }
+
+/**@brief Destrutor padrao*/
 Bebidas::~Bebidas(){
 	//FAZ NADA
 }
+
+/**@brief Construtor parametrizado*/
 Bebidas::Bebidas(int c, string n, float p, int e, float t, float a, int v, Data dv){
 	setChave(c);
 	setNomeProd(n);
@@ -25,18 +38,31 @@ Bebidas::Bebidas(int c, string n, float p, int e, float t, float a, int v, Data 
 	setValidade(dv);
 }
 
+/**@return Retorna o teor alcoolico */
 float Bebidas::getTeorAlcoolico(){ return teorAlcoolico; }
+
+/**@return Retorna a quantidade de acucar */
 float Bebidas::getQtdAcucar(){ return qtdAcucar; }
+
+/**@return Retorna o volume total */
 int Bebidas::getVolumeTotal(){ return volumeTotal; }
 
+/**@brief Atualiza o teor alcoolico
+	*@param t O novo teor alcoolico */
 void Bebidas::setTeorAlcoolico(float t){ teorAlcoolico = t; }
+
+/**@brief Atualiza a quantidade de acucar
+	*@param a A nova quantidade de acucar*/
 void Bebidas::setQtdAcucar(float a){ qtdAcucar = a; }
+
+/**@brief Atualiza o volume total
+	*@param v O novo volume total*/
 void Bebidas::setVolumeTotal(int v){ volumeTotal = v; }
 
-/** @brief Sobrecarga do operador de atribuicao (para Data)
-* @param	d Data que sera passado por atribuicao  
-* @return	Retorna a Data atribuida
-*/
+/** @brief Sobrecarga do operador de atribuicao (para Bebidas)
+	* @param	a Bebida que sera passado por atribuicao  
+	* @return	Retorna a Bebida atribuida
+	*/
 Bebidas& Bebidas::operator=(int a) {
 	chave = 0;
 	nomeProduto = "";
@@ -50,7 +76,7 @@ Bebidas& Bebidas::operator=(int a) {
 }
 
 /** @brief Sobrecarga do operador de insercao em stream 
-* @details O operador eh sobrecarregado para representar uma bebida na formatacao "codigo;nome;preco;qtdEstoque;teorAlcoolico;qtdAcucar;volumeTotal"  
+* @details O operador eh sobrecarregado para representar uma bebida na formatacao "codigo;nome;preco;qtdEstoque;teorAlcoolico;qtdAcucar;volumeTotal;dataDeValidade"  
 * @param	os Referencia para stream de saida  
 * @param	a Referencia para o objeto bebida a ser impresso  
 * @return	Referencia para stream de saida  
@@ -70,7 +96,8 @@ ostream& operator<<(ostream& os, Bebidas &a){
 /** @brief Sobrecarga do operador de extracao de stream 
 * @param	is Referencia para stream de entrada  
 * @param	a Referencia para o objeto bebida a ser criado com base nos  
-*			valores fornecidos  * @return	Referencia para stream de entrada  
+*			valores fornecidos  
+* @return	Referencia para stream de entrada  
 */ 	
 istream& operator>>(istream& is, Bebidas &a){
 	string aux; 
@@ -92,8 +119,5 @@ istream& operator>>(istream& is, Bebidas &a){
 	getline(is, aux); 
 	d.string2Data(aux);
 	a.setValidade(d);	
-	// << aux;
-	//a.setValidade();
-
 	return is; 
 }

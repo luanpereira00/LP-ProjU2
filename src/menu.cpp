@@ -9,6 +9,11 @@ using std::string;
 
 #include "estoque.h"
 
+/**
+@brief Menu Princial
+@details Direciona para Produtos, Nota Fiscal, Fornecedores e Venda
+@return Retorna a escolha do usuario
+*/
 int menuPrincipal(){
 	int result;
 	do{
@@ -17,7 +22,7 @@ int menuPrincipal(){
 		cout << "1 - Menu Produtos" << endl;
 		cout << "2 - Menu Nota Fiscal" << endl;
 		cout << "3 - Menu Fornecedores" << endl;
-		cout << "4 - Iniciar venda" << endl;
+		cout << "4 - Iniciar Venda" << endl;
 		cout << "0 - Sair" << endl;
 		cout << "Opcao: ";
 		cin >> result;
@@ -25,7 +30,13 @@ int menuPrincipal(){
 	}while(result<0 or result>4);
 
 	return result;
-} //Acessar outros menus;
+} 
+
+/**
+@brief Menu Produtos
+@details Direciona para Cadastrar, Remover e Listar Produtos
+@return Retorna a escolha do usuario
+*/
 int menuProdutos(){
 	int result;
 	do{
@@ -41,8 +52,13 @@ int menuProdutos(){
 	}while(result<0 or result>3);
 
 	return result;
-} //Cadastro, acesso, listagem
+} 
 
+/**
+@brief Menu Nota Fiscal
+@details Direciona para Produtos, Nota Fiscal, Fornecedores e Venda
+@return Retorna a escolha do usuario
+*/
 int menuNotaFiscal(){
 	int result;
 	do{

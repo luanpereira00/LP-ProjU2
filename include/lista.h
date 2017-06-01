@@ -18,11 +18,11 @@ using std::endl;
 using std::ofstream;
 using std::ifstream;
 
-/** @brief Declaracao de template para o tipo T (int, float, double...)*/
+/** @brief Declaracao de template para o tipo T*/
 template <typename T>
 
 /** 
-* struct node lista.h
+* @struct node lista.h
 * @brief Um struct para representar os nos de lista ligada
 */
 struct node{
@@ -58,6 +58,7 @@ public:
 		fim->prox=NULL;
 		fim->anter=inicio;
 	}
+
 	/** @brief Destrutor padrao */
 	~lista(){
 		node<T>* tmp = new node<T>;
@@ -84,7 +85,7 @@ public:
 	}
 
 	/** 
-	* @brief Insere um elemento ordenadamente na lista
+	* @brief Insere um elemento do tipo T ordenadamente na lista
 	* @param el O elemento que sera inserido na lista 
 	*/
 	void inserir(T el){
@@ -100,13 +101,15 @@ public:
 	}
 
 	/** 
-	* @brief Insere um elemento ordenadamente na lista
-	* @param el O elemento que sera inserido na lista 
+	* @brief Insere um elemento ordenadamente na lista de acordo com a chave el passada
+	* @details Valido somente para objetos que contenham uma chave
+	* @param el A chave do elemento que sera inserido na lista 
 	*/
 	void inserir(int el){
 		//cout << "Inserindo o elemento " << el << endl;
 		node<T>* it = buscar(el);
 		node<T>* tmp = new node<T>;
+
 		tmp->dado=el;
 		tmp->prox=it->prox;
 		tmp->anter=it;
@@ -114,8 +117,6 @@ public:
 		it->prox->anter=tmp;
 		it->prox=tmp;
 	}
-
-
 
 	/** 
 	* @brief Remove um elemento da lista ligada. (Informa também caso o elemento nao exista)
@@ -141,30 +142,9 @@ public:
 	}
 
 	/** 
-	* @brief Remove um elemento da lista ligada. (Informa também caso o elemento nao exista)
-	* @param el O elemento que sera removido da lista 
-	*/
-	void destruir(){
-		//cout << endl;
-		//cout << "Removendo o elemento " << el << endl;
-		node<T>* it = inicio;
-		while(it->prox->prox){
-			node<T>* tmp = new node<T>;
-			tmp->prox=it->prox->prox;
-			tmp->anter=it;
-
-			delete it->prox; 
-
-			it->prox=tmp->prox;
-			it->prox->anter=tmp->anter;
-
-			delete tmp; 
-		}
-	}
-
-	/** 
-	* @brief Remove um elemento da lista ligada. (Informa também caso o elemento nao exista)
-	* @param el O elemento que sera removido da lista 
+	* @brief Remove um elemento da lista ligada de acordo com a chave el passada. (Informa também caso o elemento nao exista)
+	* @details Valido somente para objetos que contenham uma chave
+	* @param el A chave do elemento que sera removido da lista 
 	*/
 	void remover(int el){
 		//cout << endl;
@@ -186,6 +166,27 @@ public:
 		else cerr << "ERRO: Impossivel remover o elemento com a chave " << el << " (nao existe na lista)! ...Continuando operacoes" << endl;
 	}
 
+	/** 
+	* @brief Destroi a lista removendo todos os elementos
+	*/
+	void destruir(){
+		//cout << endl;
+		//cout << "Removendo o elemento " << el << endl;
+		node<T>* it = inicio;
+		while(it->prox->prox){
+			node<T>* tmp = new node<T>;
+			tmp->prox=it->prox->prox;
+			tmp->anter=it;
+
+			delete it->prox; 
+
+			it->prox=tmp->prox;
+			it->prox->anter=tmp->anter;
+
+			delete tmp; 
+		}
+	}
+
 	/** @brief Imprime toda a lista ligada*/
 	void imprimir(){
 		node<T>* it = inicio;
@@ -195,6 +196,7 @@ public:
 		}
 	}
 
+	/** @brief Le de uma stream de dados e insere na lista*/
 	void lerArquivo(ifstream *a){
 		T el;
 		int j, i = 0;
@@ -206,6 +208,7 @@ public:
 		}
 	}
 
+	/** @brief Passa para uma stream de dados os elementos da lista*/
 	void imprimirArquivo(ofstream *a){
 		node<T>* it = inicio;
 		*a << contarElementos() << endl;
@@ -214,6 +217,8 @@ public:
 			it=it->prox;
 		}
 	}
+
+	/** @brief Conta quantos elementos tem na lista*/
 	int contarElementos(){
 		node<T>* it = inicio;
 		int i=0;
@@ -225,8 +230,8 @@ public:
 	}
 
 	/** 
-	* @brief Busca na lista ligada (usado para inserir e remover apenas!)
-	* @param el O elemento que sera removido da lista 
+	* @brief Busca na lista ligada
+	* @param el O elemento que sera buscado na lista 
 	*/
 	node<T>* buscar(T el){
 		node<T>* it = inicio;
@@ -237,8 +242,9 @@ public:
 	}
 
 	/** 
-	* @brief Busca na lista ligada (usado para inserir e remover apenas!)
-	* @param el O elemento que sera removido da lista 
+	* @brief Busca na lista ligada um elemento atraves de uma chave
+	* @details Valido somente para objetos que contenham uma chave
+	* @param el A chave do elemento que sera removido da lista 
 	*/
 	node<T>* buscar(int el){
 		node<T>* it = inicio;
@@ -250,6 +256,7 @@ public:
 		return it;
 	}
 
+	/** @return Retorna a maior chave da lista*/
 	int maxKey(){
 		node<T>* it = inicio;
 		int key=0;
