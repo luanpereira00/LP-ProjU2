@@ -1,3 +1,11 @@
+/**
+ * @file	menu.cpp
+ * @brief	Implementacao de menus do sistema
+ * @author	Luan Pereira (luanpereira00@outlook.com)
+ * @since	01/06/2017
+ * @date	01/06/2017
+ */
+
 #include <iostream>
 using std::cout;
 using std::cin;
@@ -56,7 +64,7 @@ int menuProdutos(){
 
 /**
 @brief Menu Nota Fiscal
-@details Direciona para Produtos, Nota Fiscal, Fornecedores e Venda
+@details Direciona para Listar Notas Fiscais
 @return Retorna a escolha do usuario
 */
 int menuNotaFiscal(){
@@ -74,14 +82,20 @@ int menuNotaFiscal(){
 	return result;
 } 
 
+
+/**
+@brief Menu Carrinho
+@details Direciona para Carrinho de compra, no qual pode-se listar, adicionar ao carrinho, remover ou finalizar a compra
+@return Retorna a escolha do usuario
+*/
 int menuCarrinho(){
 	int result;
 	do{
 		cout << "=======================================" << endl;
 		cout << "--- Menu de Carrinho ---" << endl;
-		cout << "1 - Listar Carrinho" << endl;
-		cout << "2 - Adicionar ao Carrinho" << endl;
-		cout << "3 - Remover do Carrinho" << endl;
+		cout << "1 - Adicionar ao Carrinho" << endl;
+		cout << "2 - Remover do Carrinho" << endl;
+		cout << "3 - Listar Carrinho" << endl;
 		cout << "4 - Finalizar compra" << endl;
 		cout << "0 - Voltar" << endl;
 		cout << "Opcao: ";
@@ -92,6 +106,11 @@ int menuCarrinho(){
 	return result;
 } 
 
+/**
+@brief Menu Opcoes Produtos
+@details Direciona para uma das opcoes de produtos
+@return Retorna a escolha do usuario
+*/
 int menuOpcoesProdutos(){
 	int result;
 	do{

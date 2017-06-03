@@ -15,14 +15,16 @@ using std::endl;
 using std::string;
 
 #include "estoque.h"
+#include "notafiscal.h"
+#include "carrinho.h"
 #include "cadProd.h"
 #include "menu.h"
 
 /**@brief Funcao principal */
 int main (){
 	Estoque *e = new Estoque;
-	Estoque *carrinho = new Estoque;
-	Estoque *notasFiscais = new Estoque;
+	Carrinho *carrinho = new Carrinho;
+	NotaFiscal *notasFiscais = new NotaFiscal;
 	e->lerDados();
 	//INPUT DADOS
 
@@ -56,7 +58,7 @@ int main (){
 					flag=true;
 					switch(menuNotaFiscal()){
 						case 1:
-							notasFiscais->lerComoNotaFiscal();
+							notasFiscais->lerArquivo();
 						break;
 						case 0:
 							flag=false;
@@ -84,18 +86,21 @@ int main (){
 					flag = true;
 					switch(menuCarrinho()){
 						case 1:
-							carrinho->listarComoCarrinho();
-						break;
-						case 2:
 							adicionarAoCarrinho(e, carrinho, menuOpcoesProdutos());
 						break;
-						case 3:
+						case 2:
 						//remover do carrinho
 						break;
+						case 3:
+							carrinho->listar();
+						break;
 						case 4:
-							carrinho->gravarComoCarrinho();
+							carrinho->gravarArquivo();
+							flag=false;
 						break;
 						case 0:
+						cerr << "Os dados de qualquer compra nao finalizada estao sendo destruidos..." <<  endl;
+							carrinho->limpar();
 							flag=false;
 						break;
 					}

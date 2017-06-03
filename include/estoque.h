@@ -51,12 +51,6 @@ public:
 	int getMaxKey();
 	void gravarDados();
 
-	bool carrinhoIsEmpty();
-	int verUltimaNotaFiscal();
-	void gravarComoCarrinho();
-	void listarComoCarrinho();
-
-	void lerComoNotaFiscal();
 };
 
 #endif

@@ -11,14 +11,7 @@ using std::string;
 #include <cstdlib>
 
 #include "cadProd.h"
-#include "bebidas.h"
-#include "cds.h"
-#include "doces.h"
-#include "dvds.h"
-#include "frutas.h"
-#include "livros.h"
-#include "salgados.h"
-#include "estoque.h"
+
 
 void cadastrarProdutos(Estoque *e, int a){
 	string auxS;
@@ -78,12 +71,12 @@ void cadastrarProdutos(Estoque *e, int a){
 				getline(cin, auxS);
 				c.setAlbum(auxS);
 
-				cin.ignore();
+				//cin.ignore();
 				cout << "Digite o estilo do CD: ";
 				getline(cin, auxS);
 				c.setEstilo(auxS);
 
-				cin.ignore();
+				//cin.ignore();
 				cout << "Digite o nome do artista do CD: ";
 				getline(cin, auxS);
 				c.setArtista(auxS);
@@ -131,7 +124,7 @@ void cadastrarProdutos(Estoque *e, int a){
 				getline(cin, auxS);
 				v.setTitulo(auxS);
 
-				cin.ignore();
+				//cin.ignore();
 				cout << "Digite o genero do DVD: ";
 				getline(cin, auxS);
 				v.setGenero(auxS);
@@ -180,12 +173,12 @@ void cadastrarProdutos(Estoque *e, int a){
 				getline(cin, auxS);
 				l.setTitulo(auxS);
 
-				cin.ignore();
+				//cin.ignore();
 				cout << "Digite o autor do livro: ";
 				getline(cin, auxS);
 				l.setAutor(auxS);
 
-				cin.ignore();
+				//cin.ignore();
 				cout << "Digite a editora do livro: ";
 				getline(cin, auxS);
 				l.setEditora(auxS);
@@ -234,8 +227,6 @@ void cadastrarProdutos(Estoque *e, int a){
 		//salgados
 	}
 }
-void consultarProdutos();
-void alterarProdutos();
 
 void removerProduto(Estoque *e, int a){
 	cout << "--- Produtos Cadastrados ---" << endl;
@@ -289,7 +280,7 @@ void removerProduto(Estoque *e, int a){
 	}
 }
 
-void adicionarAoCarrinho(Estoque *e, Estoque *carrinho, int a){
+void adicionarAoCarrinho(Estoque *e, Carrinho *carrinho, int a){
 	cout << "--- Produtos Cadastrados ---" << endl;
 	int key;
 	Bebidas b;

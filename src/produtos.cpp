@@ -9,7 +9,7 @@
 #include "produtos.h"
 
 /**@brief Construtor padrao*/
-Produtos::Produtos(){ //virtual
+Produtos::Produtos(){ 
 	setChave(0);
 	setNomeProd("");
 	setPrecoUnit(0);
