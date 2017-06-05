@@ -89,7 +89,7 @@ int main (){
 							adicionarAoCarrinho(e, carrinho, menuOpcoesProdutos());
 						break;
 						case 2:
-						//remover do carrinho
+							removerDoCarrinho(e, carrinho, menuOpcoesProdutos());
 						break;
 						case 3:
 							carrinho->listar();

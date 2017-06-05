@@ -1,3 +1,10 @@
+/**
+ * @file	cadprod.cpp
+ * @brief	Implementação de funções que cadastram/adicionam w removem produtos de estoque/carrinho
+ * @author	Luan Pereira (luanpereira00@outlook.com)
+ * @since	01/06/2017
+ * @date	01/06/2017
+ */
 #include <iostream>
 using std::cout;
 using std::cin;
@@ -12,7 +19,7 @@ using std::string;
 
 #include "cadProd.h"
 
-
+/**@brief Cadastra um produto no estoque */
 void cadastrarProdutos(Estoque *e, int a){
 	string auxS;
 	float auxF;
@@ -228,6 +235,7 @@ void cadastrarProdutos(Estoque *e, int a){
 	}
 }
 
+/**@brief Remove um produto do estoque */
 void removerProduto(Estoque *e, int a){
 	cout << "--- Produtos Cadastrados ---" << endl;
 	int key;
@@ -280,6 +288,8 @@ void removerProduto(Estoque *e, int a){
 	}
 }
 
+
+/**@brief Adiciona um produto ao carrinho */
 void adicionarAoCarrinho(Estoque *e, Carrinho *carrinho, int a){
 	cout << "--- Produtos Cadastrados ---" << endl;
 	int key;
@@ -307,6 +317,8 @@ void adicionarAoCarrinho(Estoque *e, Carrinho *carrinho, int a){
 				B = e->getListaBebidas()->buscar(key);
 				if(B->prox->prox){
 					b = B->prox->dado;
+					B->prox->dado.setQtdEstoque(B->prox->dado.getQtdEstoque()-1);
+					carrinho->calcularCompra(b.getPrecoUnit());
 					carrinho->getListaBebidas()->inserir(b);
 				}
 			break;
@@ -317,6 +329,9 @@ void adicionarAoCarrinho(Estoque *e, Carrinho *carrinho, int a){
 				C = e->getListaCDs()->buscar(key);
 				if(C->prox->prox){
 					c = C->prox->dado;
+					C->prox->dado.setQtdEstoque(C->prox->dado.getQtdEstoque()-1);
+					//c.setQtdEstoque(c.getQtdEstoque()-1);
+					carrinho->calcularCompra(c.getPrecoUnit());
 					carrinho->getListaCDs()->inserir(c);
 				}
 			break;
@@ -327,6 +342,9 @@ void adicionarAoCarrinho(Estoque *e, Carrinho *carrinho, int a){
 				D = e->getListaDoces()->buscar(key);
 				if(D->prox->prox){
 					d = D->prox->dado;
+					D->prox->dado.setQtdEstoque(D->prox->dado.getQtdEstoque()-1);
+					//d.setQtdEstoque(d.getQtdEstoque()-1);
+					carrinho->calcularCompra(d.getPrecoUnit());
 					carrinho->getListaDoces()->inserir(d);
 				}
 			break;
@@ -337,6 +355,9 @@ void adicionarAoCarrinho(Estoque *e, Carrinho *carrinho, int a){
 				V = e->getListaDVDs()->buscar(key);
 				if(V->prox->prox){
 					v = V->prox->dado;
+					V->prox->dado.setQtdEstoque(V->prox->dado.getQtdEstoque()-1);
+					//v.setQtdEstoque(v.getQtdEstoque()-1);
+					carrinho->calcularCompra(v.getPrecoUnit());
 					carrinho->getListaDVDs()->inserir(v);
 				}
 			break;
@@ -347,6 +368,9 @@ void adicionarAoCarrinho(Estoque *e, Carrinho *carrinho, int a){
 				F = e->getListaFrutas()->buscar(key);
 				if(F->prox->prox) {
 					f = F->prox->dado;
+					F->prox->dado.setQtdEstoque(F->prox->dado.getQtdEstoque()-1);
+					//f.setQtdEstoque(f.getQtdEstoque()-1);
+					carrinho->calcularCompra(f.getPrecoUnit());
 					carrinho->getListaFrutas()->inserir(f);
 				}
 			break;
@@ -357,6 +381,9 @@ void adicionarAoCarrinho(Estoque *e, Carrinho *carrinho, int a){
 				L = e->getListaLivros()->buscar(key);
 				if(L->prox->prox){
 					l = L->prox->dado;
+					L->prox->dado.setQtdEstoque(L->prox->dado.getQtdEstoque()-1);
+					//l.setQtdEstoque(l.getQtdEstoque()-1);
+					carrinho->calcularCompra(l.getPrecoUnit());
 					carrinho->getListaLivros()->inserir(l);
 				}
 			break;
@@ -367,7 +394,116 @@ void adicionarAoCarrinho(Estoque *e, Carrinho *carrinho, int a){
 				S = e->getListaSalgados()->buscar(key);
 				if(S->prox->prox){
 					s = S->prox->dado;
+					S->prox->dado.setQtdEstoque(S->prox->dado.getQtdEstoque()-1);
+					//s.setQtdEstoque(s.getQtdEstoque()-1);
+					carrinho->calcularCompra(s.getPrecoUnit());
 					carrinho->getListaSalgados()->inserir(s);
+				}
+			break;
+		}
+	}
+}
+
+/**@brief Remove um produto do carrinho */
+void removerDoCarrinho(Estoque *e, Carrinho *carrinho, int a){
+	//cout << "--- Produtos Cadastrados ---" << endl;
+	int key;
+	Bebidas b;
+	node<Bebidas>* B;
+	CDs c;
+	node<CDs>* C;
+	Doces d;
+	node<Doces>* D;
+	DVDs v;
+	node<DVDs>* V;
+	Frutas f;
+	node<Frutas>* F;
+	Livros l;
+	node<Livros>* L;
+	Salgados s;
+	node<Salgados>* S;
+	
+	if(a!=0){
+		//carrinho->listar();
+		switch(a){
+			case 1: //BEBIDAS
+				carrinho->getListaBebidas()->imprimir();
+				cout << "Digite a chave de busca: ";
+				cin >> key;
+				carrinho->getListaBebidas()->remover(key);
+				B = e->getListaBebidas()->buscar(key);
+				if(B->prox->prox){
+					b = B->prox->dado;
+					carrinho->calcularCompra((-1)*b.getPrecoUnit());
+				}
+				
+			break;
+			case 2: //CDS
+				carrinho->getListaCDs()->imprimir();
+				cout << "Digite a chave de busca: ";
+				cin >> key;
+				carrinho->getListaCDs()->remover(key);
+				C = e->getListaCDs()->buscar(key);
+				if(C->prox->prox){
+					c = C->prox->dado;
+					carrinho->calcularCompra((-1)*c.getPrecoUnit());
+				}
+			break;
+			case 3: //DOCES
+				carrinho->getListaDoces()->imprimir();
+				cout << "Digite a chave de busca: ";
+				cin >> key;
+				carrinho->getListaDoces()->remover(key);
+				D = e->getListaDoces()->buscar(key);
+				if(D->prox->prox){
+					d = D->prox->dado;
+					carrinho->calcularCompra((-1)*d.getPrecoUnit());
+				}
+			break;
+			case 4: //DVDS
+				carrinho->getListaDVDs()->imprimir();
+				cout << "Digite a chave de busca: ";
+				cin >> key;
+				carrinho->getListaDVDs()->remover(key);
+				V = e->getListaDVDs()->buscar(key);
+				if(V->prox->prox){
+					v = V->prox->dado;
+					//b.getQtdEstoque()
+					carrinho->calcularCompra((-1)*v.getPrecoUnit());
+				}
+			break;
+			case 5: //FRUTAS
+				carrinho->getListaFrutas()->imprimir();
+				cout << "Digite a chave de busca: ";
+				cin >> key;
+				carrinho->getListaFrutas()->remover(key);
+				F = e->getListaFrutas()->buscar(key);
+				if(F->prox->prox){
+					f = F->prox->dado;
+					carrinho->calcularCompra((-1)*f.getPrecoUnit());
+				}
+			break;
+			case 6: //LIVROS
+				carrinho->getListaLivros()->imprimir();
+				cout << "Digite a chave de busca: ";
+				cin >> key;
+				carrinho->getListaLivros()->remover(key);
+				L = e->getListaLivros()->buscar(key);
+				if(L->prox->prox){
+					l = L->prox->dado;
+					carrinho->calcularCompra((-1)*l.getPrecoUnit());
+				}
+			break;
+			case 7: //SALGADOS
+				carrinho->getListaSalgados()->imprimir();
+				cout << "Digite a chave de busca: ";
+				cin >> key;
+				carrinho->getListaSalgados()->remover(key);
+				S = e->getListaSalgados()->buscar(key);
+				if(S->prox->prox){
+					s = S->prox->dado;
+					//b.getQtdEstoque()
+					carrinho->calcularCompra((-1)*s.getPrecoUnit());
 				}
 			break;
 		}

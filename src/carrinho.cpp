@@ -1,5 +1,20 @@
+/**
+ * @file	carrinho.cpp
+ * @brief	Implementacao da classe Estoque para representar um carrinho de produtos
+ * @author	Luan Pereira (luanpereira00@outlook.com)
+ * @since	01/06/2017
+ * @date	01/06/2017
+ */
+
 #include "carrinho.h"
 
+/**@return Retorna o preco da compra */
+float Carrinho::getPrecoCompra(){ return precoCompra; }
+
+/**@brief Atualiza o preco da compra */
+void Carrinho::setPrecoCompra(float pc){ precoCompra = pc; }
+
+/**@brief Grava o carrinho num arquivo */
 void Carrinho::gravarArquivo(){
 	string closing;
 	if(!carrinhoIsEmpty()){
@@ -13,6 +28,7 @@ void Carrinho::gravarArquivo(){
 		getListaFrutas()->imprimirArquivo(&nota);
 		getListaLivros()->imprimirArquivo(&nota);
 		getListaSalgados()->imprimirArquivo(&nota);
+		nota << getPrecoCompra();
 		nota.close();	
 		limpar();
 		cout << "Venda finalizada com sucesso! Nota fiscal gerada..." << endl;
@@ -20,6 +36,7 @@ void Carrinho::gravarArquivo(){
 	else cerr << "Carrinho vazio! Nada a fazer..." << endl;
 }
 
+/**@return Retorna bool para o carrinho estar vazio */
 bool Carrinho::carrinhoIsEmpty(){
 	if(getListaBebidas()->contarElementos()>0) return false;
 	if(getListaCDs()->contarElementos()>0) return false;
@@ -32,6 +49,7 @@ bool Carrinho::carrinhoIsEmpty(){
 	return true;
 }
 
+/**@return O numero da ultima nota fiscal cadastrada */
 int Carrinho::verUltimaNotaFiscal(){
 	bool flag =true;
 	int i=0;
@@ -46,6 +64,7 @@ int Carrinho::verUltimaNotaFiscal(){
 	return i;
 }
 
+/**@brief Lista o carrinho */
 void Carrinho::listar(){
 	cout << "-----------------------" << endl;
 	cout << "Carrinho: " << endl << endl;
@@ -70,9 +89,11 @@ void Carrinho::listar(){
 	if(getListaSalgados()->contarElementos()>0) {
 		getListaSalgados()->imprimir();
 	}
+	cout << "Total do carrinho: " << getPrecoCompra() << endl;
 	cout << "-----------------------" << endl;
 }
 
+/**@brief Limpa o carrinho */
 void Carrinho::limpar(){
 	getListaBebidas()->destruir();
 	getListaCDs()->destruir();
@@ -81,4 +102,10 @@ void Carrinho::limpar(){
 	getListaFrutas()->destruir();
 	getListaLivros()->destruir();
 	getListaSalgados()->destruir();
+}
+
+/**@brief Atualiza o preco da compra somando com um valor passado como argumento 
+	* @param pc O novo valor a somar */
+void Carrinho::calcularCompra(float preco){
+	setPrecoCompra(getPrecoCompra()+preco);
 }

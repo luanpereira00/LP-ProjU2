@@ -1,3 +1,12 @@
+/**
+ * @file	estoque.cpp
+ * @brief	Implementacao da classe Estoque para representar um estoque de produtos
+ * @details Os atributos de um Estoque sao as listas de produtos e ultima chave primaria associada
+ * @author	Luan Pereira (luanpereira00@outlook.com)
+ * @since	01/06/2017
+ * @date	01/06/2017
+ */
+
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -11,16 +20,8 @@ using std::to_string;
 using std::string;
 
 #include "estoque.h"
-#include "lista.h"
 
-#include "bebidas.h"
-#include "cds.h"
-#include "doces.h"
-#include "dvds.h"
-#include "frutas.h"
-#include "livros.h"
-#include "salgados.h"
-
+/**@brief Construtor padrao*/
 Estoque::Estoque(){
 	ll_Bebidas = new lista<Bebidas>;
 	ll_CDs = new lista<CDs>;
@@ -32,6 +33,7 @@ Estoque::Estoque(){
 	ultimaChave=0;
 }
 
+/**@brief Destrutor padrao*/
 Estoque::~Estoque(){
 	delete ll_Bebidas;
 	delete ll_CDs;
@@ -42,25 +44,55 @@ Estoque::~Estoque(){
 	delete ll_Salgados;
 }
 
+/**@return Retorna a lista de bebidas */
 lista<Bebidas>* Estoque::getListaBebidas(){ return ll_Bebidas; }
+
+/**@return Retorna a lista de cds */
 lista<CDs>* Estoque::getListaCDs(){ return ll_CDs; }
+
+/**@return Retorna a lista de doces */
 lista<Doces>* Estoque::getListaDoces(){ return ll_Doces; }
+
+/**@return Retorna a lista de dvds */
 lista<DVDs>* Estoque::getListaDVDs(){ return ll_DVDs; }
+
+/**@return Retorna a lista de frutas */
 lista<Frutas>* Estoque::getListaFrutas(){ return ll_Frutas; }
+
+/**@return Retorna a lista de livros */
 lista<Livros>* Estoque::getListaLivros(){ return ll_Livros; }
+
+/**@return Retorna a lista de salgados */
 lista<Salgados>* Estoque::getListaSalgados(){return ll_Salgados; }
 
+/**@brief Atualiza a ultima chave associada */
 void Estoque::setLastKey(int a){ ultimaChave = a; }
+
+/**@return Retorna a ultima chave associada */
 int Estoque::getLastKey(){ return ultimaChave; }
 
+/**@brief Atualiza a lista de bebidas */
 void Estoque::setListaBebidas(lista<Bebidas>* ll){ ll_Bebidas = ll;}
+
+/**@brief Atualiza a lista de cds */
 void Estoque::setListaCDs(lista<CDs>* ll){ ll_CDs = ll;}
+
+/**@brief Atualiza a lista de doces */
 void Estoque::setListaDoces(lista<Doces>* ll){ ll_Doces = ll;}
+
+/**@brief Atualiza a lista de dvds */
 void Estoque::setListaDVDs(lista<DVDs>* ll){ ll_DVDs = ll;}
+
+/**@brief Atualiza a lista de frutas */
 void Estoque::setListaFrutas(lista<Frutas>* ll){ ll_Frutas = ll;}
+
+/**@brief Atualiza a lista de livros */
 void Estoque::setListaLivros(lista<Livros>* ll){ ll_Livros = ll;}
+
+/**@brief Atualiza a lista de salgados */
 void Estoque::setListaSalgados(lista<Salgados>* ll){ ll_Salgados = ll;}
 
+/**@brief Lista todo o estoque  */
 void Estoque::listarEstoque(){ 
 	cout << "-----------------------" << endl;
 	cout << "Lista de Estoque: " << endl << endl;
@@ -95,6 +127,7 @@ void Estoque::listarEstoque(){
 	cout << "-----------------------" << endl;
 }
 
+/**@brief Le os dados da memoria para inicializar o estoque  */
 void Estoque::lerDados(){
 	string opening;
 	int key = 0;
@@ -158,8 +191,10 @@ void Estoque::lerDados(){
 	
 	key = getMaxKey();
 	setLastKey(key);
-	cout << getLastKey() << endl;
+	//cout << getLastKey() << endl;
 }
+
+/**@brief Grava os dados do estoque na memoria  */
 void Estoque::gravarDados(){
 	string closing;
 
@@ -199,8 +234,7 @@ void Estoque::gravarDados(){
 	salgado.close();
 }
 
-
-
+/**@brief Pega a maior chave associada ao produtos do estoque  */
 int Estoque::getMaxKey(){
 	int keyAux, key = 0;
 	keyAux = ll_Bebidas->maxKey();

@@ -1,11 +1,21 @@
+/**
+ * @file	notafiscal.cpp
+ * @brief	Implementacao da classe NotaFiscal para representar uma nota fiscal
+ * @author	Luan Pereira (luanpereira00@outlook.com)
+ * @since	01/06/2017
+ * @date	01/06/2017
+ */
+
 #include "notafiscal.h"
 
+/**@brief Ler notas da memoria e as exibe */
 void NotaFiscal::lerArquivo(){
 	cout << "--- Notas Fiscais Identificadas ---"<< endl;
 	bool flag=true;
 	int numArq=1;
 	int qtdLista=0;
 	int iter=0;
+	string preco="0";
 	string opening;
 
 	Bebidas b;
@@ -70,6 +80,8 @@ void NotaFiscal::lerArquivo(){
 				iter++;
 				cout << s << endl;
 			}
+			nota >> preco;
+			cout << "Preco: " << preco << endl;
 			cout << endl;
 			nota.close();
 		}
