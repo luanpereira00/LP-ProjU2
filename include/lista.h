@@ -244,7 +244,7 @@ public:
 	/** 
 	* @brief Busca na lista ligada um elemento atraves de uma chave
 	* @details Valido somente para objetos que contenham uma chave
-	* @param el A chave do elemento que sera removido da lista 
+	* @param el A chave do elemento que sera buscado da lista 
 	*/
 	node<T>* buscar(int el){
 		node<T>* it = inicio;
@@ -254,6 +254,22 @@ public:
 		}
 		cerr << "Chave nao encontrada na lista!" << endl;
 		return it;
+	}
+
+	/** 
+	* @brief Busca na lista ligada a quantidade de vezes que um elemento se repete atraves de uma chave passada
+	* @details Valido somente para objetos que contenham uma chave
+	* @param el A chave do elemento que sera verificado na lista 
+	*/
+	int getQtdKey(int el){
+		int i = 0;
+		node<T>* it = inicio;
+		while(it->prox->prox){
+			if(it->prox->dado.getChave()==el) i++;
+			it=it->prox;
+		}
+		//cerr << "Chave nao encontrada na lista!" << endl;
+		return i;
 	}
 
 	/** @return Retorna a maior chave da lista*/

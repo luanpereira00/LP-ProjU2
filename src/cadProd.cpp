@@ -317,9 +317,10 @@ void adicionarAoCarrinho(Estoque *e, Carrinho *carrinho, int a){
 				B = e->getListaBebidas()->buscar(key);
 				if(B->prox->prox){
 					b = B->prox->dado;
-					B->prox->dado.setQtdEstoque(B->prox->dado.getQtdEstoque()-1);
+					B->prox->dado.setQtdEstoque(B->prox->dado.getQtdEstoque()-1);			
 					carrinho->calcularCompra(b.getPrecoUnit());
-					carrinho->getListaBebidas()->inserir(b);
+					if(carrinho->getListaBebidas()->getQtdKey(key)==0) carrinho->getListaBebidas()->inserir(b);	
+					
 				}
 			break;
 			case 2: //CDS
@@ -332,7 +333,7 @@ void adicionarAoCarrinho(Estoque *e, Carrinho *carrinho, int a){
 					C->prox->dado.setQtdEstoque(C->prox->dado.getQtdEstoque()-1);
 					//c.setQtdEstoque(c.getQtdEstoque()-1);
 					carrinho->calcularCompra(c.getPrecoUnit());
-					carrinho->getListaCDs()->inserir(c);
+					if(carrinho->getListaCDs()->getQtdKey(key)==0) carrinho->getListaCDs()->inserir(c);	
 				}
 			break;
 			case 3: //DOCES
@@ -345,7 +346,7 @@ void adicionarAoCarrinho(Estoque *e, Carrinho *carrinho, int a){
 					D->prox->dado.setQtdEstoque(D->prox->dado.getQtdEstoque()-1);
 					//d.setQtdEstoque(d.getQtdEstoque()-1);
 					carrinho->calcularCompra(d.getPrecoUnit());
-					carrinho->getListaDoces()->inserir(d);
+					if(carrinho->getListaDoces()->getQtdKey(key)==0) carrinho->getListaDoces()->inserir(d);	
 				}
 			break;
 			case 4: //DVDS
@@ -358,7 +359,7 @@ void adicionarAoCarrinho(Estoque *e, Carrinho *carrinho, int a){
 					V->prox->dado.setQtdEstoque(V->prox->dado.getQtdEstoque()-1);
 					//v.setQtdEstoque(v.getQtdEstoque()-1);
 					carrinho->calcularCompra(v.getPrecoUnit());
-					carrinho->getListaDVDs()->inserir(v);
+					if(carrinho->getListaDVDs()->getQtdKey(key)==0) carrinho->getListaDVDs()->inserir(v);	
 				}
 			break;
 			case 5: //FRUTAS
@@ -371,7 +372,7 @@ void adicionarAoCarrinho(Estoque *e, Carrinho *carrinho, int a){
 					F->prox->dado.setQtdEstoque(F->prox->dado.getQtdEstoque()-1);
 					//f.setQtdEstoque(f.getQtdEstoque()-1);
 					carrinho->calcularCompra(f.getPrecoUnit());
-					carrinho->getListaFrutas()->inserir(f);
+					if(carrinho->getListaFrutas()->getQtdKey(key)==0) carrinho->getListaFrutas()->inserir(f);	
 				}
 			break;
 			case 6: //LIVROS
@@ -384,7 +385,7 @@ void adicionarAoCarrinho(Estoque *e, Carrinho *carrinho, int a){
 					L->prox->dado.setQtdEstoque(L->prox->dado.getQtdEstoque()-1);
 					//l.setQtdEstoque(l.getQtdEstoque()-1);
 					carrinho->calcularCompra(l.getPrecoUnit());
-					carrinho->getListaLivros()->inserir(l);
+					if(carrinho->getListaLivros()->getQtdKey(key)==0) carrinho->getListaLivros()->inserir(l);	
 				}
 			break;
 			case 7: //SALGADOS
@@ -397,7 +398,7 @@ void adicionarAoCarrinho(Estoque *e, Carrinho *carrinho, int a){
 					S->prox->dado.setQtdEstoque(S->prox->dado.getQtdEstoque()-1);
 					//s.setQtdEstoque(s.getQtdEstoque()-1);
 					carrinho->calcularCompra(s.getPrecoUnit());
-					carrinho->getListaSalgados()->inserir(s);
+					if(carrinho->getListaSalgados()->getQtdKey(key)==0) carrinho->getListaSalgados()->inserir(s);	
 				}
 			break;
 		}
