@@ -72,8 +72,8 @@ int menuFornecedores(){
 	do{
 		cout << "=======================================" << endl;
 		cout << "--- Menu de Fornecedores ---" << endl;
-		cout << "1 - Cadastrar Fornecedor" << endl;
-		cout << "2 - Listar Todos os Fornecedores Encontrados" << endl;
+		cout << "1 - Cadastrar Fornecimento" << endl;
+		cout << "2 - Listar Todos os Fornecimentos Encontrados" << endl;
 		cout << "0 - Voltar" << endl;
 		cout << "Opcao: ";
 		cin >> result;

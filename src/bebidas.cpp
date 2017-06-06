@@ -1,6 +1,7 @@
 /**
  * @file	bebidas.cpp
  * @brief	Implementacao dos metodos da classe Bebidas
+ * @details Os atributos de uma Bebida sao a chave, o nome, o preco, a quantidade em estoque, o teor alcoolico, a quantidade de acucar, o volume total e a data de validade
  * @author	Luan Pereira (luanpereira00@outlook.com)
  * @since	01/06/2017
  * @date	01/06/2017
