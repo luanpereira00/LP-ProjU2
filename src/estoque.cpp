@@ -98,31 +98,31 @@ void Estoque::listarEstoque(){
 	cout << "Lista de Estoque: " << endl << endl;
 	if(ll_Bebidas->contarElementos()>0) {
 		cout << "Lista de Bebidas: " << endl;
-		ll_Bebidas->imprimir();
+		ll_Bebidas->imprimirTela();
 	}
 	if(ll_CDs->contarElementos()>0) {
 		cout << endl << "Lista de CDs: " << endl;
-		ll_CDs->imprimir();
+		ll_CDs->imprimirTela();
 	}
 	if(ll_Doces->contarElementos()>0) {
 		cout << endl << "Lista de Doces: " << endl;
-		ll_Doces->imprimir();
+		ll_Doces->imprimirTela();
 	}
 	if(ll_DVDs->contarElementos()>0) {
 		cout << endl << "Lista de DVDs: " << endl;
-		ll_DVDs->imprimir();
+		ll_DVDs->imprimirTela();
 	}
 	if(ll_Frutas->contarElementos()>0) {
 		cout << endl << "Lista de Frutas: " << endl;
-		ll_Frutas->imprimir();
+		ll_Frutas->imprimirTela();
 	}
 	if(ll_Livros->contarElementos()>0) {
 		cout << endl << "Lista de Livros: " << endl;
-		ll_Livros->imprimir();
+		ll_Livros->imprimirTela();
 	}
 	if(ll_Salgados->contarElementos()>0) {
 		cout << endl << "Lista de Salgados: " << endl;
-		ll_Salgados->imprimir();
+		ll_Salgados->imprimirTela();
 	}
 	cout << "-----------------------" << endl;
 }

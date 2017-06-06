@@ -58,6 +58,8 @@ public:
 	*@param p O novo preco*/
 	void setPrecoUnit(float p);
 
+	void imprimirTela();
+
 	/**@brief Atualiza a quantidade em estoque
 	*@param e A nova quantidade*/
 	void setQtdEstoque(int e);

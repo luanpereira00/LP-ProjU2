@@ -24,6 +24,13 @@ int menuPrincipal();
 int menuProdutos();
 
 /**
+@brief Menu Fornecedores
+@details Direciona para Cadastrar e Listar
+@return Retorna a escolha do usuario
+*/
+int menuFornecedores();
+
+/**
 @brief Menu Nota Fiscal
 @details Direciona para Listar Notas Fiscais
 @return Retorna a escolha do usuario

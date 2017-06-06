@@ -7,6 +7,8 @@
  */
 
 #include <iostream>
+using std::cout;
+using std::endl;
 using std::getline;
 
 #include "bebidas.h"

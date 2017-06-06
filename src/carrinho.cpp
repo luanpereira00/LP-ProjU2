@@ -69,25 +69,25 @@ void Carrinho::listar(){
 	cout << "-----------------------" << endl;
 	cout << "Carrinho: " << endl << endl;
 	if(getListaBebidas()->contarElementos()>0) {
-		getListaBebidas()->imprimir();
+		getListaBebidas()->imprimirTela();
 	}
 	if(getListaCDs()->contarElementos()>0) {
-		getListaCDs()->imprimir();
+		getListaCDs()->imprimirTela();
 	}
 	if(getListaDoces()->contarElementos()>0) {
-		getListaDoces()->imprimir();
+		getListaDoces()->imprimirTela();
 	}
 	if(getListaDVDs()->contarElementos()>0) {
-		getListaDVDs()->imprimir();
+		getListaDVDs()->imprimirTela();
 	}
 	if(getListaFrutas()->contarElementos()>0) {
-		getListaFrutas()->imprimir();
+		getListaFrutas()->imprimirTela();
 	}
 	if(getListaLivros()->contarElementos()>0) {
-		getListaLivros()->imprimir();
+		getListaLivros()->imprimirTela();
 	}
 	if(getListaSalgados()->contarElementos()>0) {
-		getListaSalgados()->imprimir();
+		getListaSalgados()->imprimirTela();
 	}
 	cout << "Total do carrinho: " << getPrecoCompra() << endl;
 	cout << "-----------------------" << endl;

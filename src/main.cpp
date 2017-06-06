@@ -15,6 +15,7 @@ using std::endl;
 using std::string;
 
 #include "estoque.h"
+#include "fornecedores.h"
 #include "notafiscal.h"
 #include "carrinho.h"
 #include "cadProd.h"
@@ -25,6 +26,7 @@ int main (){
 	Estoque *e = new Estoque;
 	Carrinho *carrinho = new Carrinho;
 	NotaFiscal *notasFiscais = new NotaFiscal;
+	Fornecedores *fornec = new Fornecedores;
 	e->lerDados();
 	//INPUT DADOS
 
@@ -68,17 +70,27 @@ int main (){
 			break;
 			case 3:
 			//menu fornecedores;
-				/*resultAux = menuProdutos();
-				switch(resultAux){
-					case 1:
-					break;
-					case 2:
-					break;
-					case 3:
-					break;
-					default:
-					break;
-				}*/
+				do{
+					flag=true;
+					switch(menuFornecedores()){
+						case 1:
+							fornec->criar();
+							if(fornec->verificarNoEstoque(e)) {
+								cout << "ENTREGA CONCLUIDA COM SUCESSO! CONTINUANDO OPERACOES..." << endl;
+								fornec->imprimirArquivo();
+							}
+							else cerr << "NAO CONSTA NO CADASTRO DO ESTOQUE! NADA A FAZER..." << endl;
+
+							flag = false;	
+						break;
+						case 2:
+						fornec->lerArquivo();
+						break;
+						case 0:
+							flag=false;
+						break;
+					}
+				}while(flag);
 			break;
 			case 4:
 			//iniciar venda
@@ -99,9 +111,8 @@ int main (){
 							flag=false;
 						break;
 						case 0:
-						cerr << "Os dados de qualquer compra nao finalizada estao sendo destruidos..." <<  endl;
-							carrinho->limpar();
-							flag=false;
+							if(carrinho->carrinhoIsEmpty()) flag=false;
+							else cerr << "ERRO! VOCE DEVE FINALIZAR A COMPRA PRIMEIRO OU ESVAZIAR O CARRINHO..." << endl;
 						break;
 					}
 				}while(flag);
@@ -119,6 +130,7 @@ int main (){
 	delete e;
 	delete carrinho;
 	delete notasFiscais;
+	delete fornec;
 	//OUTPUT DADOS
 	return 0;
 }

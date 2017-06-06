@@ -8,6 +8,10 @@
 
 #include "produtos.h"
 
+#include <iostream>
+using std::cout;
+using std::endl;
+
 /**@brief Construtor padrao*/
 Produtos::Produtos(){ 
 	setChave(0);
@@ -57,6 +61,17 @@ void Produtos::setPrecoUnit(float p){ precoUnitario = p; }
 	*@param e A nova quantidade*/
 void Produtos::setQtdEstoque(int e){ qtdEstoque = e; }
 
+void Produtos::imprimirTela(){
+	cout << "=======================================" << endl;
+	cout << "Chave: " << getChave() << endl; 	
+	cout << "Nome da Bebida: " <<getNomeProd() << endl; 	
+	cout << "Preco unitario: " << getPrecoUnit() << endl;
+	cout << "Quantidade: " << getQtdEstoque() << endl;
+	//cout << a.getTeorAlcoolico() << endl; 	
+	//cout << a.getQtdAcucar() << endl;
+	//cout << a.getVolumeTotal() << endl;
+	//cout << *(a.getValidade());
+}
 
 /** @brief Sobrecarga do operador de menor (para Produtos)
 * @param	p Produdo que sera comparado  

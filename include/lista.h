@@ -187,13 +187,23 @@ public:
 		}
 	}
 
-	/** @brief Imprime toda a lista ligada*/
+	/** @brief Imprime toda a lista ligada em arquivo*/
 	void imprimir(){
 		node<T>* it = inicio;
 		while(it->prox->prox){
 			cout << it->prox->dado << endl;
 			it=it->prox;
 		}
+	}
+
+	/** @brief Imprime toda a lista ligada*/
+	void imprimirTela(){
+		node<T>* it = inicio;
+		while(it->prox->prox){
+			it->prox->dado.imprimirTela();
+			it=it->prox;
+		}
+		cout << "=======================================" << endl;
 	}
 
 	/** @brief Le de uma stream de dados e insere na lista*/

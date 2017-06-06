@@ -63,6 +63,27 @@ int menuProdutos(){
 } 
 
 /**
+@brief Menu Fornecedores
+@details Direciona para Cadastrar e Listar
+@return Retorna a escolha do usuario
+*/
+int menuFornecedores(){
+	int result;
+	do{
+		cout << "=======================================" << endl;
+		cout << "--- Menu de Fornecedores ---" << endl;
+		cout << "1 - Cadastrar Fornecedor" << endl;
+		cout << "2 - Listar Todos os Fornecedores Encontrados" << endl;
+		cout << "0 - Voltar" << endl;
+		cout << "Opcao: ";
+		cin >> result;
+		if(result<0 or result>2) cerr << "OPCAO INVALIDA! TENTE NOVAMENTE..." << endl;
+	}while(result<0 or result>2);
+
+	return result;
+}
+
+/**
 @brief Menu Nota Fiscal
 @details Direciona para Listar Notas Fiscais
 @return Retorna a escolha do usuario
