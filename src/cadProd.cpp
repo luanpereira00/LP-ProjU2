@@ -1,5 +1,5 @@
 /**
- * @file	cadprod.cpp
+ * @file	cadProd.cpp
  * @brief	Implementação de funções que cadastram/adicionam w removem produtos de estoque/carrinho
  * @author	Luan Pereira (luanpereira00@outlook.com)
  * @since	01/06/2017

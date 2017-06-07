@@ -1,5 +1,5 @@
 /**
- * @file	cadprod.h
+ * @file	cadProd.h
  * @brief	Definicao de funções que cadastram/adicionam w removem produtos de estoque/carrinho
  * @author	Luan Pereira (luanpereira00@outlook.com)
  * @since	01/06/2017

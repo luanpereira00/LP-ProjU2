@@ -1,3 +1,11 @@
+/**
+ * @file	fornecedores.cpp
+ * @brief	Implementacoes da classe Fornecedores
+  * @author	Luan Pereira (luanpereira00@outlook.com)
+ * @since	01/06/2017
+ * @date	01/06/2017
+ */
+
 #include "fornecedores.h"
 
 #include <iostream>
@@ -15,6 +23,7 @@ using std::to_string;
 using std::ostream;
 using std::istream;
 
+/**@brief Construtor Padrao */
 Fornecedores::Fornecedores(){
 	setNome("");
 	setProduto(0);
@@ -22,22 +31,39 @@ Fornecedores::Fornecedores(){
 	setQtd(0);
 }
 
+/**@return Retorna o nome */
 string Fornecedores::getNome(){ return nomeEmpresa;}
+
+/**@return Retorna o tipo do produto */
 int Fornecedores::getProduto(){ return tipoProduto;}
+
+/**@return Retorna a chave do produto */
 int Fornecedores::getChave(){ return chaveProduto;}
+
+/**@return Retorna a quantidade do produto */
 int Fornecedores::getQtd(){ return qtdProduto; }
 
+/**@brief Atualiza o nome */
 void Fornecedores::setNome(string n){ nomeEmpresa = n;}
+
+/**@brief Atualiza o tipo do produto */
 void Fornecedores::setProduto(int p){ tipoProduto = p;}
+
+/**@brief Atualiza a chave do produto */
 void Fornecedores::setChave(int c){ chaveProduto = c;}
+
+/**@brief Atualiza a quantidade do produto */
 void Fornecedores::setQtd(int q){ qtdProduto = q; }
 
+/**@brief Imprime os dados na tela de forma sanitizada */
 void Fornecedores::imprimirTela(){
 	cout << "Nome: " << nomeEmpresa << endl;
 	cout << "Produto fornecido: " << tipoProduto << endl;
 	cout << "Chave: " << chaveProduto << endl;
 	cout << "Quantidade do produto: " << qtdProduto << endl;
 }
+
+/**@brief Imprime todos os dados para um arquivo no formato csv*/
 void Fornecedores::imprimirArquivo(){
 	string closing;
 
@@ -46,6 +72,8 @@ void Fornecedores::imprimirArquivo(){
 	fornec << nomeEmpresa << ";" << tipoProduto << ";" << chaveProduto << ";" << qtdProduto << endl;  
 	fornec.close();
 }
+
+/**@brief Le os dados de um arquivo */
 void Fornecedores::lerArquivo(){
 	bool flag =true;
 	int i=0;
@@ -67,6 +95,8 @@ void Fornecedores::lerArquivo(){
 	cout << "===========================================" << endl;
 }
 
+
+/**@brief Cria um fornecedor */
 int Fornecedores::getLastFornecedores(){
 	bool flag =true;
 	int i=0;
@@ -81,6 +111,7 @@ int Fornecedores::getLastFornecedores(){
 	return i;
 }
 
+/**@return Retorna o numero do ultimo fornecimento */ 
 void Fornecedores::criar(){
 	cin.ignore();
 	cout << "Digite o nome da empresa: ";
@@ -94,6 +125,7 @@ void Fornecedores::criar(){
 	cin >> qtdProduto;
 }	
 
+/**@brief Verifica se um produto esta no estoque e ja o atualiza em caso positivo */
 bool Fornecedores::verificarNoEstoque(Estoque *e){
 	node<Bebidas>* B;				
 	node<CDs>* C;						
@@ -157,12 +189,12 @@ bool Fornecedores::verificarNoEstoque(Estoque *e){
 }
 
 
-/** @brief Sobrecarga do operador de insercao em stream 
-* @details O operador eh sobrecarregado para representar uma bebida na formatacao "codigo;nome;preco;qtdEstoque;teorAlcoolico;qtdAcucar;volumeTotal;dataDeValidade"  
-* @param	os Referencia para stream de saida  
-* @param	a Referencia para o objeto bebida a ser impresso  
-* @return	Referencia para stream de saida  
-*/
+	/** @brief Sobrecarga do operador de insercao em stream 
+	* @details O operador eh sobrecarregado para representar um fornedor na formatacao "nomeDaEmpresa;tipoProduto;chaveProduto;qtdProduto"  
+	* @param	os Referencia para stream de saida  
+	* @param	a Referencia para o objeto Fornecedor a ser impresso  
+	* @return	Referencia para stream de saida  
+	*/
 ostream& operator<<(ostream& os, Fornecedores &a){
 	os << a.getNome() << ";"; 	
 	os << a.getProduto() << ";"; 	
@@ -172,11 +204,11 @@ ostream& operator<<(ostream& os, Fornecedores &a){
 }
 
 /** @brief Sobrecarga do operador de extracao de stream 
-* @param	is Referencia para stream de entrada  
-* @param	a Referencia para o objeto bebida a ser criado com base nos  
-*			valores fornecidos  
-* @return	Referencia para stream de entrada  
-*/ 	
+	* @param	is Referencia para stream de entrada  
+	* @param	a Referencia para o objeto Fornecedor a ser criado com base nos  
+	*			valores fornecidos  
+	* @return	Referencia para stream de entrada  
+	*/ 	
 istream& operator>>(istream& is, Fornecedores &a){
 	string aux; 
 	getline(is, aux, ';'); 	
