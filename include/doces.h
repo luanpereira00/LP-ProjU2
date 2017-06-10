@@ -24,6 +24,42 @@ private:
 	float qtdAcucar; /**< A quantidade de acucar*/
 	bool gluten; /**< Ter gluten*/
 	bool lactose; /**< Ter lactose*/
+	ostream& print(ostream& os){
+		os << getTipo() << ";";
+		os << getChave() << ";"; 	
+		os << getNomeProd() << ";"; 	
+		os << getPrecoUnit() << ";";
+		os << getQtdEstoque() << ";";
+		os << getQtdAcucar() << ";";
+		os << getGluten() << ";";
+		os << getLactose() << ";";
+		os << *(getValidade());
+		return os; 
+	};
+
+	istream& read(istream& is){
+		string aux; 
+		Data d;
+
+		getline(is, aux, ';'); 	
+		setChave(atoi(aux.c_str())); 	
+		getline(is, aux, ';'); 	
+		setNomeProd(aux); 	
+		getline(is, aux, ';'); 	
+		setPrecoUnit(atof(aux.c_str()));
+		getline(is, aux, ';');
+		setQtdEstoque(atoi(aux.c_str())); 
+		getline(is, aux, ';'); 	
+		setQtdAcucar(atof(aux.c_str())); 
+		getline(is, aux, ';'); 	
+		setGluten(atoi(aux.c_str()));
+		getline(is, aux, ';'); 	
+		setLactose(atoi(aux.c_str()));
+		getline(is, aux); 
+		d.string2Data(aux);
+		setValidade(d);	
+		return is; 
+	};
 
 public:
 	/**@brief Construtor padrao*/
@@ -34,6 +70,8 @@ public:
 
 	/**@brief Construtor parametrizado*/
 	Doces(int c, string n, float p, int e, float a, bool gt, bool lt, Data dv);
+
+	Doces(Doces &a);
 
 	/**@return Retorna a quantidade de acucar */
 	float getQtdAcucar();
@@ -55,22 +93,8 @@ public:
 	/**@brief Atualiza a informacao sobre lactose
 	*@param lt A informacao para atualizar */
 	void setLactose(bool lt);
-	
-	/** @brief Sobrecarga do operador de insercao em stream 
-	* @details O operador eh sobrecarregado para representar um doce na formatacao "codigo;nome;preco;qtdEstoque;qtdAcucar;gluten;lactose;dataDeValidade"  
-	* @param	os Referencia para stream de saida  
-	* @param	a Referencia para o objeto doce a ser impresso  
-	* @return	Referencia para stream de saida  
-	*/
-	friend ostream& operator<<(ostream& os, Doces &a);
 
-	/** @brief Sobrecarga do operador de extracao de stream 
-	* @param	is Referencia para stream de entrada  
-	* @param	a Referencia para o objeto doce a ser criado com base nos  
-	*			valores fornecidos  
-	* @return	Referencia para stream de entrada  
-	*/ 
-	friend istream& operator>>(istream& is, Doces &a);
+	void criar(int key);
 };
 
 #endif

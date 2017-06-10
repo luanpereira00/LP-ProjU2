@@ -126,67 +126,19 @@ void Fornecedores::criar(){
 }	
 
 /**@brief Verifica se um produto esta no estoque e ja o atualiza em caso positivo */
-bool Fornecedores::verificarNoEstoque(Estoque *e){
-	node<Bebidas>* B;				
-	node<CDs>* C;						
-	node<Doces>* D;							
-	node<DVDs>* V;							
-	node<Frutas>* F;
-	node<Livros>* L;							
-	node<Salgados>* S;
+/*bool Fornecedores::verificarNoEstoque(Estoque *e){
+	node<Prod>* B;				
 
-	if(getProduto()==1) {
-		B = e->getListaBebidas()->buscar(getChave());
+	if() {
+		B = e->getListaProd()->buscar();
 		if(B->prox->prox) {
 			B->prox->dado.setQtdEstoque(B->prox->dado.getQtdEstoque()+getQtd());
 			return true;
 		}
 	}
-	if(getProduto()==2) {
-		C = e->getListaCDs()->buscar(getChave());
-		if(C->prox->prox) {
-			C->prox->dado.setQtdEstoque(C->prox->dado.getQtdEstoque()+getQtd());
-			return true;
-		}
-	}
-	if(getProduto()==3) {
-		D = e->getListaDoces()->buscar(getChave());
-		if(D->prox->prox) {
-			D->prox->dado.setQtdEstoque(D->prox->dado.getQtdEstoque()+getQtd());
-			return true;
-		}
-	}
-	if(getProduto()==4) {
-		V = e->getListaDVDs()->buscar(getChave());
-		if(V->prox->prox) {
-			V->prox->dado.setQtdEstoque(V->prox->dado.getQtdEstoque()+getQtd());
-			return true;
-		}
-	}
-	if(getProduto()==5) {
-		F = e->getListaFrutas()->buscar(getChave());
-		if(F->prox->prox) {
-			F->prox->dado.setQtdEstoque(F->prox->dado.getQtdEstoque()+getQtd());
-			return true;
-		}
-	}
-	if(getProduto()==6) {
-		L = e->getListaLivros()->buscar(getChave());
-		if(L->prox->prox) {
-			L->prox->dado.setQtdEstoque(L->prox->dado.getQtdEstoque()+getQtd());
-			return true;
-		}
-	}
-	if(getProduto()==7) {
-		S = e->getListaSalgados()->buscar(getChave());
-		if(S->prox->prox) {
-			S->prox->dado.setQtdEstoque(S->prox->dado.getQtdEstoque()+getQtd());
-			return true;
-		}
-	}
 
 	return false;
-}
+}*/
 
 
 	/** @brief Sobrecarga do operador de insercao em stream 

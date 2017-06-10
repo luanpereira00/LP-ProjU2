@@ -18,7 +18,6 @@ using std::string;
 #include "fornecedores.h"
 #include "notafiscal.h"
 #include "carrinho.h"
-#include "cadProd.h"
 #include "menu.h"
 
 /**@brief Funcao principal */
@@ -28,6 +27,7 @@ int main (){
 	NotaFiscal *notasFiscais = new NotaFiscal;
 	Fornecedores *fornec = new Fornecedores;
 	e->lerDados();
+
 	//INPUT DADOS
 
 	int resultPrinc=0;
@@ -40,10 +40,10 @@ int main (){
 					flag=true;
 					switch(menuProdutos()){
 						case 1:
-							cadastrarProdutos(e, menuOpcoesProdutos());
+							e->cadastrarProduto();
 						break;
 						case 2:
-							removerProduto(e, menuOpcoesProdutos());
+							e->removerProduto();
 						break;
 						case 3:
 							e->listarEstoque();
@@ -75,11 +75,11 @@ int main (){
 					switch(menuFornecedores()){
 						case 1:
 							fornec->criar();
-							if(fornec->verificarNoEstoque(e)) {
+							//if(fornec->verificarNoEstoque(e)) {
 								cout << "ENTREGA CONCLUIDA COM SUCESSO! CONTINUANDO OPERACOES..." << endl;
 								fornec->imprimirArquivo();
-							}
-							else cerr << "NAO CONSTA NO CADASTRO DO ESTOQUE! NADA A FAZER..." << endl;
+						//	}
+						//	else cerr << "NAO CONSTA NO CADASTRO DO ESTOQUE! NADA A FAZER..." << endl;
 
 							flag = false;	
 						break;
@@ -98,10 +98,10 @@ int main (){
 					flag = true;
 					switch(menuCarrinho()){
 						case 1:
-							adicionarAoCarrinho(e, carrinho, menuOpcoesProdutos());
+							carrinho->adicionarProduto(e);	
 						break;
 						case 2:
-							removerDoCarrinho(e, carrinho, menuOpcoesProdutos());
+							carrinho->removerProduto(e);
 						break;
 						case 3:
 							carrinho->listar();
@@ -111,7 +111,7 @@ int main (){
 							flag=false;
 						break;
 						case 0:
-							if(carrinho->carrinhoIsEmpty()) flag=false;
+							if(carrinho->isEmpty()) flag=false;
 							else cerr << "ERRO! VOCE DEVE FINALIZAR A COMPRA PRIMEIRO OU ESVAZIAR O CARRINHO..." << endl;
 						break;
 					}

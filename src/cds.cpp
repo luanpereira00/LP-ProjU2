@@ -14,6 +14,7 @@ using std::getline;
 
 /**@brief Construtor padrao*/
 CDs::CDs(){
+	setTipo(2);
 	setAlbum("");
 	setEstilo("");
 	setArtista("");
@@ -26,6 +27,7 @@ CDs::~CDs(){
 
 /**@brief Construtor parametrizado*/
 CDs::CDs(int c, string n, float p, int e, string a, string es, string t){
+	setTipo(2);
 	setChave(c);
 	setNomeProd(n);
 	setPrecoUnit(p);
@@ -33,6 +35,17 @@ CDs::CDs(int c, string n, float p, int e, string a, string es, string t){
 	setAlbum(a);
 	setEstilo(es);
 	setArtista(t);
+}
+
+CDs::CDs(CDs &a){
+	tipo = a.tipo;
+	chave = a.chave;
+	nomeProduto = a.nomeProduto;
+	precoUnitario = a.precoUnitario;
+	qtdEstoque = a.qtdEstoque;
+	nomeDoAlbum = a.nomeDoAlbum;
+	artista = a.artista;
+	estilo = a.estilo;
 }
 
 /**@return Retorna o nome do album*/
@@ -56,45 +69,35 @@ void CDs::setEstilo(string es){ estilo = es; }
 	*@param O novo nome do artista*/
 void CDs::setArtista(string t){ artista = t; }
 
-/** @brief Sobrecarga do operador de insercao em stream 
-* @details O operador eh sobrecarregado para representar um CD na formatacao "codigo;nome;preco;qtdEstoque;nomeDoAlbum;estilo;nomeDoArtista"  
-* @param	os Referencia para stream de saida  
-* @param	a Referencia para o objeto CD a ser impresso  
-* @return	Referencia para stream de saida  
-*/
-ostream& operator<<(ostream& os, CDs &a){
-	os << a.getChave() << ";"; 	
-	os << a.getNomeProd() << ";"; 	
-	os << a.getPrecoUnit() << ";";
-	os << a.getQtdEstoque() << ";";
-	os << a.getAlbum() << ";"; 	
-	os << a.getEstilo() << ";";
-	os << a.getArtista();
-	return os; 
-}
+void CDs::criar(int key){
+	int auxI;
+	float auxF;
+	string auxS;
 
-/** @brief Sobrecarga do operador de extracao de stream 
-* @param	is Referencia para stream de entrada  
-* @param	a Referencia para o objeto CD a ser criado com base nos  
-*			valores fornecidos  
-* @return	Referencia para stream de entrada  
-*/  	
-istream& operator>>(istream& is, CDs &a){
-	string aux; 
+	cin.ignore();
+	cout << "Digite o nome do CD: ";
+	getline(cin, auxS);
+	cout << "Digite o preco unitario do CD: ";
+	cin >> auxF;
+	cout << "Digite a quantidade em estoque do CD: ";
+	cin >> auxI;
 
-	getline(is, aux, ';'); 	
-	a.setChave(atoi(aux.c_str())); 	
-	getline(is, aux, ';'); 	
-	a.setNomeProd(aux); 	
-	getline(is, aux, ';'); 	
-	a.setPrecoUnit(atof(aux.c_str()));
-	getline(is, aux, ';');
-	a.setQtdEstoque(atoi(aux.c_str())); 
-	getline(is, aux, ';'); 	
-	a.setAlbum(aux); 
-	getline(is, aux, ';'); 	
-	a.setEstilo(aux);
-	getline(is, aux); 	
-	a.setArtista(aux);
-	return is; 
+	setTipo(2);
+	setChave(key);
+	setNomeProd(auxS);
+	setPrecoUnit(auxF);
+	setQtdEstoque(auxI);
+
+	cin.ignore();
+	cout << "Digite o album do CD: ";
+	getline(cin, auxS);
+	setAlbum(auxS);
+
+	cout << "Digite o estilo do CD: ";
+	getline(cin, auxS);
+	setEstilo(auxS);
+
+	cout << "Digite o artista: ";
+	getline(cin, auxS);
+	setArtista(auxS);
 }

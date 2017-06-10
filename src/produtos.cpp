@@ -8,12 +8,9 @@
 
 #include "produtos.h"
 
-#include <iostream>
-using std::cout;
-using std::endl;
-
 /**@brief Construtor padrao*/
 Produtos::Produtos(){ 
+	setTipo(0);
 	setChave(0);
 	setNomeProd("");
 	setPrecoUnit(0);
@@ -27,11 +24,18 @@ Produtos::~Produtos(){
 
 /**@brief Construtor parametrizado*/
 Produtos::Produtos(int c, string n, float p, int e){
+	setTipo(0);
 	setChave(c);
 	setNomeProd(n);
 	setPrecoUnit(p);
 	setQtdEstoque(e);
 }
+
+/**@return Retorna o tipo do produto */
+int Produtos::getTipo(){ return tipo; }
+
+/** @brief Atualiza o tipo */
+void Produtos::setTipo(int t){tipo=t;}
 
 /**@return Retorna a chave */
 int Produtos::getChave(){ return chave; }
@@ -61,10 +65,42 @@ void Produtos::setPrecoUnit(float p){ precoUnitario = p; }
 	*@param e A nova quantidade*/
 void Produtos::setQtdEstoque(int e){ qtdEstoque = e; }
 
+string Produtos::tipo2String(int t){
+	switch(t){
+		case 1:
+			return "BEBIDA"; 
+		break;
+		case 2:
+			return "CD"; 
+		break;
+		case 3:
+			return "DOCE"; 
+		break;
+		case 4:
+			return "DVD"; 
+		break;
+		case 5:
+			return "FRUTA"; 
+		break;
+		case 6:
+			return "LIVRO"; 
+		break;
+		case 7:
+			return "SALGADO"; 
+		break;
+		default:
+			return "ERRO";
+		break;
+	}
+}
+
 void Produtos::imprimirTela(){
-	cout << "=======================================" << endl;
-	cout << "Chave: " << getChave() << endl; 	
-	cout << "Nome da Bebida: " <<getNomeProd() << endl; 	
+	cout << "---------------------------------------" << endl;
+	//cout << "=======================================" << endl;
+	cout << "Chave: " << getChave() << "\t"; 	
+	cout << "Tipo: " << tipo2String(getTipo()) << endl;
+	
+	cout << "Nome do Produto: " <<getNomeProd() << endl; 	
 	cout << "Preco unitario: " << getPrecoUnit() << endl;
 	cout << "Quantidade: " << getQtdEstoque() << endl;
 	//cout << a.getTeorAlcoolico() << endl; 	
@@ -77,7 +113,7 @@ void Produtos::imprimirTela(){
 * @param	p Produdo que sera comparado  
 * @return	Retorna bool a relacao
 */
-bool Produtos::operator<(Produtos p) {
+/*bool Produtos::operator<(Produtos p) {
 	if(chave<p.chave) return true;
 	else return false;
-}
+}*/

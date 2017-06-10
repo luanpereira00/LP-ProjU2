@@ -18,6 +18,11 @@ using std::istream;
 #include <string>
 using std::string;
 
+#include <iostream>
+using std::cout;
+using std::getline;
+using std::endl;
+
 #include "data.h"
 #include "pereciveis.h"
 #include "produtos.h"
@@ -32,6 +37,41 @@ private:
 	float teorAlcoolico; /**< O teor alcoolico da bebida (em %)*/
 	float qtdAcucar; /**< A quantidade de acucar da bebida (em mm)*/
 	int volumeTotal; /**< O volume total da bebida (em ml)*/
+	ostream& print(ostream& os){
+		os << getTipo() << ";";
+		os << getChave() << ";"; 	
+		os << getNomeProd() << ";"; 	
+		os << getPrecoUnit() << ";";
+		os << getQtdEstoque() << ";";
+		os << getTeorAlcoolico() << ";"; 	
+		os << getQtdAcucar() << ";";
+		os << getVolumeTotal() << ";";
+		
+		os << *(getValidade());
+		return os;
+	};
+	istream& read(istream& is){
+		string aux; 
+		Data d;
+		getline(is, aux, ';'); 	
+		setChave(atoi(aux.c_str())); 	
+		getline(is, aux, ';'); 	
+		setNomeProd(aux); 	
+		getline(is, aux, ';'); 	
+		setPrecoUnit(atof(aux.c_str()));
+		getline(is, aux, ';');
+		setQtdEstoque(atoi(aux.c_str())); 
+		getline(is, aux, ';'); 	
+		setTeorAlcoolico(atof(aux.c_str())); 
+		getline(is, aux, ';'); 	
+		setQtdAcucar(atof(aux.c_str()));
+		getline(is, aux, ';'); 	
+		setVolumeTotal(atoi(aux.c_str()));
+		getline(is, aux); 
+		d.string2Data(aux);
+		setValidade(d);	
+		return is; 
+	};
 
 public:
 	/**@brief Construtor padrao*/
@@ -42,6 +82,8 @@ public:
 
 	/**@brief Construtor parametrizado*/
 	Bebidas(int c, string n, float p, int e, float t, float a, int v, Data dv);
+
+	Bebidas(Bebidas &a);
 
 	/**@return Retorna o teor alcoolico */
 	float getTeorAlcoolico();
@@ -64,27 +106,9 @@ public:
 	*@param v O novo volume total*/
 	void setVolumeTotal(int v);
 
-	/** @brief Sobrecarga do operador de atribuicao (para Bebidas)
-	* @param	a Bebida que sera passado por atribuicao  
-	* @return	Retorna a Bebida atribuida
-	*/
-	Bebidas& operator=(int a);
+	void criar(int key);
 
-	/** @brief Sobrecarga do operador de insercao em stream 
-	* @details O operador eh sobrecarregado para representar uma bebida na formatacao "codigo;nome;preco;qtdEstoque;teorAlcoolico;qtdAcucar;volumeTotal;dataDeValidade"  
-	* @param	os Referencia para stream de saida  
-	* @param	a Referencia para o objeto bebida a ser impresso  
-	* @return	Referencia para stream de saida  
-	*/
-	friend ostream& operator<<(ostream& os, Bebidas &a);
-
-	/** @brief Sobrecarga do operador de extracao de stream 
-	* @param	is Referencia para stream de entrada  
-	* @param	a Referencia para o objeto bebida a ser criado com base nos  
-	*			valores fornecidos  
-	* @return	Referencia para stream de entrada  
-	*/ 
-	friend istream& operator>>(istream& is, Bebidas &a);
+	
 };
 
 #endif

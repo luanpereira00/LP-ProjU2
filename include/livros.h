@@ -32,6 +32,40 @@ private:
 	string autor; /**< O autor*/
 	string editora; /**< A editora*/
 	int anoLancamento; /**< O ano de lancamento*/
+	ostream& print(ostream& os){
+		os << getTipo() << ";";
+		os << getChave() << ";"; 	
+		os << getNomeProd() << ";"; 	
+		os << getPrecoUnit() << ";";
+		os << getQtdEstoque() << ";";
+		os << getTitulo() << ";"; 	
+		os << getAutor() << ";";
+		os << getEditora() << ";";
+		os << getLancamento();
+		return os; 
+	};
+
+	istream& read(istream& is){
+		string aux; 
+
+		getline(is, aux, ';'); 	
+		setChave(atoi(aux.c_str())); 	
+		getline(is, aux, ';'); 	
+		setNomeProd(aux); 	
+		getline(is, aux, ';'); 	
+		setPrecoUnit(atof(aux.c_str()));
+		getline(is, aux, ';');
+		setQtdEstoque(atoi(aux.c_str())); 
+		getline(is, aux, ';'); 	
+		setTitulo(aux); 
+		getline(is, aux, ';'); 	
+		setAutor(aux);
+		getline(is, aux, ';'); 	
+		setEditora(aux);
+		getline(is, aux);
+		setLancamento(atoi(aux.c_str()));
+		return is; 
+	};
 
 public:
 	/**@brief Construtor padrao*/
@@ -41,7 +75,9 @@ public:
 	~Livros();
 
 	/**@brief Construtor parametrizado*/
-	Livros(string tt, string at, string ed, int aa);
+	Livros(int c, string n, float p, int e, string tt, string at, string ed, int aa);
+
+	Livros(Livros &a);
 
 	/**@return Retorna o titulo*/
 	string getTitulo(); 
@@ -53,7 +89,7 @@ public:
 	string getEditora();
 
 	/**@return Retorna o ano de lancamento*/
-	int getAno();
+	int getLancamento();
 
 	/**@brief Atualiza o titulo
 	*@param tt O novo titulo */
@@ -69,23 +105,10 @@ public:
 
 	/**@brief Atualiza o ano de lancamento
 	*@param aa O novo ano de lancamento*/
-	void setAno(int aa);
+	void setLancamento(int aa);
 
-	/** @brief Sobrecarga do operador de insercao em stream 
-	* @details O operador eh sobrecarregado para representar um livro na formatacao "codigo;nome;preco;qtdEstoque;titulo;autor;editora;anoDeLancamento"  
-	* @param	os Referencia para stream de saida  
-	* @param	a Referencia para o objeto livro a ser impresso  
-	* @return	Referencia para stream de saida  
-	*/
-	friend ostream& operator<<(ostream& os, Livros &a);
+	void criar(int key);
 
-	/** @brief Sobrecarga do operador de extracao de stream 
-	* @param	is Referencia para stream de entrada  
-	* @param	a Referencia para o objeto livro a ser criado com base nos  
-	*			valores fornecidos  
-	* @return	Referencia para stream de entrada  
-	*/ 
-	friend istream& operator>>(istream& is, Livros &a);
 };
 
 #endif

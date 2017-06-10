@@ -9,6 +9,7 @@
 
 #include <iostream>
 using std::cout;
+using std::cin;
 using std::endl;
 using std::getline;
 
@@ -17,6 +18,7 @@ using std::getline;
 
 /**@brief Construtor padrao*/
 Bebidas::Bebidas(){
+	setTipo(1);
 	setTeorAlcoolico(0.0);
 	setQtdAcucar(0.0);
 	setVolumeTotal(0);
@@ -29,6 +31,7 @@ Bebidas::~Bebidas(){
 
 /**@brief Construtor parametrizado*/
 Bebidas::Bebidas(int c, string n, float p, int e, float t, float a, int v, Data dv){
+	setTipo(1);
 	setChave(c);
 	setNomeProd(n);
 	setPrecoUnit(p);
@@ -39,6 +42,19 @@ Bebidas::Bebidas(int c, string n, float p, int e, float t, float a, int v, Data 
 	setVolumeTotal(v);
 
 	setValidade(dv);
+}
+
+
+Bebidas::Bebidas(Bebidas &a) {
+	tipo = a.tipo;
+	chave = a.chave;
+	nomeProduto = a.nomeProduto;
+	precoUnitario = a.precoUnitario;
+	qtdEstoque = a.qtdEstoque;
+	teorAlcoolico = a.teorAlcoolico;
+	qtdAcucar = a.qtdAcucar;
+	volumeTotal = a.volumeTotal;
+	dataDeValidade = a.dataDeValidade;
 }
 
 /**@return Retorna o teor alcoolico */
@@ -62,65 +78,38 @@ void Bebidas::setQtdAcucar(float a){ qtdAcucar = a; }
 	*@param v O novo volume total*/
 void Bebidas::setVolumeTotal(int v){ volumeTotal = v; }
 
-/** @brief Sobrecarga do operador de atribuicao (para Bebidas)
-	* @param	a Bebida que sera passado por atribuicao  
-	* @return	Retorna a Bebida atribuida
-	*/
-Bebidas& Bebidas::operator=(int a) {
-	chave = 0;
-	nomeProduto = "";
-	precoUnitario = 0;
-	qtdEstoque = 0;
-	teorAlcoolico =0;
-	qtdAcucar = 0;
-	volumeTotal =0;
-	
-    return *this;
+void Bebidas::criar(int key){
+	int auxI;
+	float auxF;
+	string auxS;
+
+	cin.ignore();
+	cout << "Digite o nome da bebida: ";
+	getline(cin, auxS);
+	cout << "Digite o preco unitario da bebida: ";
+	cin >> auxF;
+	cout << "Digite a quantidade em estoque da bebida: ";
+	cin >> auxI;
+
+	setTipo(1);
+	setChave(key);
+	setNomeProd(auxS);
+	setPrecoUnit(auxF);
+	setQtdEstoque(auxI);
+
+	cout << "Digite o teor alcoolico da bebida: ";
+	cin >> auxF;
+	setTeorAlcoolico(auxF);
+
+	cout << "Digite a quantidade de acucar da bebida: ";
+	cin >> auxF;
+	setQtdAcucar(auxF);
+
+	cout << "Digite o volume total da bebida: ";
+	cin >> auxI;
+	setVolumeTotal(auxI);
+	cout << "Digite a data de validade da bebida: ";
+	cin >> auxS;
+	getValidade()->string2Data(auxS);
 }
 
-/** @brief Sobrecarga do operador de insercao em stream 
-* @details O operador eh sobrecarregado para representar uma bebida na formatacao "codigo;nome;preco;qtdEstoque;teorAlcoolico;qtdAcucar;volumeTotal;dataDeValidade"  
-* @param	os Referencia para stream de saida  
-* @param	a Referencia para o objeto bebida a ser impresso  
-* @return	Referencia para stream de saida  
-*/
-ostream& operator<<(ostream& os, Bebidas &a){
-	os << a.getChave() << ";"; 	
-	os << a.getNomeProd() << ";"; 	
-	os << a.getPrecoUnit() << ";";
-	os << a.getQtdEstoque() << ";";
-	os << a.getTeorAlcoolico() << ";"; 	
-	os << a.getQtdAcucar() << ";";
-	os << a.getVolumeTotal() << ";";
-	os << *(a.getValidade());
-	return os; 
-}
-
-/** @brief Sobrecarga do operador de extracao de stream 
-* @param	is Referencia para stream de entrada  
-* @param	a Referencia para o objeto bebida a ser criado com base nos  
-*			valores fornecidos  
-* @return	Referencia para stream de entrada  
-*/ 	
-istream& operator>>(istream& is, Bebidas &a){
-	string aux; 
-	Data d;
-	getline(is, aux, ';'); 	
-	a.setChave(atoi(aux.c_str())); 	
-	getline(is, aux, ';'); 	
-	a.setNomeProd(aux); 	
-	getline(is, aux, ';'); 	
-	a.setPrecoUnit(atof(aux.c_str()));
-	getline(is, aux, ';');
-	a.setQtdEstoque(atoi(aux.c_str())); 
-	getline(is, aux, ';'); 	
-	a.setTeorAlcoolico(atof(aux.c_str())); 
-	getline(is, aux, ';'); 	
-	a.setQtdAcucar(atof(aux.c_str()));
-	getline(is, aux, ';'); 	
-	a.setVolumeTotal(atoi(aux.c_str()));
-	getline(is, aux); 
-	d.string2Data(aux);
-	a.setValidade(d);	
-	return is; 
-}

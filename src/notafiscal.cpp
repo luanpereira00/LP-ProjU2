@@ -10,83 +10,90 @@
 
 /**@brief Ler notas da memoria e as exibe */
 void NotaFiscal::lerArquivo(){
+	cout << "======================================" << endl;
 	cout << "--- Notas Fiscais Identificadas ---"<< endl;
 	bool flag=true;
 	int numArq=1;
 	int qtdLista=0;
 	int iter=0;
+	bool find = false;
 	string preco="0";
 	string opening;
+	string tipo="";
 
-	Bebidas b;
-	CDs c;
-	Doces d;
-	DVDs v;
-	Frutas f;
-	Livros l;
-	Salgados s;
+	Bebidas *b;
+	CDs *c;
+	Doces *d;
+	DVDs *v;
+	Frutas *f;
+	Livros *l;
+	Salgados *s;
 
 	while(flag){
 		opening = "./data/notasFiscais/"+to_string(numArq)+"_nota.csv";
 		ifstream nota(opening);
-		if(!nota) flag = false;
+		if(!nota) {
+			flag = false;
+			//if(!find) find = 
+		}
 		else{
-			cout << "--- Nota " << numArq << " ---"  << endl; 
+			find = true;
+			cout << "\t=== NOTA " << numArq << " ==="  << endl; 
 			nota >> qtdLista;
+			nota.ignore();
 			while(iter<qtdLista) {
-				nota >> b;
+				getline(nota, tipo, ';');
+				if(tipo=="1"){
+					b = new Bebidas;	
+					nota >> *b;
+					b->imprimirTela();
+					delete b;
+				}else if (tipo=="2"){
+					c = new CDs;	
+					nota >> *b;
+					c->imprimirTela();
+					delete c;
+				}else if (tipo=="3"){
+					d = new Doces;	
+					nota >> *d;
+					d->imprimirTela();
+					delete d;
+				}else if (tipo=="4"){
+					v = new DVDs;	
+					nota >> *v;
+					v->imprimirTela();
+					delete v;
+				}else if (tipo=="5"){
+					f = new Frutas;	
+					nota >> *f;
+					f->imprimirTela();
+					delete f;
+				}else if (tipo=="6"){
+					l = new Livros;	
+					nota >> *l;
+					l->imprimirTela();
+					delete l;
+				}else if (tipo=="7"){
+					s = new Salgados;	
+					nota >> *s;
+					s->imprimirTela();
+					delete s;
+				}else {
+					cerr << "ERRO! NADA A FAZER..." <<endl;
+					//exit(1);
+				}
+
 				iter++;
-				cout << b << endl;
 			}
-			nota >> qtdLista;
-			iter=0;
-			while(iter<qtdLista) {
-				nota >> c;
-				iter++;
-				cout << c << endl;
-			}
-			nota >> qtdLista;
-			iter=0;
-			while(iter<qtdLista) {
-				nota >> d;
-				iter++;
-				cout << d << endl;
-			}
-			nota >> qtdLista;
-			iter=0;
-			while(iter<qtdLista) {
-				nota >> v;
-				iter++;
-				cout << v << endl;
-			}
-			nota >> qtdLista;
-			iter=0;
-			while(iter<qtdLista) {
-				nota >> f;
-				iter++;
-				cout << f << endl;
-			}
-			nota >> qtdLista;
-			iter=0;
-			while(iter<qtdLista) {
-				nota >> l;
-				iter++;
-				cout << l << endl;
-			}
-			nota >> qtdLista;
-			iter=0;
-			while(iter<qtdLista) {
-				nota >> s;
-				iter++;
-				cout << s << endl;
-			}
+			cout << "--------------------------------------" << endl;
 			nota >> preco;
-			cout << "Preco: " << preco << endl;
-			cout << endl;
+			cout << "..................... Preco: " << preco << endl;
+			cout << "======================================" << endl;
 			nota.close();
 		}
 		numArq++;
 	}
+	if(!find) cerr << "NENHUMA NOTA ENCONTRADA..." << endl;
 
 	//int qtdNotas = verUltimaNotaFiscal();
 

@@ -31,6 +31,37 @@ private:
 	string titulo; /**< O titulo*/
 	string genero; /**< O genero*/
 	int minutos; /**< A duracao em minutos*/
+	ostream& print(ostream& os){
+		os << getTipo() << ";";
+		os << getChave() << ";"; 	
+		os << getNomeProd() << ";"; 	
+		os << getPrecoUnit() << ";";
+		os << getQtdEstoque() << ";";
+		os << getTitulo() << ";"; 	
+		os << getGenero() << ";";
+		os << getDuracao();
+		return os;
+	};
+
+	istream& read(istream& is){
+		string aux; 
+
+		getline(is, aux, ';'); 	
+		setChave(atoi(aux.c_str())); 	
+		getline(is, aux, ';'); 	
+		setNomeProd(aux); 	
+		getline(is, aux, ';'); 	
+		setPrecoUnit(atof(aux.c_str()));
+		getline(is, aux, ';');
+		setQtdEstoque(atoi(aux.c_str())); 
+		getline(is, aux, ';'); 	
+		setTitulo(aux); 
+		getline(is, aux, ';'); 	
+		setGenero(aux);
+		getline(is, aux); 	
+		setDuracao(atoi(aux.c_str()));
+		return is; 
+	};
 
 public:
 	/**@brief Construtor padrao*/
@@ -40,8 +71,10 @@ public:
 	~DVDs();
 
 	/**@brief Construtor parametrizado*/
-	DVDs(string tt, string gr, int min);
+	DVDs(int c, string n, float p, int e, string tt, string gr, int min);
 	
+	DVDs(DVDs &a);
+
 	/**@return Retorna o titulo do DVD*/
 	string getTitulo();
 
@@ -49,7 +82,7 @@ public:
 	string getGenero();
 
 	/**@return Retorna a duracao em minutos do DVD*/
-	int getMinutos();
+	int getDuracao();
 
 	/**@brief Atualiza o titulo
 	*@param tt O novo titulo */
@@ -61,23 +94,10 @@ public:
 
 	/**@brief Atualiza a duracao em minutos
 	*@param min A nova duracao */
-	void setMinutos(int min);
+	void setDuracao(int min);
 
-	/** @brief Sobrecarga do operador de insercao em stream 
-	* @details O operador eh sobrecarregado para representar uma DVD na formatacao "codigo;nome;preco;qtdEstoque;titulo;genero;duracao"  
-	* @param	os Referencia para stream de saida  
-	* @param	a Referencia para o objeto DVD a ser impresso  
-	* @return	Referencia para stream de saida  
-	*/
-	friend ostream& operator<<(ostream& os, DVDs &a);
+	void criar(int key);
 
-	/** @brief Sobrecarga do operador de extracao de stream 
-	* @param	is Referencia para stream de entrada  
-	* @param	a Referencia para o objeto DVD a ser criado com base nos  
-	*			valores fornecidos  
-	* @return	Referencia para stream de entrada  
-	*/ 
-	friend istream& operator>>(istream& is, DVDs &a);
 };
 
 #endif

@@ -9,8 +9,21 @@
 #ifndef PRODUTOS_H
 #define PRODUTOS_H
 
+#include <iostream>
+using std::cout;
+using std::cin;
+using std::cerr;
+using std::getline;
+using std::endl;
+
 #include <string>
 using std::string;
+
+#include <ostream> 
+using std::ostream; 
+
+#include <istream> 
+using std::istream;
 
 /** 
  * @class 	Produtos produtos.h
@@ -18,24 +31,36 @@ using std::string;
  * @details O atributo de um produto sao a chave, o nome do produto, o preco unitario e a quantidade em estoque;
  */
 class Produtos{
+private:
+	virtual ostream& print(ostream&)=0;
+	virtual istream& read(istream&)=0;
+
 protected: 
+	int tipo;
 	int chave; /**< A chave primaria associada ao produto*/
 	string nomeProduto; /**< O nome do produto*/
 	float precoUnitario; /**< O preco unitario*/
 	int qtdEstoque; /**< A quantidade em estoque*/
+
 
 public:
 	/**@brief Construtor padrao*/
 	Produtos();
 
 	/**@brief Destrutor padrao*/
-	~Produtos();
+	virtual ~Produtos();
 
 	/**@brief Construtor parametrizado*/
 	Produtos(int c, string n, float p, int e);
 
 	/**@return Retorna a chave */
 	int getChave();
+
+	/**@return Retorna o tipo do produto */
+	int getTipo();
+
+	/** @brief Atualiza o tipo */
+	void setTipo(int t);
 
 	/**@return Retorna o nome do produto*/
 	string getNomeProd();
@@ -60,6 +85,8 @@ public:
 
 	void imprimirTela();
 
+	string tipo2String(int t);
+
 	/**@brief Atualiza a quantidade em estoque
 	*@param e A nova quantidade*/
 	void setQtdEstoque(int e);
@@ -68,7 +95,19 @@ public:
 	* @param	p Produdo que sera comparado  
 	* @return	Retorna bool a relacao
 	*/
-	bool operator<(Produtos p);
+	bool operator<(Produtos *p);
+
+	
+	friend ostream& operator<<(ostream& os, Produtos &a){
+		return a.print(os);
+	};
+
+	//virtual istream& operator>>(istream& is, Produtos &a)const=0;
+
+	
+	friend istream& operator>>(istream& is, Produtos &a){
+		return a.read(is);
+	};
 };
 
 #endif

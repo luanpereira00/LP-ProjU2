@@ -33,6 +33,42 @@ private:
 	float qtdSodio; /**< A quantidade de sodio*/
 	bool gluten; /**< Informacao sobre conter gluten*/
 	bool lactose; /**< Informacao sobre conter lactose*/
+	ostream& print(ostream& os){
+		os << getTipo() << ";";
+		os << getChave() << ";"; 	
+		os << getNomeProd() << ";"; 	
+		os << getPrecoUnit() << ";";
+		os << getQtdEstoque() << ";";
+		os << getQtdSodio() << ";";
+		os << getGluten() << ";";
+		os << getLactose() << ";";
+		os << *(getValidade());
+		return os; 
+	};
+
+	istream& read(istream& is){
+		string aux; 
+		Data d;
+
+		getline(is, aux, ';'); 	
+		setChave(atoi(aux.c_str())); 	
+		getline(is, aux, ';'); 	
+		setNomeProd(aux); 	
+		getline(is, aux, ';'); 	
+		setPrecoUnit(atof(aux.c_str()));
+		getline(is, aux, ';');
+		setQtdEstoque(atoi(aux.c_str())); 
+		getline(is, aux, ';'); 	
+		setQtdSodio(atof(aux.c_str())); 
+		getline(is, aux, ';'); 	
+		setGluten(atoi(aux.c_str()));
+		getline(is, aux, ';'); 	
+		setLactose(atoi(aux.c_str()));
+		getline(is, aux); 
+		d.string2Data(aux);
+		setValidade(d);	
+		return is; 
+	};
 
 public:
 	/**@brief Construtor padrao*/
@@ -43,6 +79,8 @@ public:
 
 	/**@brief Construtor parametrizado*/
 	Salgados(int c, string n, float p, int e, float s, bool gt, bool lt, Data dv);
+
+	Salgados(Salgados &a);
 
 	/**@return Retorna a quantidade de sodio*/
 	float getQtdSodio();
@@ -65,22 +103,7 @@ public:
 	*@param lt A informacao para atualizar */
 	void setLactose(bool lt);
 
-	/** @brief Sobrecarga do operador de insercao em stream 
-	* @details O operador eh sobrecarregado para representar um salgado na formatacao "codigo;nome;preco;qtdEstoque;qtdSodio;gluten;lactose;dataDeValidade"  
-	* @param	os Referencia para stream de saida  
-	* @param	a Referencia para o objeto salgado a ser impresso  
-	* @return	Referencia para stream de saida  
-	*/
-	friend ostream& operator<<(ostream& os, Salgados &a);
-
-	
-	/** @brief Sobrecarga do operador de extracao de stream 
-	* @param	is Referencia para stream de entrada  
-	* @param	a Referencia para o objeto salgado a ser criado com base nos  
-	*			valores fornecidos  
-	* @return	Referencia para stream de entrada  
-	*/ 
-	friend istream& operator>>(istream& is, Salgados &a);
+	void criar(int key);
 };
 
 #endif

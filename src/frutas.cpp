@@ -15,6 +15,7 @@ using std::getline;
 /**@brief Construtor padrao*/
 Frutas::Frutas(){
 	Data d;
+	setTipo(5);
 	setLote("");
 	setDataLote(d);
 	setValidade(d);
@@ -27,6 +28,7 @@ Frutas::~Frutas(){
 
 /**@brief Construtor parametrizado*/
 Frutas::Frutas(int c, string n, float p, int e, string lt, Data dl, Data dv){
+	setTipo(5);
 	setChave(c);
 	setNomeProd(n);
 	setPrecoUnit(p);
@@ -36,6 +38,17 @@ Frutas::Frutas(int c, string n, float p, int e, string lt, Data dl, Data dv){
 	setDataLote(dl);
 
 	setValidade(dv);
+}
+
+Frutas::Frutas(Frutas &a){
+	tipo = a.tipo;
+	chave = a.chave;
+	nomeProduto = a.nomeProduto;
+	precoUnitario = a.precoUnitario;
+	qtdEstoque = a.qtdEstoque;
+	lote = a.lote;
+	dataDeLote = a.dataDeLote;
+	dataDeValidade = a.dataDeValidade;
 }
 
 /**@return Retorna o lote */
@@ -52,49 +65,35 @@ void Frutas::setLote(string lt){ lote = lt; }
 	*@param dl A nova data */ 
 void Frutas::setDataLote(Data dl){ dataDeLote = dl; }
 
+void Frutas::criar(int key){
+	int auxI;
+	float auxF;
+	string auxS;
 
-/** @brief Sobrecarga do operador de insercao em stream 
-	* @details O operador eh sobrecarregado para representar uma fruta na formatacao "codigo;nome;preco;qtdEstoque;lote;dataDeLote;dataDeValidade"  
-	* @param	os Referencia para stream de saida  
-	* @param	a Referencia para o objeto fruta a ser impresso  
-	* @return	Referencia para stream de saida  
-	*/
-ostream& operator<<(ostream& os, Frutas &a){
-	os << a.getChave() << ";"; 	
-	os << a.getNomeProd() << ";"; 	
-	os << a.getPrecoUnit() << ";";
-	os << a.getQtdEstoque() << ";";
-	os << a.getLote() << ";";
-	os << *(a.getDataLote()) << ";";
-	os << *(a.getValidade());
-	return os; 
-}
+	cin.ignore();
+	cout << "Digite o nome da fruta: ";
+	getline(cin, auxS);
+	cout << "Digite o preco unitario da fruta: ";
+	cin >> auxF;
+	cout << "Digite a quantidade em estoque da fruta: ";
+	cin >> auxI;
 
-/** @brief Sobrecarga do operador de extracao de stream 
-	* @param	is Referencia para stream de entrada  
-	* @param	a Referencia para o objeto fruta a ser criado com base nos  
-	*			valores fornecidos  
-	* @return	Referencia para stream de entrada  
-	*/	
-istream& operator>>(istream& is, Frutas &a){
-	string aux; 
-	Data d;
+	setTipo(5);
+	setChave(key);
+	setNomeProd(auxS);
+	setPrecoUnit(auxF);
+	setQtdEstoque(auxI);
 
-	getline(is, aux, ';'); 	
-	a.setChave(atoi(aux.c_str())); 	
-	getline(is, aux, ';'); 	
-	a.setNomeProd(aux); 	
-	getline(is, aux, ';'); 	
-	a.setPrecoUnit(atof(aux.c_str()));
-	getline(is, aux, ';');
-	a.setQtdEstoque(atoi(aux.c_str())); 
-	getline(is, aux, ';'); 	
-	a.setLote(aux); 
-	getline(is, aux, ';'); 	
-	d.string2Data(aux);
-	a.setDataLote(d);	
-	getline(is, aux); 
-	d.string2Data(aux);
-	a.setValidade(d);	
-	return is; 
+	cin.ignore();
+	cout << "Digite o lote da fruta: ";
+	getline(cin, auxS);
+	setLote(auxS);
+
+	cout << "Digite a data do lote: ";
+	cin >> auxS;
+	getDataLote()->string2Data(auxS);
+
+	cout << "Digite a data de validade da fruta: ";
+	cin >> auxS;
+	getValidade()->string2Data(auxS);
 }

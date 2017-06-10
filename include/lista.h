@@ -48,13 +48,13 @@ public:
 		inicio = new struct node<T>;
 		fim = new struct node<T>;
 
-		T padrao;
+	//	T padrao;
 
-		inicio->dado=padrao;
+		inicio->dado=nullptr;
 		inicio->prox=fim;
 		inicio->anter=NULL;
 
-		fim->dado=padrao;
+		fim->dado=nullptr;
 		fim->prox=NULL;
 		fim->anter=inicio;
 	}
@@ -101,24 +101,6 @@ public:
 	}
 
 	/** 
-	* @brief Insere um elemento ordenadamente na lista de acordo com a chave el passada
-	* @details Valido somente para objetos que contenham uma chave
-	* @param el A chave do elemento que sera inserido na lista 
-	*/
-	void inserir(int el){
-		//cout << "Inserindo o elemento " << el << endl;
-		node<T>* it = buscar(el);
-		node<T>* tmp = new node<T>;
-
-		tmp->dado=el;
-		tmp->prox=it->prox;
-		tmp->anter=it;
-
-		it->prox->anter=tmp;
-		it->prox=tmp;
-	}
-
-	/** 
 	* @brief Remove um elemento da lista ligada. (Informa também caso o elemento nao exista)
 	* @param el O elemento que sera removido da lista 
 	*/
@@ -139,31 +121,6 @@ public:
 			delete tmp; 
 		}
 		else cerr << "ERRO: Impossivel remover o elemento " << el << " (nao existe na lista)! ...Continuando operacoes" << endl;
-	}
-
-	/** 
-	* @brief Remove um elemento da lista ligada de acordo com a chave el passada. (Informa também caso o elemento nao exista)
-	* @details Valido somente para objetos que contenham uma chave
-	* @param el A chave do elemento que sera removido da lista 
-	*/
-	void remover(int el){
-		//cout << endl;
-		//cout << "Removendo o elemento " << el << endl;
-		node<T>* it = buscar(el);
-		if(it->prox->dado.getChave()==el){
-			node<T>* tmp = new node<T>;
-			tmp->prox=it->prox->prox;
-			tmp->anter=it;
-
-			delete it->prox; 
-
-			it->prox=tmp->prox;
-			it->prox->anter=tmp->anter;
-
-			delete tmp; 
-			cout << "Removido com sucesso!" << endl;
-		}
-		else cerr << "ERRO: Impossivel remover o elemento com a chave " << el << " (nao existe na lista)! ...Continuando operacoes" << endl;
 	}
 
 	/** 
@@ -200,32 +157,46 @@ public:
 	void imprimirTela(){
 		node<T>* it = inicio;
 		while(it->prox->prox){
-			it->prox->dado.imprimirTela();
+			it->prox->dado->imprimirTela();
 			it=it->prox;
 		}
-		cout << "=======================================" << endl;
+		cout << "---------------------------------------" << endl;
+		//cout << "=======================================" << endl;
 	}
 
 	/** @brief Le de uma stream de dados e insere na lista*/
-	void lerArquivo(ifstream *a){
+	/*void lerArquivo(ifstream *a){
 		T el;
 		int j, i = 0;
 		*a >> j;
 		while(i<j){
-			*a >> el;
+			*a >> *el;
 			inserir(el);
 			i++;
 		}
-	}
+	}*/
 
 	/** @brief Passa para uma stream de dados os elementos da lista*/
 	void imprimirArquivo(ofstream *a){
 		node<T>* it = inicio;
 		*a << contarElementos() << endl;
 		while(it->prox->prox){
-			*a << it->prox->dado << endl;
+			*a << *(it->prox->dado) << endl;
 			it=it->prox;
 		}
+	}
+
+	int getMinKeyFree(){
+		node<T>* it = inicio;
+		int i=1;
+		while(it->prox->prox){
+			if(it->prox->dado->getChave()==i){
+				i++;
+				it=it->prox;
+			}
+			else return i;
+		}
+		return i;
 	}
 
 	/** @brief Conta quantos elementos tem na lista*/
@@ -245,52 +216,22 @@ public:
 	*/
 	node<T>* buscar(T el){
 		node<T>* it = inicio;
-		while(it->prox->prox && it->prox->dado<el){
+		while(it->prox->prox && it->prox->dado->getChave()<el->getChave()){
 			it=it->prox;
 		}
 		return it;
 	}
 
 	/** 
-	* @brief Busca na lista ligada um elemento atraves de uma chave
-	* @details Valido somente para objetos que contenham uma chave
-	* @param el A chave do elemento que sera buscado da lista 
+	* @brief Busca na lista ligada
+	* @param el O elemento que sera buscado na lista 
 	*/
-	node<T>* buscar(int el){
+	node<T>* buscar(int key){
 		node<T>* it = inicio;
-		while(it->prox->prox){
-			if(it->prox->dado.getChave()==el) return it;
+		while(it->prox->prox && it->prox->dado->getChave()!=key){
 			it=it->prox;
 		}
-		cerr << "Chave nao encontrada na lista!" << endl;
 		return it;
-	}
-
-	/** 
-	* @brief Busca na lista ligada a quantidade de vezes que um elemento se repete atraves de uma chave passada
-	* @details Valido somente para objetos que contenham uma chave
-	* @param el A chave do elemento que sera verificado na lista 
-	*/
-	int getQtdKey(int el){
-		int i = 0;
-		node<T>* it = inicio;
-		while(it->prox->prox){
-			if(it->prox->dado.getChave()==el) i++;
-			it=it->prox;
-		}
-		//cerr << "Chave nao encontrada na lista!" << endl;
-		return i;
-	}
-
-	/** @return Retorna a maior chave da lista*/
-	int maxKey(){
-		node<T>* it = inicio;
-		int key=0;
-		while(it->prox->prox){		
-			if(it->prox->dado.getChave()>key) key=it->prox->dado.getChave();
-			it=it->prox;
-		}
-		return key;
 	}
 };
 

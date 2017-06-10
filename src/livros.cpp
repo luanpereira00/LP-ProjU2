@@ -14,10 +14,11 @@ using std::getline;
 
 /**@brief Construtor padrao*/
 Livros::Livros(){
+	setTipo(6);
 	setTitulo("");
 	setAutor("");
 	setEditora("");
-	setAno(1900);
+	setLancamento(1900);
 }
 
 /**@brief Destrutor padrao*/
@@ -26,11 +27,28 @@ Livros::~Livros(){
 }
 
 /**@brief Construtor parametrizado*/
-Livros::Livros(string tt, string at, string ed, int aa){
+Livros::Livros(int c, string n, float p, int e, string tt, string at, string ed, int aa){
+	setTipo(6);
+	setChave(c);
+	setNomeProd(n);
+	setPrecoUnit(p);
+	setQtdEstoque(e);
 	setTitulo(tt);
 	setAutor(at);
 	setEditora(ed);
-	setAno(aa);
+	setLancamento(aa);
+}
+
+Livros::Livros(Livros &a){
+	tipo = a.tipo;
+	chave = a.chave;
+	nomeProduto = a.nomeProduto;
+	precoUnitario = a.precoUnitario;
+	qtdEstoque = a.qtdEstoque;
+	titulo = a.titulo;
+	autor= a.autor;
+	editora= a.editora;
+	anoLancamento = a.anoLancamento;
 }
 
 /**@return Retorna o titulo*/
@@ -43,7 +61,7 @@ string Livros::getAutor(){ return autor; }
 string Livros::getEditora(){ return editora; }
 
 /**@return Retorna o ano de lancamento*/
-int Livros::getAno(){ return anoLancamento; }
+int Livros::getLancamento(){ return anoLancamento; }
 
 /**@brief Atualiza o titulo
 	*@param tt O novo titulo */
@@ -59,50 +77,41 @@ void Livros::setEditora(string ed){ editora = ed; }
 
 /**@brief Atualiza o ano de lancamento
 	*@param aa O novo ano de lancamento*/
-void Livros::setAno(int aa){ anoLancamento = aa; }
+void Livros::setLancamento(int aa){ anoLancamento = aa; }
 
-/** @brief Sobrecarga do operador de insercao em stream 
-* @details O operador eh sobrecarregado para representar um livro na formatacao "codigo;nome;preco;qtdEstoque;titulo;autor;editora;anoDeLancamento"  
-* @param	os Referencia para stream de saida  
-* @param	a Referencia para o objeto livro a ser impresso  
-* @return	Referencia para stream de saida  
-*/
-ostream& operator<<(ostream& os, Livros &a){
-	os << a.getChave() << ";"; 	
-	os << a.getNomeProd() << ";"; 	
-	os << a.getPrecoUnit() << ";";
-	os << a.getQtdEstoque() << ";";
-	os << a.getTitulo() << ";"; 	
-	os << a.getAutor() << ";";
-	os << a.getEditora() << ";";
-	os << a.getAno();
-	return os; 
-}
+void Livros::criar(int key){
+	int auxI;
+	float auxF;
+	string auxS;
 
-/** @brief Sobrecarga do operador de extracao de stream 
-* @param	is Referencia para stream de entrada  
-* @param	a Referencia para o objeto livro a ser criado com base nos  
-*			valores fornecidos  
-* @return	Referencia para stream de entrada  
-*/  	
-istream& operator>>(istream& is, Livros &a){
-	string aux; 
+	cin.ignore();
+	cout << "Digite o nome do livro: ";
+	getline(cin, auxS);
+	cout << "Digite o preco unitario do livro: ";
+	cin >> auxF;
+	cout << "Digite a quantidade em estoque do livro: ";
+	cin >> auxI;
 
-	getline(is, aux, ';'); 	
-	a.setChave(atoi(aux.c_str())); 	
-	getline(is, aux, ';'); 	
-	a.setNomeProd(aux); 	
-	getline(is, aux, ';'); 	
-	a.setPrecoUnit(atof(aux.c_str()));
-	getline(is, aux, ';');
-	a.setQtdEstoque(atoi(aux.c_str())); 
-	getline(is, aux, ';'); 	
-	a.setTitulo(aux); 
-	getline(is, aux, ';'); 	
-	a.setAutor(aux);
-	getline(is, aux, ';'); 	
-	a.setEditora(aux);
-	getline(is, aux);
-	a.setAno(atoi(aux.c_str()));
-	return is; 
+	setTipo(6);
+	setChave(key);
+	setNomeProd(auxS);
+	setPrecoUnit(auxF);
+	setQtdEstoque(auxI);
+
+	cin.ignore();
+	cout << "Digite o titulo do livro: ";
+	getline(cin, auxS);
+	setTitulo(auxS);
+
+	cout << "Digite o autor do livro: ";
+	getline(cin, auxS);
+	setAutor(auxS);
+
+	cout << "Digite a editora do livro: ";
+	getline(cin, auxS);
+	setEditora(auxS);
+
+	cout << "Digite o ano de lancamento do livro: ";
+	cin >> auxI;
+	setLancamento(auxI);
 }

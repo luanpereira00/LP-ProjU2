@@ -32,6 +32,39 @@ class Frutas : public Produtos, public Pereciveis {
 private:
 	string lote; /**< O lote */
 	Data dataDeLote; /**< A data do lote */
+	ostream& print(ostream& os){
+		os << getChave() << ";"; 	
+		os << getNomeProd() << ";"; 	
+		os << getPrecoUnit() << ";";
+		os << getQtdEstoque() << ";";
+		os << getLote() << ";";
+		os << *(getDataLote()) << ";";
+		os << *(getValidade());
+		return os; 
+	};
+
+	istream& read(istream& is){
+		string aux; 
+		Data d;
+
+		getline(is, aux, ';'); 	
+		setChave(atoi(aux.c_str())); 	
+		getline(is, aux, ';'); 	
+		setNomeProd(aux); 	
+		getline(is, aux, ';'); 	
+		setPrecoUnit(atof(aux.c_str()));
+		getline(is, aux, ';');
+		setQtdEstoque(atoi(aux.c_str())); 
+		getline(is, aux, ';'); 	
+		setLote(aux); 
+		getline(is, aux, ';'); 	
+		d.string2Data(aux);
+		setDataLote(d);	
+		getline(is, aux); 
+		d.string2Data(aux);
+		setValidade(d);	
+		return is; 
+	};
 
 public:
 	/**@brief Construtor padrao*/
@@ -42,6 +75,8 @@ public:
 
 	/**@brief Construtor parametrizado*/
 	Frutas(int c, string n, float p, int e, string lt, Data dl, Data dv);
+
+	Frutas(Frutas &a);
 
 	/**@return Retorna o lote */
 	string getLote();
@@ -57,21 +92,7 @@ public:
 	*@param dl A nova data */ 
 	void setDataLote(Data dl);
 
-	/** @brief Sobrecarga do operador de insercao em stream 
-	* @details O operador eh sobrecarregado para representar uma fruta na formatacao "codigo;nome;preco;qtdEstoque;lote;dataDeLote;dataDeValidade"  
-	* @param	os Referencia para stream de saida  
-	* @param	a Referencia para o objeto fruta a ser impresso  
-	* @return	Referencia para stream de saida  
-	*/
-	friend ostream& operator<<(ostream& os, Frutas &a);
-
-	/** @brief Sobrecarga do operador de extracao de stream 
-	* @param	is Referencia para stream de entrada  
-	* @param	a Referencia para o objeto fruta a ser criado com base nos  
-	*			valores fornecidos  
-	* @return	Referencia para stream de entrada  
-	*/ 
-	friend istream& operator>>(istream& is, Frutas &a);
+	void criar(int key);
 };
 
 #endif

@@ -10,8 +10,15 @@
 #ifndef ESTOQUE_H
 #define ESTOQUE_H
 
+#include <iostream>
+using std::cout;
+using std::cin;
+using std::endl;
+using std::cerr;
+
 #include "lista.h"
 
+#include "produtos.h"
 #include "bebidas.h"
 #include "cds.h"
 #include "doces.h"
@@ -26,14 +33,7 @@
  */
 class Estoque {
 private:
-	lista<Bebidas>* ll_Bebidas; /**< A lista de bebidas*/
-	lista<CDs>* ll_CDs; /**< A lista de cds*/
-	lista<Doces>* ll_Doces; /**< A lista de doces*/
-	lista<DVDs>* ll_DVDs; /**< A lista de dvds*/
-	lista<Frutas>* ll_Frutas; /**< A lista de frutas*/
-	lista<Livros>* ll_Livros; /**< A lista de livros*/
-	lista<Salgados>* ll_Salgados; /**< A lista de salgados*/
-	int ultimaChave;
+	lista<Produtos*> *ll_Prod; /**< A lista de Prod*/
 	
 public:
 	/**@brief Construtor padrao*/
@@ -42,53 +42,11 @@ public:
 	/**@brief Destrutor padrao*/
 	~Estoque();
 
-	/**@return Retorna a lista de bebidas */
-	lista<Bebidas>* getListaBebidas();
+	/**@return Retorna a lista de Prod */
+	lista<Produtos*>* getListaProd();
 
-	/**@return Retorna a lista de cds */
-	lista<CDs>* getListaCDs();
-
-	/**@return Retorna a lista de doces */
-	lista<Doces>* getListaDoces();
-
-	/**@return Retorna a lista de dvds */
-	lista<DVDs>* getListaDVDs();
-
-	/**@return Retorna a lista de frutas */
-	lista<Frutas>* getListaFrutas();
-
-	/**@return Retorna a lista de livros */
-	lista<Livros>* getListaLivros();
-
-	/**@return Retorna a lista de salgados */
-	lista<Salgados>* getListaSalgados();
-
-	/**@return Retorna a ultima chave associada */
-	int getLastKey();
-
-	/**@brief Atualiza a ultima chave associada */
-	void setLastKey(int a);
-
-	/**@brief Atualiza a lista de bebidas */
-	void setListaBebidas(lista<Bebidas>* ll);
-
-	/**@brief Atualiza a lista de cds */
-	void setListaCDs(lista<CDs>* ll);
-
-	/**@brief Atualiza a lista de doces */
-	void setListaDoces(lista<Doces>* ll);
-
-	/**@brief Atualiza a lista de dvds */
-	void setListaDVDs(lista<DVDs>* ll);
-
-	/**@brief Atualiza a lista de frutas */
-	void setListaFrutas(lista<Frutas>* ll);
-
-	/**@brief Atualiza a lista de livros */
-	void setListaLivros(lista<Livros>* ll);
-
-	/**@brief Atualiza a lista de salgados */
-	void setListaSalgados(lista<Salgados>* ll);
+	/**@brief Atualiza a lista de Prod */
+	void setListaProd(lista<Produtos*> *ll);
 
 	/**@brief Lista todo o estoque  */
 	void listarEstoque();
@@ -96,11 +54,11 @@ public:
 	/**@brief Le os dados da memoria para inicializar o estoque  */
 	void lerDados();
 
-	/**@brief Pega a maior chave associada ao produtos do estoque  */
-	int getMaxKey();
-
 	/**@brief Grava os dados do estoque na memoria  */
 	void gravarDados();
+
+	void cadastrarProduto();
+	void removerProduto();
 
 };
 

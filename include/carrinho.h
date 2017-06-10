@@ -31,7 +31,7 @@ public:
 	void setPrecoCompra(float pc);
 
 	/**@return Retorna bool para o carrinho estar vazio */
-	bool carrinhoIsEmpty();
+	bool isEmpty();
 
 	/**@return O numero da ultima nota fiscal cadastrada */
 	int verUltimaNotaFiscal();
@@ -44,6 +44,10 @@ public:
 
 	/**@brief Limpa o carrinho */
 	void limpar();
+
+	void adicionarProduto(Estoque *e);
+
+	void removerProduto(Estoque *e);
 
 	/**@brief Atualiza o preco da compra somando com um valor passado como argumento 
 	* @param pc O novo valor a somar */

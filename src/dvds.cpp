@@ -1,7 +1,7 @@
 /**
  * @file	dvds.cpp
  * @brief	Definicao da classe DVDs para representar produtos do tipo DVD
- * @details Os atributos de um DVD sao o titulo, o genero e a duracao em minutos
+ * @details Os atributos de um DVD sao o titulo, o genero e a duracao em Duracao
  * @author	Luan Pereira (luanpereira00@outlook.com)
  * @since	01/06/2017
  * @date	01/06/2017
@@ -14,9 +14,10 @@ using std::getline;
 
 /**@brief Construtor padrao*/
 DVDs::DVDs(){
+	setTipo(4);
 	setTitulo("");
 	setGenero("");
-	setMinutos(0);
+	setDuracao(0);
 }
 
 /**@brief Destrutor padrao*/
@@ -25,10 +26,27 @@ DVDs::~DVDs(){
 }
 
 /**@brief Construtor parametrizado*/
-DVDs::DVDs(string tt, string gr, int min){
+DVDs::DVDs(int c, string n, float p, int e, string tt, string gr, int min){
+	setTipo(4);
+	setChave(c);
+	setNomeProd(n);
+	setPrecoUnit(p);
+	setQtdEstoque(e);
+	
 	setTitulo(tt);
 	setGenero(gr);
-	setMinutos(min);
+	setDuracao(min);
+}
+
+DVDs::DVDs(DVDs &a){
+	tipo = a.tipo;
+	chave = a.chave;
+	nomeProduto = a.nomeProduto;
+	precoUnitario = a.precoUnitario;
+	qtdEstoque = a.qtdEstoque;
+	titulo = a.titulo;
+	genero= a.genero;
+	minutos= a.minutos;
 }
 
 /**@return Retorna o titulo do DVD*/
@@ -38,7 +56,7 @@ string DVDs::getTitulo(){ return titulo; }
 string DVDs::getGenero(){ return genero; }
 
 /**@return Retorna a duracao em minutos do DVD*/
-int DVDs::getMinutos(){ return minutos; }
+int DVDs::getDuracao(){ return minutos; }
 
 /**@brief Atualiza o titulo
 	*@param tt O novo titulo */
@@ -48,49 +66,39 @@ void DVDs::setTitulo(string tt){ titulo = tt; }
 	*@param gr O novo genero */
 void DVDs::setGenero(string gr){ genero = gr; }
 
-/**@brief Atualiza a duracao em minutos
+/**@brief Atualiza a duracao em Duracao
 	*@param min A nova duracao */
-void DVDs::setMinutos(int min){ minutos = min; } //duracao
+void DVDs::setDuracao(int min){ minutos = min; } //duracao
 
-/** @brief Sobrecarga do operador de insercao em stream 
-	* @details O operador eh sobrecarregado para representar uma DVD na formatacao "codigo;nome;preco;qtdEstoque;titulo;genero;duracao"  
-	* @param	os Referencia para stream de saida  
-	* @param	a Referencia para o objeto DVD a ser impresso  
-	* @return	Referencia para stream de saida  
-	*/
-ostream& operator<<(ostream& os, DVDs &a){
-	os << a.getChave() << ";"; 	
-	os << a.getNomeProd() << ";"; 	
-	os << a.getPrecoUnit() << ";";
-	os << a.getQtdEstoque() << ";";
-	os << a.getTitulo() << ";"; 	
-	os << a.getGenero() << ";";
-	os << a.getMinutos();
-	return os; 
-}
+void DVDs::criar(int key){
+	int auxI;
+	float auxF;
+	string auxS;
 
-/** @brief Sobrecarga do operador de extracao de stream 
-	* @param	is Referencia para stream de entrada  
-	* @param	a Referencia para o objeto DVD a ser criado com base nos  
-	*			valores fornecidos  
-	* @return	Referencia para stream de entrada  
-	*/ 
-istream& operator>>(istream& is, DVDs &a){
-	string aux; 
+	cin.ignore();
+	cout << "Digite o nome do DVD: ";
+	getline(cin, auxS);
+	cout << "Digite o preco unitario do DVD: ";
+	cin >> auxF;
+	cout << "Digite a quantidade em estoque do DVD: ";
+	cin >> auxI;
 
-	getline(is, aux, ';'); 	
-	a.setChave(atoi(aux.c_str())); 	
-	getline(is, aux, ';'); 	
-	a.setNomeProd(aux); 	
-	getline(is, aux, ';'); 	
-	a.setPrecoUnit(atof(aux.c_str()));
-	getline(is, aux, ';');
-	a.setQtdEstoque(atoi(aux.c_str())); 
-	getline(is, aux, ';'); 	
-	a.setTitulo(aux); 
-	getline(is, aux, ';'); 	
-	a.setGenero(aux);
-	getline(is, aux); 	
-	a.setMinutos(atoi(aux.c_str()));
-	return is; 
+	setTipo(4);
+	setChave(key);
+	setNomeProd(auxS);
+	setPrecoUnit(auxF);
+	setQtdEstoque(auxI);
+
+	cin.ignore();
+	cout << "Digite o titulo do DVD: ";
+	getline(cin, auxS);
+	setTitulo(auxS);
+
+	cout << "Digite o genero do DVD: ";
+	getline(cin, auxS);
+	setGenero(auxS);
+
+	cout << "Digite a duracao em minutos do DVD: ";
+	cin >> auxI;
+	setDuracao(auxI);
 }

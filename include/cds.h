@@ -31,6 +31,37 @@ private:
 	string nomeDoAlbum; /**< O nome do album do CD*/
 	string estilo; /**< O estilo de musica do CD*/
 	string artista; /**< O artista do CD*/
+	ostream& print(ostream& os){
+		os << getTipo() << ";";
+		os << getChave() << ";"; 	
+		os << getNomeProd() << ";"; 	
+		os << getPrecoUnit() << ";";
+		os << getQtdEstoque() << ";";
+		os << getAlbum() << ";"; 	
+		os << getEstilo() << ";";
+		os << getArtista();
+		return os; 
+	};
+
+	istream& read(istream& is){
+		string aux; 
+
+		getline(is, aux, ';'); 	
+		setChave(atoi(aux.c_str())); 	
+		getline(is, aux, ';'); 	
+		setNomeProd(aux); 	
+		getline(is, aux, ';'); 	
+		setPrecoUnit(atof(aux.c_str()));
+		getline(is, aux, ';');
+		setQtdEstoque(atoi(aux.c_str())); 
+		getline(is, aux, ';'); 	
+		setAlbum(aux); 
+		getline(is, aux, ';'); 	
+		setEstilo(aux);
+		getline(is, aux); 	
+		setArtista(aux);
+		return is; 
+	};
 
 public:
 	/**@brief Construtor padrao*/
@@ -41,6 +72,8 @@ public:
 
 	/**@brief Construtor parametrizado*/
 	CDs(int c, string n, float p, int e, string a, string es, string t);
+
+	CDs(CDs &a);
 
 	/**@return Retorna o nome do album*/
 	string getAlbum();
@@ -63,21 +96,8 @@ public:
 	*@param O novo nome do artista*/
 	void setArtista(string t);
 
-	/** @brief Sobrecarga do operador de insercao em stream 
-	* @details O operador eh sobrecarregado para representar um CD na formatacao "codigo;nome;preco;qtdEstoque;nomeDoAlbum;estilo;nomeDoArtista"  
-	* @param	os Referencia para stream de saida  
-	* @param	a Referencia para o objeto CD a ser impresso  
-	* @return	Referencia para stream de saida  
-	*/
-	friend ostream& operator<<(ostream& os, CDs &a);
+	void criar(int key);
 
-	/** @brief Sobrecarga do operador de extracao de stream 
-	* @param	is Referencia para stream de entrada  
-	* @param	a Referencia para o objeto CD a ser criado com base nos  
-	*			valores fornecidos  
-	* @return	Referencia para stream de entrada  
-	*/ 	
-	friend istream& operator>>(istream& is, CDs &a);
 };
 
 #endif
