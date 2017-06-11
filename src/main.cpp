@@ -28,8 +28,6 @@ int main (){
 	Fornecedores *fornec = new Fornecedores;
 	e->lerDados();
 
-	//INPUT DADOS
-
 	int resultPrinc=0;
 	do{
 		bool flag =true;
@@ -134,19 +132,3 @@ int main (){
 	//OUTPUT DADOS
 	return 0;
 }
-
-
-/*
-	----------- FALTAS: 
-	Retirar produtos do carrinho;
-	Menu fornecedores inteiro;
-	Evitar repetitividade dos produtos na nota e/ou cadastro;
-	Solicitar a quantidade do produto comprado;
-	Decrementar o produto do estoque;
-	Acrescentar o produto a lista de venda;
-
-	Correr pro abraço;
-	
-
-	
-	*/

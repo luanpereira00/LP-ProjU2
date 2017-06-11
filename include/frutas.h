@@ -33,6 +33,7 @@ private:
 	string lote; /**< O lote */
 	Data dataDeLote; /**< A data do lote */
 	ostream& print(ostream& os){
+		os << getTipo() << ";";
 		os << getChave() << ";"; 	
 		os << getNomeProd() << ";"; 	
 		os << getPrecoUnit() << ";";

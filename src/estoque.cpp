@@ -69,6 +69,7 @@ void Estoque::lerDados(){
 	else{
 		iter = 0;
 		prod>>qtdLista;
+		//cout << qtdLista;
 		prod.ignore();
 		while(iter<qtdLista) {
 			getline(prod, tipo, ';');
@@ -80,26 +81,32 @@ void Estoque::lerDados(){
 			}else if (tipo=="2"){
 				c = new CDs;
 				prod >> *c;
+				//cout << *c << endl;
 				getListaProd()->inserir(c);
 			}else if (tipo=="3"){
 				d = new Doces;
 				prod >> *d;
+				//cout << *d << endl;
 				getListaProd()->inserir(d);
 			}else if (tipo=="4"){
 				v = new DVDs;
 				prod >> *v;
+				//cout << *v << endl;
 				getListaProd()->inserir(v);
 			}else if (tipo=="5"){
 				f = new Frutas;
 				prod >> *f;
+				//cout << *f << endl;
 				getListaProd()->inserir(f);
 			}else if (tipo=="6"){
 				l = new Livros;
 				prod >> *l;
+				//cout << *l << endl;
 				getListaProd()->inserir(l);
 			}else if (tipo=="7"){
 				s = new Salgados;
 				prod >> *s;
+				//cout << *s << endl;
 				getListaProd()->inserir(s);
 			}else {
 				cerr << "ERRO - TIPO DE PRODUTO NAO IDENTIFICADO! NADA A FAZER..." << endl;

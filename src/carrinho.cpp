@@ -67,6 +67,7 @@ void Carrinho::listar(){
 /**@brief Limpa o carrinho */
 void Carrinho::limpar(){
 	getListaProd()->destruir();
+	precoCompra = 0;
 }
 
 void Carrinho::adicionarProduto(Estoque *e){

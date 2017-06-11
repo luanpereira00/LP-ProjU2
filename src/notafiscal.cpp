@@ -37,45 +37,54 @@ void NotaFiscal::lerArquivo(){
 			//if(!find) find = 
 		}
 		else{
+			iter = 0;
 			find = true;
 			cout << "\t=== NOTA " << numArq << " ==="  << endl; 
 			nota >> qtdLista;
 			nota.ignore();
+		//cout << qtdLista << endl;
 			while(iter<qtdLista) {
 				getline(nota, tipo, ';');
 				if(tipo=="1"){
 					b = new Bebidas;	
 					nota >> *b;
+					//cout << *b << endl;
 					b->imprimirTela();
 					delete b;
 				}else if (tipo=="2"){
 					c = new CDs;	
-					nota >> *b;
+					nota >> *c;
+					//cout << *c << endl;
 					c->imprimirTela();
 					delete c;
 				}else if (tipo=="3"){
 					d = new Doces;	
 					nota >> *d;
+					//cout << *d << endl;
 					d->imprimirTela();
 					delete d;
 				}else if (tipo=="4"){
 					v = new DVDs;	
 					nota >> *v;
+						//cout << *v << endl;
 					v->imprimirTela();
 					delete v;
 				}else if (tipo=="5"){
 					f = new Frutas;	
 					nota >> *f;
+						//cout << *f << endl;
 					f->imprimirTela();
 					delete f;
 				}else if (tipo=="6"){
 					l = new Livros;	
 					nota >> *l;
+						//cout << *l << endl;
 					l->imprimirTela();
 					delete l;
 				}else if (tipo=="7"){
 					s = new Salgados;	
 					nota >> *s;
+						//cout << *s << endl;
 					s->imprimirTela();
 					delete s;
 				}else {
@@ -87,7 +96,7 @@ void NotaFiscal::lerArquivo(){
 			}
 			cout << "--------------------------------------" << endl;
 			nota >> preco;
-			cout << "..................... Preco: " << preco << endl;
+			cout << "........................ Preco: " << preco << endl;
 			cout << "======================================" << endl;
 			nota.close();
 		}
