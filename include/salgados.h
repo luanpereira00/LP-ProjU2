@@ -33,6 +33,10 @@ private:
 	float qtdSodio; /**< A quantidade de sodio*/
 	bool gluten; /**< Informacao sobre conter gluten*/
 	bool lactose; /**< Informacao sobre conter lactose*/
+
+	/**@brief Imprime um salgado na formatacao "tipo;chave;nome;preco;qtd;sodio;gluten;lactose;validade"
+	*@param os Referencia para o stream de saida 
+	*@return Retorna a stream de saida */
 	ostream& print(ostream& os){
 		os << getTipo() << ";";
 		os << getChave() << ";"; 	
@@ -46,6 +50,9 @@ private:
 		return os; 
 	};
 
+	/**@brief Le um salgado na formatacao "tipo;chave;nome;preco;qtd;sodio;gluten;lactose;validade"
+	*@param is Referencia para o stream de entrada 
+	*@return Retorna a stream de entrada */
 	istream& read(istream& is){
 		string aux; 
 		Data d;
@@ -77,9 +84,8 @@ public:
 	/**@brief Destrutor padrao*/
 	~Salgados();
 
-	/**@brief Construtor parametrizado*/
-	Salgados(int c, string n, float p, int e, float s, bool gt, bool lt, Data dv);
-
+	/**@brief Construtor copia 
+	*@param a Elemento que sera usado para criacao*/
 	Salgados(Salgados &a);
 
 	/**@return Retorna a quantidade de sodio*/
@@ -103,6 +109,8 @@ public:
 	*@param lt A informacao para atualizar */
 	void setLactose(bool lt);
 
+	/**@brief Cria um salgado
+	*param key A chave que sera associada ao salgado */
 	void criar(int key);
 };
 

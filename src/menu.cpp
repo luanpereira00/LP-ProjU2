@@ -53,11 +53,12 @@ int menuProdutos(){
 		cout << "1 - Cadastrar Produto" << endl;
 		cout << "2 - Remover Produto Cadastrado" << endl;
 		cout << "3 - Listar Todos os Produtos Cadastrados" << endl;
+		cout << "4 - Listar Detalhadamente os Produtos Cadastrados" << endl;
 		cout << "0 - Voltar" << endl;
 		cout << "Opcao: ";
 		cin >> result;
-		if(result<0 or result>3) cerr << "OPCAO INVALIDA! TENTE NOVAMENTE..." << endl;
-	}while(result<0 or result>3);
+		if(result<0 or result>4) cerr << "OPCAO INVALIDA! TENTE NOVAMENTE..." << endl;
+	}while(result<0 or result>4);
 
 	return result;
 } 

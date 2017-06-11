@@ -25,18 +25,8 @@ CDs::~CDs(){
 	//FAZ NADA
 }
 
-/**@brief Construtor parametrizado*/
-CDs::CDs(int c, string n, float p, int e, string a, string es, string t){
-	setTipo(2);
-	setChave(c);
-	setNomeProd(n);
-	setPrecoUnit(p);
-	setQtdEstoque(e);
-	setAlbum(a);
-	setEstilo(es);
-	setArtista(t);
-}
-
+/**@brief Construtor copia 
+*@param a Elemento que sera usado para criacao*/
 CDs::CDs(CDs &a){
 	tipo = a.tipo;
 	chave = a.chave;
@@ -66,9 +56,11 @@ void CDs::setAlbum(string a){ nomeDoAlbum = a; }
 void CDs::setEstilo(string es){ estilo = es; }
 
 /**@brief Atualiza o nome do artista
-	*@param O novo nome do artista*/
+	*@param t O novo nome do artista*/
 void CDs::setArtista(string t){ artista = t; }
 
+/**@brief Cria um cd
+	*param key A chave que sera associada ao cd */
 void CDs::criar(int key){
 	int auxI;
 	float auxF;

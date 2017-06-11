@@ -32,11 +32,14 @@ using std::istream;
  */
 class Produtos{
 private:
+	/**@brief Metodo virtual para imprimir */
 	virtual ostream& print(ostream&)=0;
+
+	/**@brief Metodo virtual para ler */
 	virtual istream& read(istream&)=0;
 
 protected: 
-	int tipo;
+	int tipo; /**< O tipo do produto */
 	int chave; /**< A chave primaria associada ao produto*/
 	string nomeProduto; /**< O nome do produto*/
 	float precoUnitario; /**< O preco unitario*/
@@ -50,16 +53,14 @@ public:
 	/**@brief Destrutor padrao*/
 	virtual ~Produtos();
 
-	/**@brief Construtor parametrizado*/
-	Produtos(int c, string n, float p, int e);
-
 	/**@return Retorna a chave */
 	int getChave();
 
 	/**@return Retorna o tipo do produto */
 	int getTipo();
 
-	/** @brief Atualiza o tipo */
+	/** @brief Atualiza o tipo 
+	*@param t O novo tipo*/
 	void setTipo(int t);
 
 	/**@return Retorna o nome do produto*/
@@ -83,28 +84,32 @@ public:
 	*@param p O novo preco*/
 	void setPrecoUnit(float p);
 
+	/**@brief Imprime os dados na tela de forma sanitizada */
 	void imprimirTela();
 
+	/**@return Retorna a string do nome do tipo de acordo com o valor passado 
+	*@param t O valor do tipo passado */
 	string tipo2String(int t);
 
 	/**@brief Atualiza a quantidade em estoque
 	*@param e A nova quantidade*/
 	void setQtdEstoque(int e);
 
-	/** @brief Sobrecarga do operador de menor (para Produtos)
-	* @param	p Produdo que sera comparado  
-	* @return	Retorna bool a relacao
-	*/
-	bool operator<(Produtos *p);
-
 	
-	friend ostream& operator<<(ostream& os, Produtos &a){
+	//bool operator<(Produtos *p);
+
+	/**@brief Chama a funcao de imprimir
+	*@param os Referencia para a stream de saida
+	*@param a Referencia para o objeto
+	*@return Retorna a referencia para a stream de saida */
+ 	friend ostream& operator<<(ostream& os, Produtos &a){
 		return a.print(os);
 	};
-
-	//virtual istream& operator>>(istream& is, Produtos &a)const=0;
-
 	
+	/**@brief Chama a funcao de ler
+	*@param is Referencia para a stream de entrada
+	*@param a Referencia para o objeto
+	*@return Retorna a referencia para a stream de entrada */
 	friend istream& operator>>(istream& is, Produtos &a){
 		return a.read(is);
 	};

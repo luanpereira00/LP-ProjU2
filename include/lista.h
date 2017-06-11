@@ -148,7 +148,7 @@ public:
 	void imprimir(){
 		node<T>* it = inicio;
 		while(it->prox->prox){
-			cout << it->prox->dado << endl;
+			cout << *(it->prox->dado) << endl;
 			it=it->prox;
 		}
 	}
@@ -186,6 +186,7 @@ public:
 		}
 	}
 
+	/**@return Retorna a menor chave livre da lista */
 	int getMinKeyFree(){
 		node<T>* it = inicio;
 		int i=1;

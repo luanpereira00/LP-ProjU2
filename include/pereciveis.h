@@ -28,9 +28,6 @@ public:
 	/**@brief Destrutor padrao*/
 	~Pereciveis();
 
-	/**@brief Construtor parametrizado*/
-	Pereciveis(Data d);
-
 	/**@return Retorna a data de validade */
 	Data* getValidade();
 

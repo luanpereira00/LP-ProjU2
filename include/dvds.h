@@ -31,6 +31,10 @@ private:
 	string titulo; /**< O titulo*/
 	string genero; /**< O genero*/
 	int minutos; /**< A duracao em minutos*/
+
+	/**@brief Imprime um DVD na formatacao "tipo;chave;nome;preco;qtd;titulo;genero;duracao"
+	*@param os Referencia para o stream de saida 
+	*@return Retorna a stream de saida */
 	ostream& print(ostream& os){
 		os << getTipo() << ";";
 		os << getChave() << ";"; 	
@@ -43,6 +47,9 @@ private:
 		return os;
 	};
 
+	/**@brief Le um DVD na formatacao "tipo;chave;nome;preco;qtd;titulo;genero;duracao"
+	*@param is Referencia para o stream de entrada 
+	*@return Retorna a stream de entrada */
 	istream& read(istream& is){
 		string aux; 
 
@@ -69,10 +76,9 @@ public:
 
 	/**@brief Destrutor padrao*/
 	~DVDs();
-
-	/**@brief Construtor parametrizado*/
-	DVDs(int c, string n, float p, int e, string tt, string gr, int min);
 	
+	/**@brief Construtor copia 
+	*@param a Elemento que sera usado para criacao*/
 	DVDs(DVDs &a);
 
 	/**@return Retorna o titulo do DVD*/
@@ -96,6 +102,8 @@ public:
 	*@param min A nova duracao */
 	void setDuracao(int min);
 
+	/**@brief Cria um dvd
+	*param key A chave que sera associada ao dvd */
 	void criar(int key);
 
 };

@@ -11,7 +11,8 @@
 /**@return Retorna o preco da compra */
 float Carrinho::getPrecoCompra(){ return precoCompra; }
 
-/**@brief Atualiza o preco da compra */
+/**@brief Atualiza o preco da compra 
+	*@param pc O preco da compra*/
 void Carrinho::setPrecoCompra(float pc){ precoCompra = pc; }
 
 /**@brief Grava o carrinho num arquivo */
@@ -70,6 +71,8 @@ void Carrinho::limpar(){
 	precoCompra = 0;
 }
 
+/**@brief Adiciona produtos ao carrinho 
+	*@param e O estoque de produtos */
 void Carrinho::adicionarProduto(Estoque *e){
 	cout << "--- Produtos Cadastrados ---" << endl;
 	int key;
@@ -177,6 +180,8 @@ void Carrinho::adicionarProduto(Estoque *e){
 	}	
 }
 
+	/**@brief Remove produtos do carrinho 
+	*@param e O estoque de produtos */
 void Carrinho::removerProduto(Estoque *e){
 	//cout << "--- Produtos Cadastrados ---" << endl;
 	int key;
@@ -192,11 +197,12 @@ void Carrinho::removerProduto(Estoque *e){
 		getListaProd()->remover(P->prox->dado);
 		P = e->getListaProd()->buscar(key);
 		P->prox->dado->setQtdEstoque(P->prox->dado->getQtdEstoque()+qtd);
+		calcularCompra(P->prox->dado->getPrecoUnit()*qtd*(-1));
 	} else cerr << "PRODUTO NAO ENCONTRADO NO CARRINHO! NADA A FAZER..."<<endl;
 }
 
 /**@brief Atualiza o preco da compra somando com um valor passado como argumento 
-	* @param pc O novo valor a somar */
+	* @param preco O novo valor a somar */
 void Carrinho::calcularCompra(float preco){
 	setPrecoCompra(getPrecoCompra()+preco);
 }

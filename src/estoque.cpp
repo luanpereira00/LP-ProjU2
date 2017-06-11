@@ -35,7 +35,8 @@ Estoque::~Estoque(){
 /**@return Retorna a lista de Prod */
 lista<Produtos*> *Estoque::getListaProd(){ return ll_Prod; }
 
-/**@brief Atualiza a lista de Prod */
+/**@brief Atualiza a lista de Prod 
+	*@param ll A nova lista de prod*/
 void Estoque::setListaProd(lista<Produtos*> *ll){ ll_Prod = ll;}
 
 /**@brief Lista todo o estoque  */
@@ -45,6 +46,17 @@ void Estoque::listarEstoque(){
 	if(ll_Prod->contarElementos()>0) {
 		//cout << "Lista de Prod: " << endl;
 		ll_Prod->imprimirTela();
+	} else cout << "A lista esta vazia..." << endl;
+	//cout << "-----------------------" << endl;
+}
+
+/**@brief Lista todo o estoque detalhadamente */
+void Estoque::listarEstoqueDetalhado(){ 
+ 	cout << "======================================" << endl;
+	cout << "--- Lista de Estoque Detalhada ---" << endl << endl;
+	if(ll_Prod->contarElementos()>0) {
+		//cout << "Lista de Prod: " << endl;
+		ll_Prod->imprimir();
 	} else cout << "A lista esta vazia..." << endl;
 	//cout << "-----------------------" << endl;
 }
@@ -129,6 +141,7 @@ void Estoque::gravarDados(){
 	prod.close();
 }
 
+/**@brief Cadastra um produto */
 void Estoque::cadastrarProduto(){
 	Bebidas *b;
 	CDs *c;
@@ -187,6 +200,7 @@ void Estoque::cadastrarProduto(){
 	}
 }
 
+/**@brief Remove um produto do cadastro */
 void Estoque::removerProduto(){
 	node<Produtos*>* P;
 	int key;

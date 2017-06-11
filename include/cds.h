@@ -31,6 +31,10 @@ private:
 	string nomeDoAlbum; /**< O nome do album do CD*/
 	string estilo; /**< O estilo de musica do CD*/
 	string artista; /**< O artista do CD*/
+
+	/**@brief Imprime um CD na formatacao "tipo;chave;nome;preco;qtd;album;estilo;artista"
+	*@param os Referencia para o stream de saida 
+	*@return Retorna a stream de saida */
 	ostream& print(ostream& os){
 		os << getTipo() << ";";
 		os << getChave() << ";"; 	
@@ -43,6 +47,9 @@ private:
 		return os; 
 	};
 
+	/**@brief Le um CD na formatacao "tipo;chave;nome;preco;qtd;album;estilo;artista"
+	*@param is Referencia para o stream de entrada 
+	*@return Retorna a stream de entrada */
 	istream& read(istream& is){
 		string aux; 
 
@@ -70,9 +77,8 @@ public:
 	/**@brief Destrutor padrao*/
 	~CDs();
 
-	/**@brief Construtor parametrizado*/
-	CDs(int c, string n, float p, int e, string a, string es, string t);
-
+	/**@brief Construtor copia 
+	*@param a Elemento que sera usado para criacao*/
 	CDs(CDs &a);
 
 	/**@return Retorna o nome do album*/
@@ -93,9 +99,11 @@ public:
 	void setEstilo(string es);
 	
 	/**@brief Atualiza o nome do artista
-	*@param O novo nome do artista*/
+	*@param t O novo nome do artista*/
 	void setArtista(string t);
 
+	/**@brief Cria um cd
+	*param key A chave que sera associada ao cd */
 	void criar(int key);
 
 };

@@ -26,20 +26,8 @@ Frutas::~Frutas(){
 	//FAZ NADA
 }
 
-/**@brief Construtor parametrizado*/
-Frutas::Frutas(int c, string n, float p, int e, string lt, Data dl, Data dv){
-	setTipo(5);
-	setChave(c);
-	setNomeProd(n);
-	setPrecoUnit(p);
-	setQtdEstoque(e);
-
-	setLote(lt);
-	setDataLote(dl);
-
-	setValidade(dv);
-}
-
+/**@brief Construtor copia 
+	*@param a Elemento que sera usado para criacao*/
 Frutas::Frutas(Frutas &a){
 	tipo = a.tipo;
 	chave = a.chave;
@@ -65,6 +53,8 @@ void Frutas::setLote(string lt){ lote = lt; }
 	*@param dl A nova data */ 
 void Frutas::setDataLote(Data dl){ dataDeLote = dl; }
 
+/**@brief Cria uma fruta
+	*param key A chave que sera associada a fruta */
 void Frutas::criar(int key){
 	int auxI;
 	float auxF;

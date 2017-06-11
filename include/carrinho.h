@@ -27,7 +27,8 @@ public:
 	/**@return Retorna o preco da compra */
 	float getPrecoCompra();
 
-	/**@brief Atualiza o preco da compra */
+	/**@brief Atualiza o preco da compra 
+	*@param pc O preco da compra*/
 	void setPrecoCompra(float pc);
 
 	/**@return Retorna bool para o carrinho estar vazio */
@@ -45,8 +46,12 @@ public:
 	/**@brief Limpa o carrinho */
 	void limpar();
 
+	/**@brief Adiciona produtos ao carrinho 
+	*@param e O estoque de produtos */
 	void adicionarProduto(Estoque *e);
 
+	/**@brief Remove produtos do carrinho 
+	*@param e O estoque de produtos */
 	void removerProduto(Estoque *e);
 
 	/**@brief Atualiza o preco da compra somando com um valor passado como argumento 

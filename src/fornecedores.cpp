@@ -26,7 +26,6 @@ using std::istream;
 /**@brief Construtor Padrao */
 Fornecedores::Fornecedores(){
 	setNome("");
-	setProduto(0);
 	setChave(0);
 	setQtd(0);
 }
@@ -34,8 +33,6 @@ Fornecedores::Fornecedores(){
 /**@return Retorna o nome */
 string Fornecedores::getNome(){ return nomeEmpresa;}
 
-/**@return Retorna o tipo do produto */
-int Fornecedores::getProduto(){ return tipoProduto;}
 
 /**@return Retorna a chave do produto */
 int Fornecedores::getChave(){ return chaveProduto;}
@@ -43,22 +40,22 @@ int Fornecedores::getChave(){ return chaveProduto;}
 /**@return Retorna a quantidade do produto */
 int Fornecedores::getQtd(){ return qtdProduto; }
 
-/**@brief Atualiza o nome */
+/**@brief Atualiza o nome 
+	*@param n O novo nome */
 void Fornecedores::setNome(string n){ nomeEmpresa = n;}
 
-/**@brief Atualiza o tipo do produto */
-void Fornecedores::setProduto(int p){ tipoProduto = p;}
 
-/**@brief Atualiza a chave do produto */
+/**@brief Atualiza a chave do produto 
+	*@param c A nova chave*/
 void Fornecedores::setChave(int c){ chaveProduto = c;}
 
-/**@brief Atualiza a quantidade do produto */
+/**@brief Atualiza a quantidade do produto 
+	*@param q A nova quantidade */
 void Fornecedores::setQtd(int q){ qtdProduto = q; }
 
 /**@brief Imprime os dados na tela de forma sanitizada */
 void Fornecedores::imprimirTela(){
 	cout << "Nome: " << nomeEmpresa << endl;
-	cout << "Produto fornecido: " << tipoProduto << endl;
 	cout << "Chave: " << chaveProduto << endl;
 	cout << "Quantidade do produto: " << qtdProduto << endl;
 }
@@ -69,7 +66,7 @@ void Fornecedores::imprimirArquivo(){
 
 	closing = "./data/fornecedores/"+ to_string(getLastFornecedores())+"_fornec.csv";
 	ofstream fornec(closing);
-	fornec << nomeEmpresa << ";" << tipoProduto << ";" << chaveProduto << ";" << qtdProduto << endl;  
+	fornec << nomeEmpresa << ";" << chaveProduto << ";" << qtdProduto << endl;  
 	fornec.close();
 }
 
@@ -96,7 +93,7 @@ void Fornecedores::lerArquivo(){
 }
 
 
-/**@brief Cria um fornecedor */
+/**@return Retorna o ultimo fornecimento cadastrado */
 int Fornecedores::getLastFornecedores(){
 	bool flag =true;
 	int i=0;
@@ -111,35 +108,34 @@ int Fornecedores::getLastFornecedores(){
 	return i;
 }
 
-/**@return Retorna o numero do ultimo fornecimento */ 
-void Fornecedores::criar(){
-	cin.ignore();
-	cout << "Digite o nome da empresa: ";
-	getline(cin, nomeEmpresa);
+/**@brief Cria um novo fornecimento
+*@param e O estoque de produtos */ 
+void Fornecedores::criar(Estoque *e){
+	
+	node<Produtos*>* E;
 
-	cout << "Digite o tipo de produto: ";
-	cin >> tipoProduto;
-	cout << "Digite a chave do produto: ";
+	e->getListaProd()->imprimirTela();
+
+	cout << "Digite a chave de busca: ";
 	cin >> chaveProduto;
-	cout << "Digite a quantidade da entrega: ";
-	cin >> qtdProduto;
+
+	E = e->getListaProd()->buscar(chaveProduto);
+
+	if(E->prox->prox){
+		cin.ignore();
+		cout << "Digite o nome da empresa: ";
+		getline(cin, nomeEmpresa);
+		
+		do{
+			cout << "Digite a quantidade da entrega: ";
+			cin >> qtdProduto;
+		}while(qtdProduto<1);
+		E->prox->dado->setQtdEstoque(E->prox->dado->getQtdEstoque()+qtdProduto);
+		imprimirArquivo();
+		cout << "ENTREGA CONCLUIDA COM SUCESSO! CONTINUANDO OPERACOES..." << endl;
+	} else cerr << "CHAVE NAO ENCONTRADA! NADA A FAZER..." << endl;
+	
 }	
-
-/**@brief Verifica se um produto esta no estoque e ja o atualiza em caso positivo */
-/*bool Fornecedores::verificarNoEstoque(Estoque *e){
-	node<Prod>* B;				
-
-	if() {
-		B = e->getListaProd()->buscar();
-		if(B->prox->prox) {
-			B->prox->dado.setQtdEstoque(B->prox->dado.getQtdEstoque()+getQtd());
-			return true;
-		}
-	}
-
-	return false;
-}*/
-
 
 	/** @brief Sobrecarga do operador de insercao em stream 
 	* @details O operador eh sobrecarregado para representar um fornedor na formatacao "nomeDaEmpresa;tipoProduto;chaveProduto;qtdProduto"  
@@ -149,7 +145,6 @@ void Fornecedores::criar(){
 	*/
 ostream& operator<<(ostream& os, Fornecedores &a){
 	os << a.getNome() << ";"; 	
-	os << a.getProduto() << ";"; 	
 	os << a.getChave() << ";";
 	os << a.getQtd();
 	return os; 
@@ -165,9 +160,6 @@ istream& operator>>(istream& is, Fornecedores &a){
 	string aux; 
 	getline(is, aux, ';'); 	
 	a.setNome(aux); 
-
-	getline(is, aux, ';'); 	
-	a.setProduto(atoi(aux.c_str())); 
 
 	getline(is, aux, ';'); 	
 	a.setChave(atoi(aux.c_str()));	

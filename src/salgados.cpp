@@ -24,21 +24,8 @@ Salgados::~Salgados(){
 	//FAZ NADA
 }
 
-/**@brief Construtor parametrizado*/
-Salgados::Salgados(int c, string n, float p, int e, float s, bool gt, bool lt, Data dv){
-	setTipo(7);
-	setChave(c);
-	setNomeProd(n);
-	setPrecoUnit(p);
-	setQtdEstoque(e);
-
-	setQtdSodio(s);
-	setGluten(gt);
-	setLactose(lt);
-
-	setValidade(dv);
-}
-
+/**@brief Construtor copia 
+	*@param a Elemento que sera usado para criacao*/
 Salgados::Salgados(Salgados &a){
 	tipo = a.tipo;
 	chave = a.chave;
@@ -72,6 +59,8 @@ void Salgados::setGluten(bool gt){ gluten = gt; }
 	*@param lt A informacao para atualizar */
 void Salgados::setLactose(bool lt){ lactose = lt; }
 
+/**@brief Cria um salgado
+	*param key A chave que sera associada ao salgado */
 void Salgados::criar(int key){
 	int auxI;
 	float auxF;

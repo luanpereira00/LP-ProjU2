@@ -25,19 +25,8 @@ DVDs::~DVDs(){
 	//FAZ NADA
 }
 
-/**@brief Construtor parametrizado*/
-DVDs::DVDs(int c, string n, float p, int e, string tt, string gr, int min){
-	setTipo(4);
-	setChave(c);
-	setNomeProd(n);
-	setPrecoUnit(p);
-	setQtdEstoque(e);
-	
-	setTitulo(tt);
-	setGenero(gr);
-	setDuracao(min);
-}
-
+/**@brief Construtor copia 
+	*@param a Elemento que sera usado para criacao*/
 DVDs::DVDs(DVDs &a){
 	tipo = a.tipo;
 	chave = a.chave;
@@ -70,6 +59,8 @@ void DVDs::setGenero(string gr){ genero = gr; }
 	*@param min A nova duracao */
 void DVDs::setDuracao(int min){ minutos = min; } //duracao
 
+/**@brief Cria um dvd
+	*param key A chave que sera associada ao dvd */
 void DVDs::criar(int key){
 	int auxI;
 	float auxF;

@@ -29,22 +29,7 @@ Bebidas::~Bebidas(){
 	//FAZ NADA
 }
 
-/**@brief Construtor parametrizado*/
-Bebidas::Bebidas(int c, string n, float p, int e, float t, float a, int v, Data dv){
-	setTipo(1);
-	setChave(c);
-	setNomeProd(n);
-	setPrecoUnit(p);
-	setQtdEstoque(e);
-
-	setTeorAlcoolico(t);
-	setQtdAcucar(a);
-	setVolumeTotal(v);
-
-	setValidade(dv);
-}
-
-
+/**@brief Construtor copia */
 Bebidas::Bebidas(Bebidas &a) {
 	tipo = a.tipo;
 	chave = a.chave;
@@ -78,6 +63,8 @@ void Bebidas::setQtdAcucar(float a){ qtdAcucar = a; }
 	*@param v O novo volume total*/
 void Bebidas::setVolumeTotal(int v){ volumeTotal = v; }
 
+/**@brief Cria uma bebida
+	*param key A chave que sera associada a bebida */
 void Bebidas::criar(int key){
 	int auxI;
 	float auxF;

@@ -46,6 +46,9 @@ int main (){
 						case 3:
 							e->listarEstoque();
 						break;
+						case 4:
+							e->listarEstoqueDetalhado();
+						break;
 						case 0:
 							flag=false;
 						break;
@@ -72,13 +75,7 @@ int main (){
 					flag=true;
 					switch(menuFornecedores()){
 						case 1:
-							fornec->criar();
-							//if(fornec->verificarNoEstoque(e)) {
-								cout << "ENTREGA CONCLUIDA COM SUCESSO! CONTINUANDO OPERACOES..." << endl;
-								fornec->imprimirArquivo();
-						//	}
-						//	else cerr << "NAO CONSTA NO CADASTRO DO ESTOQUE! NADA A FAZER..." << endl;
-
+							fornec->criar(e);
 							flag = false;	
 						break;
 						case 2:

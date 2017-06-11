@@ -37,6 +37,10 @@ private:
 	float teorAlcoolico; /**< O teor alcoolico da bebida (em %)*/
 	float qtdAcucar; /**< A quantidade de acucar da bebida (em mm)*/
 	int volumeTotal; /**< O volume total da bebida (em ml)*/
+
+	/**@brief Imprime uma bebida na formatacao "tipo;chave;nome;preco;qtd;teorAlcoolico;qtdAcucar;volume;validade"
+	*@param os Referencia para o stream de saida 
+	*@return Retorna a stream de saida */
 	ostream& print(ostream& os){
 		os << getTipo() << ";";
 		os << getChave() << ";"; 	
@@ -50,6 +54,10 @@ private:
 		os << *(getValidade());
 		return os;
 	};
+
+	/**@brief Le uma bebida na formatacao "tipo;chave;nome;preco;qtd;teorAlcoolico;qtdAcucar;volume;validade"
+	*@param is Referencia para o stream de entrada 
+	*@return Retorna a stream de entrada */
 	istream& read(istream& is){
 		string aux; 
 		Data d;
@@ -80,9 +88,8 @@ public:
 	/**@brief Destrutor padrao*/
 	~Bebidas();
 
-	/**@brief Construtor parametrizado*/
-	Bebidas(int c, string n, float p, int e, float t, float a, int v, Data dv);
-
+	/**@brief Construtor copia 
+	*@param a Elemento que sera usado para criacao*/
 	Bebidas(Bebidas &a);
 
 	/**@return Retorna o teor alcoolico */
@@ -106,9 +113,9 @@ public:
 	*@param v O novo volume total*/
 	void setVolumeTotal(int v);
 
+	/**@brief Cria uma bebida
+	*param key A chave que sera associada a bebida */
 	void criar(int key);
-
-	
 };
 
 #endif

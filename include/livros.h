@@ -32,6 +32,10 @@ private:
 	string autor; /**< O autor*/
 	string editora; /**< A editora*/
 	int anoLancamento; /**< O ano de lancamento*/
+
+	/**@brief Imprime uma bebida na formatacao "tipo;chave;nome;preco;qtd;titulo;autor;editora;anoLancamento"
+	*@param os Referencia para o stream de saida 
+	*@return Retorna a stream de saida */
 	ostream& print(ostream& os){
 		os << getTipo() << ";";
 		os << getChave() << ";"; 	
@@ -45,6 +49,9 @@ private:
 		return os; 
 	};
 
+	/**@brief Le uma bebida na formatacao "tipo;chave;nome;preco;qtd;titulo;autor;editora;anoLancamento"
+	*@param is Referencia para o stream de entrada 
+	*@return Retorna a stream de entrada */
 	istream& read(istream& is){
 		string aux; 
 
@@ -74,9 +81,8 @@ public:
 	/**@brief Destrutor padrao*/
 	~Livros();
 
-	/**@brief Construtor parametrizado*/
-	Livros(int c, string n, float p, int e, string tt, string at, string ed, int aa);
-
+	/**@brief Construtor copia 
+	*@param a Elemento que sera usado para criacao*/
 	Livros(Livros &a);
 
 	/**@return Retorna o titulo*/
@@ -107,6 +113,8 @@ public:
 	*@param aa O novo ano de lancamento*/
 	void setLancamento(int aa);
 
+	/**@brief Cria um livro
+	*param key A chave que sera associada ao livro */
 	void criar(int key);
 
 };

@@ -31,25 +31,22 @@ public:
 	/**@return Retorna o nome */
 	string getNome();
 
-	/**@return Retorna o tipo do produto */
-	int getProduto();
-
 	/**@return Retorna a chave do produto */
 	int getChave();
 
 	/**@return Retorna a quantidade do produto */
 	int getQtd();
 
-	/**@brief Atualiza o nome */
+	/**@brief Atualiza o nome 
+	*@param n O novo nome */
 	void setNome(string n);
 
-	/**@brief Atualiza o tipo do produto */
-	void setProduto(int p);
-
-	/**@brief Atualiza a chave do produto */
+	/**@brief Atualiza a chave do produto 
+	*@param c A nova chave*/
 	void setChave(int c);
 
-	/**@brief Atualiza a quantidade do produto */
+	/**@brief Atualiza a quantidade do produto 
+	*@param q A nova quantidade */
 	void setQtd(int q);
 
 	/**@brief Imprime os dados na tela de forma sanitizada */
@@ -61,17 +58,15 @@ public:
 	/**@brief Le os dados de um arquivo */
 	void lerArquivo();
 
-	/**@brief Cria um fornecedor */
-	void criar();
+	/**@brief Cria um novo fornecimento 
+	*@param e O estoque de produtos*/
+	void criar(Estoque *e);
 
 	/**@return Retorna o numero do ultimo fornecimento */ 
 	int getLastFornecedores();
 
-	/**@brief Verifica se um produto esta no estoque e ja o atualiza em caso positivo */
-	bool verificarNoEstoque(Estoque *e);
-
 	/** @brief Sobrecarga do operador de insercao em stream 
-	* @details O operador eh sobrecarregado para representar um fornedor na formatacao "nomeDaEmpresa;tipoProduto;chaveProduto;qtdProduto"  
+	* @details O operador eh sobrecarregado para representar um fornedor na formatacao "nomeDaEmpresa;chaveProduto;qtdProdutoEntregue"  
 	* @param	os Referencia para stream de saida  
 	* @param	a Referencia para o objeto Fornecedor a ser impresso  
 	* @return	Referencia para stream de saida  

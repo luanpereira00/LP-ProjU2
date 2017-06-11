@@ -20,11 +20,6 @@ Pereciveis::~Pereciveis(){
 	//FAZ NADA
 }
 
-/**@brief Construtor parametrizado*/
-Pereciveis::Pereciveis(Data d){
-	setValidade(d);
-}
-
 /**@return Retorna a data de validade */
 Data* Pereciveis::getValidade(){ return &dataDeValidade; }
 

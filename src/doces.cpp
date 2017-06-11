@@ -28,21 +28,8 @@ Doces::~Doces(){
 	//FAZ NADA
 }
 
-/**@brief Construtor parametrizado*/
-Doces::Doces(int c, string n, float p, int e, float a, bool gt, bool lt, Data dv){
-	setTipo(3);
-	setChave(c);
-	setNomeProd(n);
-	setPrecoUnit(p);
-	setQtdEstoque(e);
-
-	setQtdAcucar(a);
-	setGluten(gt);
-	setLactose(lt);
-	
-	setValidade(dv);
-}
-
+/**@brief Construtor copia 
+	*@param a Elemento que sera usado para criacao*/
 Doces::Doces(Doces &a) {
 	tipo = a.tipo;
 	chave = a.chave;
@@ -76,6 +63,8 @@ void Doces::setGluten(bool gt){ gluten = gt; }
 	*@param lt A informacao para atualizar */
 void Doces::setLactose(bool lt){ lactose = lt; }
 
+/**@brief Cria um doce
+	*param key A chave que sera associada ao doce */
 void Doces::criar(int key){
 	int auxI;
 	float auxF;

@@ -24,6 +24,10 @@ private:
 	float qtdAcucar; /**< A quantidade de acucar*/
 	bool gluten; /**< Ter gluten*/
 	bool lactose; /**< Ter lactose*/
+
+	/**@brief Imprime um doce na formatacao "tipo;chave;nome;preco;qtd;qtdAcucar;Gluten;Lactose;validade"
+	*@param os Referencia para o stream de saida 
+	*@return Retorna a stream de saida */
 	ostream& print(ostream& os){
 		os << getTipo() << ";";
 		os << getChave() << ";"; 	
@@ -37,6 +41,9 @@ private:
 		return os; 
 	};
 
+	/**@brief Le um doce na formatacao "tipo;chave;nome;preco;qtd;qtdAcucar;Gluten;Lactose;validade"
+	*@param is Referencia para o stream de entrada 
+	*@return Retorna a stream de entrada */
 	istream& read(istream& is){
 		string aux; 
 		Data d;
@@ -68,9 +75,8 @@ public:
 	/**@brief Destrutor padrao*/
 	~Doces();
 
-	/**@brief Construtor parametrizado*/
-	Doces(int c, string n, float p, int e, float a, bool gt, bool lt, Data dv);
-
+	/**@brief Construtor copia 
+	*@param a Elemento que sera usado para criacao*/
 	Doces(Doces &a);
 
 	/**@return Retorna a quantidade de acucar */
@@ -94,6 +100,8 @@ public:
 	*@param lt A informacao para atualizar */
 	void setLactose(bool lt);
 
+	/**@brief Cria um doce
+	*param key A chave que sera associada ao doce */
 	void criar(int key);
 };
 

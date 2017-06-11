@@ -32,6 +32,10 @@ class Frutas : public Produtos, public Pereciveis {
 private:
 	string lote; /**< O lote */
 	Data dataDeLote; /**< A data do lote */
+
+	/**@brief Imprime uma fruta na formatacao "tipo;chave;nome;preco;qtd;lote;validadeDoLote;validade"
+	*@param os Referencia para o stream de saida 
+	*@return Retorna a stream de saida */
 	ostream& print(ostream& os){
 		os << getTipo() << ";";
 		os << getChave() << ";"; 	
@@ -44,6 +48,9 @@ private:
 		return os; 
 	};
 
+	/**@brief Le uma fruta na formatacao "tipo;chave;nome;preco;qtd;lote;validadeDoLote;validade"
+	*@param is Referencia para o stream de entrada 
+	*@return Retorna a stream de entrada */
 	istream& read(istream& is){
 		string aux; 
 		Data d;
@@ -74,9 +81,8 @@ public:
 	/**@brief Destrutor padrao*/
 	~Frutas();
 
-	/**@brief Construtor parametrizado*/
-	Frutas(int c, string n, float p, int e, string lt, Data dl, Data dv);
-
+	/**@brief Construtor copia 
+	*@param a Elemento que sera usado para criacao*/
 	Frutas(Frutas &a);
 
 	/**@return Retorna o lote */
@@ -93,6 +99,8 @@ public:
 	*@param dl A nova data */ 
 	void setDataLote(Data dl);
 
+	/**@brief Cria uma fruta
+	*param key A chave que sera associada a fruta */
 	void criar(int key);
 };
 

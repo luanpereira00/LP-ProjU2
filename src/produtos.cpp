@@ -22,19 +22,11 @@ Produtos::~Produtos(){
 	//Faz Nada
 }
 
-/**@brief Construtor parametrizado*/
-Produtos::Produtos(int c, string n, float p, int e){
-	setTipo(0);
-	setChave(c);
-	setNomeProd(n);
-	setPrecoUnit(p);
-	setQtdEstoque(e);
-}
-
 /**@return Retorna o tipo do produto */
 int Produtos::getTipo(){ return tipo; }
 
-/** @brief Atualiza o tipo */
+/** @brief Atualiza o tipo 
+	*@param t O novo tipo*/
 void Produtos::setTipo(int t){tipo=t;}
 
 /**@return Retorna a chave */
@@ -65,6 +57,9 @@ void Produtos::setPrecoUnit(float p){ precoUnitario = p; }
 	*@param e A nova quantidade*/
 void Produtos::setQtdEstoque(int e){ qtdEstoque = e; }
 
+
+/**@return Retorna a string do nome do tipo de acordo com o valor passado 
+	*@param t O valor do tipo passado */
 string Produtos::tipo2String(int t){
 	switch(t){
 		case 1:
@@ -94,6 +89,7 @@ string Produtos::tipo2String(int t){
 	}
 }
 
+/**@brief Imprime os dados na tela de forma sanitizada */
 void Produtos::imprimirTela(){
 	cout << "---------------------------------------" << endl;
 	//cout << "=======================================" << endl;
@@ -103,16 +99,9 @@ void Produtos::imprimirTela(){
 	cout << "Nome do Produto: " <<getNomeProd() << endl; 	
 	cout << "Preco unitario: " << getPrecoUnit() << endl;
 	cout << "Quantidade: " << getQtdEstoque() << endl;
-	//cout << a.getTeorAlcoolico() << endl; 	
-	//cout << a.getQtdAcucar() << endl;
-	//cout << a.getVolumeTotal() << endl;
-	//cout << *(a.getValidade());
 }
 
-/** @brief Sobrecarga do operador de menor (para Produtos)
-* @param	p Produdo que sera comparado  
-* @return	Retorna bool a relacao
-*/
+
 /*bool Produtos::operator<(Produtos p) {
 	if(chave<p.chave) return true;
 	else return false;

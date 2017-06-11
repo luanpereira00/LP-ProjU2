@@ -26,19 +26,8 @@ Livros::~Livros(){
 	//FAZ NADA
 }
 
-/**@brief Construtor parametrizado*/
-Livros::Livros(int c, string n, float p, int e, string tt, string at, string ed, int aa){
-	setTipo(6);
-	setChave(c);
-	setNomeProd(n);
-	setPrecoUnit(p);
-	setQtdEstoque(e);
-	setTitulo(tt);
-	setAutor(at);
-	setEditora(ed);
-	setLancamento(aa);
-}
-
+/**@brief Construtor copia 
+	*@param a Elemento que sera usado para criacao*/
 Livros::Livros(Livros &a){
 	tipo = a.tipo;
 	chave = a.chave;
@@ -79,6 +68,8 @@ void Livros::setEditora(string ed){ editora = ed; }
 	*@param aa O novo ano de lancamento*/
 void Livros::setLancamento(int aa){ anoLancamento = aa; }
 
+/**@brief Cria um livro
+	*param key A chave que sera associada ao livro */
 void Livros::criar(int key){
 	int auxI;
 	float auxF;
